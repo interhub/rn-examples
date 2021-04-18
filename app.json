@@ -1,15 +1,13 @@
 {
-  "name": "examples",
-  "displayName": "Good Examples!",
   "expo": {
-    "name": "examples",
+    "name": "Good Examples!",
     "slug": "examples",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ],
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon.jpg",
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.interhub.examples"
