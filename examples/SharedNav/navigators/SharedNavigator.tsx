@@ -13,7 +13,6 @@ import Setting from '../screen/Setting'
 const sharedElementsConfig:
     SharedElementsComponentConfig<SharedElementRoute<SCREEN_NAME_SHARED.START_LIST, {}>, SharedElementRoute<SCREEN_NAME_SHARED.ITEM_DETAIL, {}>> =
     (route, otherRoute, showing) => {
-        console.log('FOCUS !!', showing)
         return [
             {id: 'image', animation: 'move'},
             {id: 'text', animation: 'move'},

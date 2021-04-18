@@ -1,4 +1,4 @@
-import {CardStyleInterpolators, StackNavigationOptions, TransitionSpecs} from '@react-navigation/stack'
+import {CardStyleInterpolators, StackNavigationOptions} from '@react-navigation/stack'
 
 /**
  animation types for react-navigation from https://reactnavigation.org/docs/stack-navigator/#transitionpresets
