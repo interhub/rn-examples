@@ -1,12 +1,30 @@
 {
   "name": "examples",
-  "displayName": "examples",
+  "displayName": "Good Examples!",
   "expo": {
     "name": "examples",
     "slug": "examples",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.interhub.examples"
+    },
+    "android": {
+      "package": "com.interhub.examples"
+    },
+    "androidNavigationBar": {
+      "backgroundColor": "#ffd129",
+      "barStyle": "dark-content"
+    },
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#FFFFFF"
+    }
   }
 }
