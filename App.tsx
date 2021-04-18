@@ -7,7 +7,6 @@ import ReanimateGesture from './examples/ReanimateGesture'
 import SharedNav from './examples/SharedNav'
 import PanSquareRotate from './examples/PanSquareRotate'
 import PanCircleRotate from './examples/PanCircleRotate'
-import TfCamera from './examples/TfCamera'
 import ScrollAnimate from './examples/ScrollAnimate'
 import ScrollAnimateHorizont from './examples/ScrollAnimateHorizont'
 import SortAnimate from './examples/SortAnimate'
@@ -15,17 +14,19 @@ import ModalStackNav from './examples/ModalStackNav'
 import SvgStart from './examples/SvgStart'
 import {SCREEN_NAME} from './src/SCREEN_NAME'
 import Menu from './src/Menu'
+import 'react-native-gesture-handler';
+import {enableScreens} from 'react-native-screens'
+enableScreens()
 
 const Stack = createStackNavigator()
 
 const App = () => {
     return <NavigationContainer>
-        <Stack.Navigator headerMode={'none'}>
+        <Stack.Navigator detachInactiveScreens={false} headerMode={'none'}>
             <Stack.Screen name={SCREEN_NAME.MENU} component={Menu}/>
             <Stack.Screen name={SCREEN_NAME.NATIVE_GESTURE} component={NativeGesture}/>
             <Stack.Screen name={SCREEN_NAME.REANIMATE_GESTURE} component={ReanimateGesture}/>
             <Stack.Screen name={SCREEN_NAME.SHARED_NAV} component={SharedNav}/>
-            <Stack.Screen name={SCREEN_NAME.TF_CAMERA} component={TfCamera}/>
             <Stack.Screen name={SCREEN_NAME.SCROLL_ANIMATE} component={ScrollAnimate}/>
             <Stack.Screen name={SCREEN_NAME.SCROLL_ANIMATE_HORIZONT} component={ScrollAnimateHorizont}/>
             <Stack.Screen name={SCREEN_NAME.SORT_ANIMATE} component={SortAnimate}/>

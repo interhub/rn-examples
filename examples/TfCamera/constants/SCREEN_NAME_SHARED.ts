@@ -1,5 +1,0 @@
-export enum SCREEN_NAME_SHARED {
-    START_LIST = 'START_LIST',
-    ITEM_DETAIL = 'ITEM_DETAIL',
-    SETTING = 'SETTING',
-}
