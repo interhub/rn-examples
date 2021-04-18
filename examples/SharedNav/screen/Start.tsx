@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Image, StyleSheet, Text, TouchableOpacity, Vibration, View} from 'react-native'
+import {Image, StyleSheet, Text, View} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
 import {SharedElement} from 'react-navigation-shared-element'
