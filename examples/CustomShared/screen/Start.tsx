@@ -1,0 +1,92 @@
+import React, {MutableRefObject, useRef} from 'react'
+import {Button, StyleSheet, View, Text} from 'react-native'
+import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
+
+type Coord = {
+    x: number,
+    y: number,
+    width: number
+    height: number
+}
+
+
+const Start = () => {
+
+    const oneRef = useRef<View>(null)
+    const twoRef = useRef<View>(null)
+
+    const getCoordDiff = (coordOne: Coord, coordTwo: Coord): { x: number, y: number, size: number } => {
+        'worklet'
+        const diffX = (coordTwo.x - coordOne.x) || 0
+        const diffY = (coordTwo.y - coordOne.y) || 0
+        const size = (coordTwo.width + coordTwo.height) / (coordOne.width + coordOne.height)
+        return {x: diffX, y: diffY, size}
+    }
+
+    const getCoordByRef = async (ref: MutableRefObject<any>): Promise<Coord> => {
+        return await new Promise((ok) => {
+            return ref?.current?.measureInWindow((x: any, y: any, width: any, height: number) => {
+                return ok({x, y, width, height})
+            })
+        })
+    }
+
+    const [posX, posY, scale] = [useSharedValue(0), useSharedValue(0), useSharedValue(1)]
+    const move = async () => {
+        const coordOne = await getCoordByRef(oneRef)
+        const coordTwo = await getCoordByRef(twoRef)
+        const diff = getCoordDiff(coordOne, coordTwo)
+        posX.value = withTiming(diff.x)
+        posY.value = withTiming(diff.y)
+        scale.value = withTiming(diff.size)
+        console.log(diff, 'diff')
+    }
+    const reset = () => {
+        posX.value = withTiming(0)
+        posY.value = withTiming(0)
+        scale.value = withTiming(1)
+    }
+
+    const oneStyle = useAnimatedStyle(() => ({
+        transform: [{translateX: posX.value}, {translateY: posY.value}, {scale: 1}],
+    }))
+
+    return (
+        <View style={styles.container}>
+            <Animated.View style={{opacity: 1}} ref={oneRef as any} collapsable={false}>
+                <Animated.Text style={[{fontSize: 40, color: '#000'}, oneStyle]}>hello world!</Animated.Text>
+            </Animated.View>
+            <Button title={'move'} onPress={move}/>
+            <Button title={'reset'} onPress={reset}/>
+            <Animated.View collapsable={false} ref={twoRef as any}>
+                <Animated.Text style={[{fontSize: 40, color: '#000'}]}>hello world!</Animated.Text>
+            </Animated.View>
+        </View>
+    )
+}
+
+// const Title = () => {
+//     return <Text>hello world!</Text>
+// }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#78bdd0',
+    },
+    imgBox: {
+        width: 200, height: 300,
+    },
+    image: {
+        width: '100%',
+        height: '100%',
+        borderRadius: 15,
+        shadowOpacity: 0.5,
+        shadowRadius: 10
+    }
+})
+
+export default Start
+

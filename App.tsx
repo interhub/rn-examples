@@ -12,6 +12,7 @@ import ScrollAnimateHorizont from './examples/ScrollAnimateHorizont'
 import SortAnimate from './examples/SortAnimate'
 import ModalStackNav from './examples/ModalStackNav'
 import SvgStart from './examples/SvgStart'
+import CustomShared from './examples/CustomShared'
 import {SCREEN_NAME} from './src/SCREEN_NAME'
 import Menu from './src/Menu'
 import 'react-native-gesture-handler';
@@ -34,6 +35,7 @@ const App = () => {
             <Stack.Screen name={SCREEN_NAME.PAN_ROTATE_CIRCLE} component={PanCircleRotate}/>
             <Stack.Screen name={SCREEN_NAME.SVG_START} component={SvgStart}/>
             <Stack.Screen name={SCREEN_NAME.MODAL_STACK_NAV} component={ModalStackNav}/>
+            <Stack.Screen name={SCREEN_NAME.CUSTOM_SHARED} component={CustomShared}/>
         </Stack.Navigator>
     </NavigationContainer>
 }
