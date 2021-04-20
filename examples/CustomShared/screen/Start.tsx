@@ -1,6 +1,6 @@
 import React, {MutableRefObject, useRef} from 'react'
 import {Button, StyleSheet, View, Text} from 'react-native'
-import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
+import Animated, {interpolate, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
 
 type Coord = {
     x: number,
@@ -35,17 +35,31 @@ const Start = () => {
         })
     }
 
-    const [posX, posY, scale] = [useSharedValue(0), useSharedValue(0), useSharedValue(1)]
+    const [posX, posY, scale, opacity] = [useSharedValue(0), useSharedValue(0), useSharedValue(1), useSharedValue(1)]
+
+    const show = () => {
+        'worklet'
+        opacity.value = 1
+    }
+    const hide = () => {
+        'worklet'
+        opacity.value = 0
+    }
+
     const move = async () => {
         const coordOne = await getCoordByRef(oneRef)
         const coordTwo = await getCoordByRef(twoRef)
         const diff = getCoordDiff(coordOne, coordTwo)
         posX.value = withTiming(diff.x, config)
         posY.value = withTiming(diff.y, config)
-        scale.value = withTiming(diff.size, config)
+        scale.value = withTiming(diff.size, config, () => {
+            hide()
+        })
+
         console.log(diff, 'diff')
     }
     const reset = () => {
+        show()
         posX.value = withTiming(0, config)
         posY.value = withTiming(0, config)
         scale.value = withTiming(1, config)
@@ -53,13 +67,14 @@ const Start = () => {
 
     const oneStyle = useAnimatedStyle(() => ({
         transform: [{translateX: posX.value}, {translateY: posY.value}, {scale: scale.value}],
+        opacity: opacity.value
     }))
 
     return (
         <View style={styles.container}>
             <Animated.View style={{opacity: 1, marginBottom: 100, marginLeft: -20}} ref={oneRef as any}
                            collapsable={false}>
-                <Animated.Text style={[{fontSize: 10, color: '#000'}, oneStyle]}>hello world!</Animated.Text>
+                <Animated.Text style={[{fontSize: 70, color: '#000'}, oneStyle]}>hello world!</Animated.Text>
             </Animated.View>
             <Button title={'move'} onPress={move}/>
             <Button title={'reset'} onPress={reset}/>
