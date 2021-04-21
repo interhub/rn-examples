@@ -19,7 +19,6 @@ const CameraBox = ({children}: { children: React.ReactNode }) => {
         onActive: (event, ctx) => {
             y.value = ctx.startY + event.translationY
             x.value = ctx.startX + event.translationX
-            console.log('rotate')
         },
         onEnd: (event) => {
             y.value = withDecay({velocity: event.velocityY})
