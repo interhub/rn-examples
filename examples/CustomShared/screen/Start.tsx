@@ -1,4 +1,4 @@
-import React, {MutableRefObject, useContext, useRef} from 'react'
+import React, {MutableRefObject, useContext, useEffect, useRef} from 'react'
 import {Button, StyleSheet, View, Text, Image} from 'react-native'
 import Animated, {interpolate, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
 import {useNavigation} from '@react-navigation/native'
@@ -28,18 +28,26 @@ const Start = () => {
 
     return (
         <View style={styles.container}>
-            <CameraBox>
-                <Animated.View style={[{opacity: 1}, oneStyle]} ref={oneRef as any}
-                               collapsable={false}>
-                    <Text style={[{fontSize: 70, color: '#000'}]}>hello world!</Text>
-                </Animated.View>
-            </CameraBox>
             <Button title={'move'} onPress={move}/>
+            <Button title={'move1'} onPress={move1}/>
             <Button title={'reset'} onPress={reset}/>
+            <Button title={'reset1'} onPress={reset1}/>
             {/*<Button title={'navigate'} onPress={goToDetail}/>*/}
-            <Animated.View collapsable={false} ref={twoRef as any}>
+            <ViewMove nodeRef={twoRef}>
                 <Text style={[{fontSize: 40, color: '#000'}]}>hello world!</Text>
-            </Animated.View>
+            </ViewMove>
+            <ViewMove nodeRef={twoRef1}>
+                <Image source={require('../img/bg.jpg')} style={styles.image}/>
+            </ViewMove>
+
+            <ViewMove nodeRef={oneRef} oneStyle={oneStyle}>
+                <Text style={[{fontSize: 70, color: '#000'}]}>hello world!</Text>
+            </ViewMove>
+
+            <ViewMove nodeRef={oneRef1} oneStyle={oneStyle1}>
+                <Image source={require('../img/bg.jpg')} style={[styles.image,{width:300, height:150}]}/>
+            </ViewMove>
+
         </View>
     )
 }
@@ -179,6 +187,18 @@ export const useMovaLocal = () => {
         scale.value = withTiming(1, config)
     }
     return {oneRef, twoRef, oneStyle, move, reset}
+}
+
+const ViewMove = ({
+                      nodeRef,
+                      children,
+                      oneStyle
+                  }: { nodeRef: MutableRefObject<any>, children: React.ReactNode, oneStyle?: any }) => {
+
+    return <Animated.View style={[{opacity: 1}, oneStyle]} ref={nodeRef as any}
+                          collapsable={false}>
+        {children}
+    </Animated.View>
 }
 
 
