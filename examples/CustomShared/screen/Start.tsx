@@ -1,6 +1,10 @@
 import React, {MutableRefObject, useRef} from 'react'
 import {Button, StyleSheet, View, Text} from 'react-native'
 import Animated, {interpolate, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
+import {useNavigation} from '@react-navigation/native'
+import {SCREEN_NAME} from '../../../src/SCREEN_NAME'
+import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
+import CameraBox from '../components/CameraBox'
 
 type Coord = {
     x: number,
@@ -65,8 +69,9 @@ const Start = () => {
         scale.value = withTiming(1, config)
     }
 
-    const navigate = () => {
-        
+    const {navigate} = useNavigation()
+    const goToDetail = () => {
+        navigate(SCREEN_NAME_SHARED.ITEM_DETAIL)
     }
 
     const oneStyle = useAnimatedStyle(() => ({
@@ -76,13 +81,15 @@ const Start = () => {
 
     return (
         <View style={styles.container}>
-            <Animated.View style={{opacity: 1, marginBottom: 100, marginLeft: -20}} ref={oneRef as any}
-                           collapsable={false}>
-                <Animated.Text style={[{fontSize: 70, color: '#000'}, oneStyle]}>hello world!</Animated.Text>
-            </Animated.View>
+            <CameraBox>
+                <Animated.View style={{opacity: 1, marginBottom: 100, marginLeft: -20}} ref={oneRef as any}
+                               collapsable={false}>
+                    <Animated.Text style={[{fontSize: 70, color: '#000'}, oneStyle]}>hello world!</Animated.Text>
+                </Animated.View>
+            </CameraBox>
             <Button title={'move'} onPress={move}/>
             <Button title={'reset'} onPress={reset}/>
-            <Button title={'navigate'} onPress={navigate}/>
+            {/*<Button title={'navigate'} onPress={goToDetail}/>*/}
             <Animated.View collapsable={false} ref={twoRef as any}>
                 <Animated.Text style={[{fontSize: 40, color: '#000'}]}>hello world!</Animated.Text>
             </Animated.View>
