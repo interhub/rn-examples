@@ -1,3 +1,3 @@
-import SharedNavigator from './screen/Start'
+import SharedNavigator from './navigators/SharedNavigator'
 
 export default SharedNavigator

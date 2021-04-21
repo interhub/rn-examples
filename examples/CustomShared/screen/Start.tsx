@@ -65,6 +65,10 @@ const Start = () => {
         scale.value = withTiming(1, config)
     }
 
+    const navigate = () => {
+        
+    }
+
     const oneStyle = useAnimatedStyle(() => ({
         transform: [{translateX: posX.value}, {translateY: posY.value}, {scale: scale.value}],
         opacity: opacity.value
@@ -78,6 +82,7 @@ const Start = () => {
             </Animated.View>
             <Button title={'move'} onPress={move}/>
             <Button title={'reset'} onPress={reset}/>
+            <Button title={'navigate'} onPress={navigate}/>
             <Animated.View collapsable={false} ref={twoRef as any}>
                 <Animated.Text style={[{fontSize: 40, color: '#000'}]}>hello world!</Animated.Text>
             </Animated.View>
