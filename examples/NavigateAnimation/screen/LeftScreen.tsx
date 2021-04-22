@@ -16,12 +16,20 @@ const LeftScreen = () => {
         }
     }, {delay: 200})
 
+
     const [titleStyle] = useGetShowAnimatedStyle((shared, inputRange) => {
         'worklet'
         return {
             transform: [{translateX: interpolate(shared.value, inputRange, [500, 0])}],
         }
     }, {delay: 300})
+
+    const [imageStyle1] = useGetShowAnimatedStyle((shared, inputRange) => {
+        'worklet'
+        return {
+            transform: [{scale: interpolate(shared.value, inputRange, [0, 1])}],
+        }
+    }, {delay: 400})
 
     const text = 'Number of repetations that the animation is going to be run for. When negative, the animation will be repeated forever (until the shared value is torn down or the animation is cancelled).Specify whether we should attempt to reverse the animation every other repetition. When true, this will cause the animation to run from the \n\ncurrent value to the destination, after that the same animation will run in the reverse direction.\n'
 
@@ -39,6 +47,11 @@ const LeftScreen = () => {
                 <Animated.Text style={[styles.text, titleStyle]}>
                     {text}
                 </Animated.Text>
+                <Animated.Image
+                    style={[styles.image, imageStyle1]}
+                    resizeMode="cover"
+                    source={require('../img/bg.jpg')}
+                />
                 <ButtonCustom m={10} onPress={navigation.goBack}>
                     back
                 </ButtonCustom>
