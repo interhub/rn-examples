@@ -1,3 +1,3 @@
-import SharedNavigator from './navigators/SharedNavigator'
+import AnimateNavigator from './navigators/AnimateNavigator'
 
-export default SharedNavigator
+export default AnimateNavigator

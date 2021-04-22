@@ -1,8 +1,10 @@
 import React from 'react'
-import {Button, Image, StyleSheet, Text, View} from 'react-native'
-import {useNavigation, useRoute, useNavigationState,} from '@react-navigation/native'
+import {Button, StyleSheet, View} from 'react-native'
+import {useNavigation,} from '@react-navigation/native'
 import useGetShowAnimatedStyle from '../config/useGetShowAnimatedStyle'
 import Animated, {interpolate} from 'react-native-reanimated'
+import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
+import ButtonCustom from '../../../components/ButtonCustom'
 
 const ItemDetail = () => {
 
@@ -22,10 +24,19 @@ const ItemDetail = () => {
         }
     }, {delay: 100})
 
+    const next = () => {
+        navigation.navigate(SCREEN_NAME_SHARED.LEFT_SCREEN)
+    }
+
     return (
         <View style={{flex: 1}}>
             <View style={styles.container}>
-                <Button title={'back'} onPress={navigation.goBack}/>
+                <ButtonCustom m={10} onPress={navigation.goBack}>
+                    back
+                </ButtonCustom>
+                <ButtonCustom color={'#408f33'} m={10} onPress={next}>
+                    next
+                </ButtonCustom>
                 <Animated.Text style={[styles.text, titleStyle]}>
                     ELEMENT PAGE
                 </Animated.Text>

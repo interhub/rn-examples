@@ -5,6 +5,7 @@ import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
 import Animated, {interpolate, useAnimatedStyle, useSharedValue, withDelay, withSpring} from 'react-native-reanimated'
 import useShowScreen from '../config/useShowScreen'
 import useGetShowAnimatedStyle from '../config/useGetShowAnimatedStyle'
+import ButtonCustom from '../../../components/ButtonCustom'
 
 const Start = () => {
 
@@ -58,8 +59,12 @@ const Start = () => {
             <Animated.Text style={[{fontSize: 40, color: '#000', opacity: 1}, textStyle2]}>
                 hello world! HELLO
             </Animated.Text>
-            <Button title={'navigate'} onPress={goToDetail}/>
-            <Button title={'back'} onPress={goBack}/>
+            <ButtonCustom m={10} onPress={goBack}>
+                back
+            </ButtonCustom>
+            <ButtonCustom color={'#408f33'} m={10} onPress={goToDetail}>
+                next
+            </ButtonCustom>
             <Animated.Text style={[{fontSize: 20, color: '#000', opacity: 1}, textStyle]}>
                 hello world! HELLO
             </Animated.Text>
