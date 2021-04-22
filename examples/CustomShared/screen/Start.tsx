@@ -29,12 +29,12 @@ const Start = () => {
     return (
         <View style={styles.container}>
             <Button title={'move'} onPress={move}/>
-            <Button title={'move1'} onPress={move1}/>
             <Button title={'reset'} onPress={reset}/>
+            <Button title={'move1'} onPress={move1}/>
             <Button title={'reset1'} onPress={reset1}/>
             {/*<Button title={'navigate'} onPress={goToDetail}/>*/}
             <ViewMove nodeRef={twoRef}>
-                <Text style={[{fontSize: 40, color: '#000'}]}>hello world!</Text>
+                <Text style={[{fontSize: 40, color: '#000',opacity:0}]}>hello world!</Text>
             </ViewMove>
             <ViewMove nodeRef={twoRef1}>
                 <Image source={require('../img/bg.jpg')} style={styles.image}/>
@@ -165,7 +165,7 @@ export const useMovaLocal = () => {
     }
     const hide = () => {
         'worklet'
-        opacity.value = 0
+        // opacity.value = 0
     }
 
     const move = async () => {
