@@ -1,26 +1,32 @@
 import React from 'react'
-import {Image, StyleSheet, Text, View} from 'react-native'
+import {Button, Image, StyleSheet, Text, View} from 'react-native'
+import {useNavigation, useRoute, useNavigationState,} from '@react-navigation/native'
 
 const ItemDetail = () => {
+
+    const navigation = useNavigation()
+    const route = useRoute()
+    const state = useNavigationState(state => state)
+    // console.log(navigation, 'navigation')
+    // console.log(route, 'route')
+    // console.log(state, 'state')
 
     return (
         <View style={{flex: 1}}>
             <View style={styles.container}>
+                <Button title={'back'} onPress={navigation.goBack}/>
                 <Text style={styles.text}>
                     ELEMENT PAGE
                 </Text>
-                <View style={styles.imgBox}>
-                    <Image
-                        style={styles.image}
-                        resizeMode="cover"
-                        source={require('../img/bg.jpg')}
-                    />
-                </View>
+                <Image
+                    style={styles.image}
+                    resizeMode="cover"
+                    source={require('../img/bg.jpg')}
+                />
             </View>
         </View>
     )
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -30,14 +36,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#000'
     },
     image: {
-        width: '100%', height: '100%'
+        width: '100%', height: '30%'
     },
     text: {fontSize: 30, color: '#FFF', fontWeight: 'bold'},
-    imgBox: {
-        ...StyleSheet.absoluteFillObject,
-        position: 'absolute',
-        zIndex: -1
-    }
 })
 
 export default ItemDetail

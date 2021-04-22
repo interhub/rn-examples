@@ -16,13 +16,14 @@ import CustomShared from './examples/CustomShared'
 import NavigateAnimation from './examples/NavigateAnimation'
 import {SCREEN_NAME} from './src/SCREEN_NAME'
 import Menu from './src/Menu'
-import 'react-native-gesture-handler';
+import 'react-native-gesture-handler'
 import {enableScreens} from 'react-native-screens'
-enableScreens()
 
+enableScreens()
 const Stack = createStackNavigator()
 
 const App = () => {
+
     return <NavigationContainer>
         <Stack.Navigator detachInactiveScreens={false} headerMode={'none'}>
             <Stack.Screen name={SCREEN_NAME.MENU} component={Menu}/>
