@@ -6,7 +6,7 @@ import getScreenAnimation, {SCREEN_ANIMATION} from '../config/getScreenAnimation
 import {createStackNavigator} from '@react-navigation/stack'
 
 const screenOptions: any = {
-    ...getScreenAnimation(SCREEN_ANIMATION.LEFT),
+    ...getScreenAnimation(SCREEN_ANIMATION.FADE),
 }
 
 const Stack = createStackNavigator()

@@ -16,8 +16,8 @@ import CustomShared from './examples/CustomShared'
 import NavigateAnimation from './examples/NavigateAnimation'
 import {SCREEN_NAME} from './src/SCREEN_NAME'
 import Menu from './src/Menu'
-import 'react-native-gesture-handler'
 import {enableScreens} from 'react-native-screens'
+import getScreenAnimation, {SCREEN_ANIMATION} from './src/getScreenAnimation'
 
 enableScreens()
 const Stack = createStackNavigator()
@@ -38,7 +38,8 @@ const App = () => {
             <Stack.Screen name={SCREEN_NAME.SVG_START} component={SvgStart}/>
             <Stack.Screen name={SCREEN_NAME.MODAL_STACK_NAV} component={ModalStackNav}/>
             <Stack.Screen name={SCREEN_NAME.CUSTOM_SHARED} component={CustomShared}/>
-            <Stack.Screen name={SCREEN_NAME.NAVIGATE_ANIMATION} component={NavigateAnimation}/>
+            <Stack.Screen name={SCREEN_NAME.NAVIGATE_ANIMATION} component={NavigateAnimation}
+                          options={getScreenAnimation(SCREEN_ANIMATION.LEFT)}/>
         </Stack.Navigator>
     </NavigationContainer>
 }
