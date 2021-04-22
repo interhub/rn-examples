@@ -3,7 +3,7 @@ import useShowScreen from './useShowScreen'
 
 const useGetShowAnimatedStyle = (setStyle: (shared: Animated.SharedValue<any>, inputRange: [number, number]) => Animated.AnimatedStyleProp<any>, {delay = 50}) => {
     const anim_state = {
-        show: 1,
+        show: 100,
         hide: 0
     }
     const shared = useSharedValue(anim_state.hide)

@@ -7,26 +7,28 @@ import Animated, {interpolate} from 'react-native-reanimated'
 const ItemDetail = () => {
 
     const navigation = useNavigation()
-    const route = useRoute()
-    const state = useNavigationState(state => state)
-    // console.log(navigation, 'navigation')
-    // console.log(route, 'route')
-    // console.log(state, 'state')
 
     const [imageStyle] = useGetShowAnimatedStyle((shared, inputRange) => {
         'worklet'
         return {
-            transform: [{translateY: interpolate(shared.value, inputRange, [300, 0])}],
+            transform: [{translateY: interpolate(shared.value, inputRange, [600, 0])}],
         }
     }, {delay: 200})
+
+    const [titleStyle] = useGetShowAnimatedStyle((shared, inputRange) => {
+        'worklet'
+        return {
+            transform: [{translateY: interpolate(shared.value, inputRange, [-600, 0])}],
+        }
+    }, {delay: 100})
 
     return (
         <View style={{flex: 1}}>
             <View style={styles.container}>
                 <Button title={'back'} onPress={navigation.goBack}/>
-                <Text style={styles.text}>
+                <Animated.Text style={[styles.text, titleStyle]}>
                     ELEMENT PAGE
-                </Text>
+                </Animated.Text>
                 <Animated.Image
                     style={[styles.image, imageStyle]}
                     resizeMode="cover"
