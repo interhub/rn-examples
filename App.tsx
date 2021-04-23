@@ -18,6 +18,7 @@ import {SCREEN_NAME} from './src/SCREEN_NAME'
 import Menu from './src/Menu'
 import {enableScreens} from 'react-native-screens'
 import getScreenAnimation, {SCREEN_ANIMATION} from './src/getScreenAnimation'
+import TabsNavigator from './examples/TabNavigator'
 
 enableScreens()
 const Stack = createStackNavigator()
@@ -40,6 +41,7 @@ const App = () => {
             <Stack.Screen name={SCREEN_NAME.CUSTOM_SHARED} component={CustomShared}/>
             <Stack.Screen name={SCREEN_NAME.NAVIGATE_ANIMATION} component={NavigateAnimation}
                           options={getScreenAnimation(SCREEN_ANIMATION.LEFT)}/>
+            <Stack.Screen name={SCREEN_NAME.TAB_NAVIGATOR} component={TabsNavigator}/>
         </Stack.Navigator>
     </NavigationContainer>
 }
