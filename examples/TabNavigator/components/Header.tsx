@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         zIndex: 1000,
         paddingHorizontal: 15
     }, text: {
-        color: '#FFF',
+        color: '#004605',
         fontWeight: 'bold'
     }
 
