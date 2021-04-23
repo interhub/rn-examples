@@ -41,8 +41,9 @@ const TAB_INFO = [
 
 const BottomTabBar = ({state, tabStyle}: BottomTabBarProps) => {
     const {bottom} = useSafeAreaInsets()
+    const paddingBottom = (bottom / 2) + TAB_PADDING
     return (
-        <View style={[tabStyle, {paddingBottom: bottom}]}>
+        <View style={[tabStyle, {paddingBottom}]}>
             <TabItem info={TAB_INFO[0]} state={state}/>
             <TabItem info={TAB_INFO[1]} state={state}/>
             <TabItem info={TAB_INFO[2]} state={state}/>
