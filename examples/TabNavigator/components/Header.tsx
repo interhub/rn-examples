@@ -5,13 +5,12 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useNavigation} from '@react-navigation/native'
 import {SCREEN_NAME_TABS} from '../constants/SCREEN_NAME_TABS'
 
-const HEADER_HEIGHT = 100
 const Header = () => {
     const {top} = useSafeAreaInsets()
     const {navigate, goBack} = useNavigation()
     const goToSetting = () => navigate(SCREEN_NAME_TABS.SETTING)
     return (
-        <View style={[styles.container, {paddingTop: top}]}>
+        <View style={[styles.container, {paddingTop: (top / 2) + 20}]}>
             <TouchableScale onPress={goBack}>
                 <Text style={styles.text}>BACK</Text>
             </TouchableScale>
@@ -25,9 +24,9 @@ const Header = () => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height: HEADER_HEIGHT,
         flexDirection: 'row',
         alignItems: 'center',
+        paddingBottom: 20,
         justifyContent: 'space-between',
         backgroundColor: '#218d49',
         zIndex: 1000,
