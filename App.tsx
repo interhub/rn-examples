@@ -19,6 +19,7 @@ import Menu from './src/Menu'
 import {enableScreens} from 'react-native-screens'
 import getScreenAnimation, {SCREEN_ANIMATION} from './src/getScreenAnimation'
 import TabsNavigator from './examples/TabNavigator'
+import AccelerometerLib from './examples/AccelerometerLib'
 
 enableScreens()
 const Stack = createStackNavigator()
@@ -42,6 +43,7 @@ const App = () => {
             <Stack.Screen name={SCREEN_NAME.NAVIGATE_ANIMATION} component={NavigateAnimation}
                           options={getScreenAnimation(SCREEN_ANIMATION.LEFT)}/>
             <Stack.Screen name={SCREEN_NAME.TAB_NAVIGATOR} component={TabsNavigator}/>
+            <Stack.Screen name={SCREEN_NAME.ACCELEROMETER_LIB} component={AccelerometerLib}/>
         </Stack.Navigator>
     </NavigationContainer>
 }

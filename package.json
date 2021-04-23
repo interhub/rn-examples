@@ -19,6 +19,7 @@
     "@types/clamp": "^1.0.0",
     "clamp": "^1.0.1",
     "expo": "~41.0.0",
+    "expo-sensors": "^10.1.2",
     "expo-splash-screen": "~0.10.2",
     "expo-status-bar": "~1.0.4",
     "expo-updates": "~0.5.4",
