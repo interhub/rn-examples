@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {Accelerometer} from 'expo-sensors'
-import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
+import Animated, {Easing, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
 
 export default function App() {
     const [data, setData] = useState<any>({
@@ -14,7 +14,7 @@ export default function App() {
     }
 
     const _fast = () => {
-        Accelerometer.setUpdateInterval(16)
+        Accelerometer.setUpdateInterval(100)
     }
 
     useEffect(() => {
@@ -32,10 +32,17 @@ export default function App() {
     const posStyle = useAnimatedStyle(() => ({
         transform: [{translateY: posY.value}, {translateX: posX.value}]
     }))
+    const fixedRound = (num: number) => {
+        'worklet'
+        return parseFloat(Number(num || 0).toFixed(2))
+    }
     const setUpNewPos = ({x, y}: { x: number, y: number }) => {
         'worklet'
-        posX.value = withTiming(x)
-        posY.value = withTiming(y)
+        const COF = 50
+        const newX = fixedRound(x * COF)
+        const newY = fixedRound(y * COF)
+        posX.value = withTiming(-newX, {duration: 200, easing: Easing.linear})
+        posY.value = withTiming(newY, {duration: 200, easing: Easing.linear})
     }
 
     useEffect(() => {
