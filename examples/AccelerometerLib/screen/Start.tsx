@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import {Accelerometer} from 'expo-sensors'
+import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
 
 export default function App() {
     const [data, setData] = useState<any>({
@@ -26,6 +27,22 @@ export default function App() {
     }, [])
 
     const {x, y, z} = data
+
+    const [posX, posY] = [useSharedValue(0), useSharedValue(0)]
+    const posStyle = useAnimatedStyle(() => ({
+        transform: [{translateY: posY.value}, {translateX: posX.value}]
+    }))
+    const setUpNewPos = ({x, y}: { x: number, y: number }) => {
+        'worklet'
+        posX.value = withTiming(x)
+        posY.value = withTiming(y)
+    }
+
+    useEffect(() => {
+        setUpNewPos({x, y})
+    }, [x, y])
+
+
     return (
         <View style={styles.container}>
             <Text style={styles.text}>Accelerometer: (in Gs where 1 G = 9.81 m s^-2)</Text>
@@ -40,6 +57,14 @@ export default function App() {
                     <Text>Fast</Text>
                 </TouchableOpacity>
             </View>
+            <Animated.View style={[{
+                width: 40,
+                height: 40,
+                backgroundColor: 'red',
+                position: 'absolute',
+                left: 100,
+                top: 200
+            }, posStyle]}/>
         </View>
     )
 }
