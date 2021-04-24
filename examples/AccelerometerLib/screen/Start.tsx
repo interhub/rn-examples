@@ -1,12 +1,12 @@
 import React, {useContext, useEffect, useMemo} from 'react'
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 import {Accelerometer} from 'expo-sensors'
 import Animated, {Easing, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
 
 export default function App() {
 
-    const POINT_MATCH = 30
+    const POINT_MATCH = 50
 
     return (
         <ParallaxProvider>
@@ -35,16 +35,25 @@ const BoxItem = React.memo(() => {
 
     const {x: left, y: top} = useMemo(() => getRandomCoord(), [])
 
-    const {animStyle} = useParallax()
+    const minSpeed = 0.2
+    const maxSpeed = 3
+    const randomSpeed = (Math.random() + minSpeed) * maxSpeed
+
+    const {animStyle} = useParallax({speed: randomSpeed})
+
+    const SIZE_DIFF = POINT_SIZE + ((POINT_SIZE / 2) * (randomSpeed))
 
     return <Animated.View
         style={[{
-            width: POINT_SIZE,
-            height: POINT_SIZE,
-            backgroundColor: 'red',
+            width: SIZE_DIFF,
+            height: SIZE_DIFF,
+            backgroundColor: '#50068d',
             position: 'absolute',
             left,
-            top
+            top,
+            elevation: 10,
+            shadowRadius: 10,
+            shadowOpacity: 2,
         }, animStyle]}/>
 }, () => true)
 
@@ -55,16 +64,17 @@ const ParallaxProvider = ({children}: { children: React.ReactNode }) => {
     const PERIOD = 200
 
     const fixedRound = (num: number) => {
+        const DEC = 1
         'worklet'
-        return parseFloat(Number(num || 0).toFixed(3))
+        return parseFloat(Number(num || 0).toFixed(DEC))
     }
 
     const setUpNewPos = ({x, y}: { x: number, y: number }) => {
         'worklet'
-        const SPEED = 100
-        const newX = fixedRound(x * SPEED)
-        const newY = fixedRound(y * SPEED)
-        const config: Animated.WithTimingConfig = {duration: PERIOD, easing: Easing.linear}
+        const DEFAULT_SPEED = 200
+        const newX = fixedRound(x * DEFAULT_SPEED)
+        const newY = fixedRound(y * DEFAULT_SPEED)
+        const config: Animated.WithTimingConfig = {duration: 500, easing: Easing.linear}
         posX.value = withTiming(-newX, config)
         posY.value = withTiming(newY, config)
     }
@@ -74,6 +84,7 @@ const ParallaxProvider = ({children}: { children: React.ReactNode }) => {
 
         const sub = Accelerometer.addListener(({x, y}) => {
             'worklet'
+            console.log('x,y', x, y)
             setUpNewPos({x, y})
         })
         return () => {
@@ -88,11 +99,12 @@ const ParallaxProvider = ({children}: { children: React.ReactNode }) => {
     </AccelerometerContext.Provider>
 }
 
-const useParallax = () => {
+const useParallax = (config?: { speed?: number }) => {
+    const speed = config?.speed || 1
     const {posY, posX} = useContext(AccelerometerContext)
 
     const animStyle = useAnimatedStyle(() => ({
-        transform: [{translateY: posY.value}, {translateX: posX.value}]
+        transform: [{translateY: posY.value * speed}, {translateX: posX.value * speed}]
     }))
 
     return {animStyle}
