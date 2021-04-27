@@ -21,6 +21,7 @@ import getScreenAnimation, {SCREEN_ANIMATION} from './src/getScreenAnimation'
 import TabsNavigator from './examples/TabNavigator'
 import AccelerometerLib from './examples/AccelerometerLib'
 import PhotoPicker from './examples/PhotoPicker'
+import MaskView from './examples/MaskView'
 
 enableScreens()
 const Stack = createStackNavigator()
@@ -46,6 +47,7 @@ const App = () => {
             <Stack.Screen name={SCREEN_NAME.TAB_NAVIGATOR} component={TabsNavigator}/>
             <Stack.Screen name={SCREEN_NAME.ACCELEROMETER_LIB} component={AccelerometerLib}/>
             <Stack.Screen name={SCREEN_NAME.PHOTO_PICKER} component={PhotoPicker}/>
+            <Stack.Screen name={SCREEN_NAME.MASK_VIEW} component={MaskView}/>
         </Stack.Navigator>
     </NavigationContainer>
 }
