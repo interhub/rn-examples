@@ -1,8 +1,8 @@
 import React from 'react'
 import {Text, View} from 'react-native'
-import MaskedView from '@react-native-masked-view/masked-view'
+import MaskedView from '@react-native-community/masked-view'
 
-export default function App() {
+export default function () {
     return (
         <MaskedView
             style={{flex: 1, flexDirection: 'row', height: '100%'}}
