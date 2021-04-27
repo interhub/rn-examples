@@ -17,5 +17,6 @@ export enum SCREEN_NAME {
     PHOTO_PICKER = 'PHOTO_PICKER📸',
     MASK_VIEW = 'MASK_VIEW🎭',
 }
+//3 мая
 
 

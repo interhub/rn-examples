@@ -32,6 +32,10 @@ export default function Start() {
         waitAnimationEnd: true,
         maxFiles: 1,
         minFiles: 1,
+        cropperToolbarTitle: 'Изменить',
+        cropperChooseText: 'Выбрать',
+        cropperCancelText: 'Отменить',
+        cropperToolbarWidgetColor: '#4649ad'
     }
 
     const base64ToUri = (base: any = ''): string => {
