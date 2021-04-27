@@ -1,5 +1,5 @@
 import React from 'react'
-import {Text, View} from 'react-native'
+import {Image, Text, View} from 'react-native'
 import MaskedView from '@react-native-community/masked-view'
 
 export default function () {
@@ -18,7 +18,7 @@ export default function () {
                 >
                     <Text
                         style={{
-                            fontSize: 60,
+                            fontSize: 130,
                             color: 'black',
                             fontWeight: 'bold',
                         }}
@@ -28,11 +28,7 @@ export default function () {
                 </View>
             }
         >
-            {/* Shows behind the mask, you can put anything here, such as an image */}
-            <View style={{flex: 1, height: '100%', backgroundColor: '#324376'}}/>
-            <View style={{flex: 1, height: '100%', backgroundColor: '#F5DD90'}}/>
-            <View style={{flex: 1, height: '100%', backgroundColor: '#F76C5E'}}/>
-            <View style={{flex: 1, height: '100%', backgroundColor: '#e1e1e1'}}/>
+            <Image source={require('./img/bg.jpg')} style={{width: '100%', height: '100%'}}/>
         </MaskedView>
     )
 }
