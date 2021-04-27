@@ -21,6 +21,11 @@ PODS:
     - UMImageLoaderInterface
   - EXKeepAwake (9.1.2):
     - UMCore
+  - EXMediaLibrary (12.0.2):
+    - React-Core
+    - UMCore
+    - UMFileSystemInterface
+    - UMPermissionsInterface
   - EXPermissions (12.0.1):
     - UMCore
     - UMPermissionsInterface
@@ -357,6 +362,15 @@ PODS:
     - React
   - RNGestureHandler (1.10.3):
     - React-Core
+  - RNImageCropPicker (0.36.0):
+    - React-Core
+    - React-RCTImage
+    - RNImageCropPicker/QBImagePickerController (= 0.36.0)
+    - TOCropViewController
+  - RNImageCropPicker/QBImagePickerController (0.36.0):
+    - React-Core
+    - React-RCTImage
+    - TOCropViewController
   - RNReanimated (2.1.0):
     - DoubleConversion
     - FBLazyVector
@@ -392,6 +406,7 @@ PODS:
     - React
   - RNSVG (12.1.1):
     - React
+  - TOCropViewController (2.6.0)
   - UMAppLoader (2.1.0)
   - UMBarCodeScannerInterface (6.1.0):
     - UMCore
@@ -427,6 +442,7 @@ DEPENDENCIES:
   - EXFont (from `../node_modules/expo-font/ios`)
   - EXImageLoader (from `../node_modules/expo-image-loader/ios`)
   - EXKeepAwake (from `../node_modules/expo-keep-awake/ios`)
+  - EXMediaLibrary (from `../node_modules/expo-media-library/ios`)
   - EXPermissions (from `../node_modules/expo-permissions/ios`)
   - EXSensors (from `../node_modules/expo-sensors/ios`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
@@ -482,6 +498,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSharedElement (from `../node_modules/react-native-shared-element`)
@@ -514,6 +531,7 @@ SPEC REPOS:
     - FlipperKit
     - libevent
     - OpenSSL-Universal
+    - TOCropViewController
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -533,6 +551,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-image-loader/ios"
   EXKeepAwake:
     :path: "../node_modules/expo-keep-awake/ios"
+  EXMediaLibrary:
+    :path: "../node_modules/expo-media-library/ios"
   EXPermissions:
     :path: "../node_modules/expo-permissions/ios"
   EXSensors:
@@ -601,6 +621,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/masked-view"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNImageCropPicker:
+    :path: "../node_modules/react-native-image-crop-picker"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -649,6 +671,7 @@ SPEC CHECKSUMS:
   EXFont: d6fb79f9863120f0d0b26b0c2d1453bc9511e9df
   EXImageLoader: da941c9399e01ec28f2d5b270bdd21f2c8ca596c
   EXKeepAwake: d4e4a3ed8c1c4fd940dd62fc5a8be2a190371fd4
+  EXMediaLibrary: 8dc0328a99dda5a5f11a962d10dabd00d1a20ae8
   EXPermissions: 8f8c1c05580c4e02d4ee2c8dd74bfe173ff6a723
   EXSensors: ff57f57b4e36568be8c5edc818fbaa7f56a2e9c5
   EXSplashScreen: a9baaf4fa866003884c90ba049f18760d6a8ce39
@@ -692,10 +715,12 @@ SPEC CHECKSUMS:
   ReactCommon: cfe2b7fd20e0dbd2d1185cd7d8f99633fbc5ff05
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
+  RNImageCropPicker: e641bf83ac47324994cac139bde74635ec52c17c
   RNReanimated: b8c8004b43446e3c2709fe64b2b41072f87428ad
   RNScreens: bd1523c3bde7069b8e958e5a16e1fc7722ad0bdd
   RNSharedElement: 00b1a1420d213a34459bb9a5aacabb38107d7948
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
+  TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
   UMAppLoader: fe2708bb0ac5cd70052bc207d06aa3b7e72b9e97
   UMBarCodeScannerInterface: 79f92bea5f7af39b381a4c82298105ceb537408a
   UMCameraInterface: 81ff46700da88435f17afedfc88915eaede7e6a6
