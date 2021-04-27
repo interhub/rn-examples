@@ -21,6 +21,8 @@ export default function Start() {
         return granted
     }
 
+    const PRIMARY_COLOR = '#4649ad'
+
     const options: Options = {
         multiple: false,
         cropping: true,
@@ -35,7 +37,11 @@ export default function Start() {
         cropperToolbarTitle: 'Изменить',
         cropperChooseText: 'Выбрать',
         cropperCancelText: 'Отменить',
-        cropperToolbarWidgetColor: '#4649ad'
+        loadingLabelText: 'Загрузка...',
+        cropperToolbarWidgetColor: PRIMARY_COLOR,
+        cropperToolbarColor: '#2b2b3b',
+        cropperActiveWidgetColor: PRIMARY_COLOR,
+        cropperStatusBarColor: '#2b2b3b',
     }
 
     const base64ToUri = (base: any = ''): string => {
