@@ -22,19 +22,11 @@ import TabsNavigator from './examples/TabNavigator'
 import AccelerometerLib from './examples/AccelerometerLib'
 import PhotoPicker from './examples/PhotoPicker'
 import MaskView from './examples/MaskView'
+import ColorNavPicker from './examples/ColorNavPicker'
 
 import changeNavigationBarColor from 'react-native-navigation-bar-color'
 enableScreens()
-const setUpSettings=async ()=>{
-    try{
-        const response = await changeNavigationBarColor('#80b3ff', true, true);
-        console.log(response)
-    }catch(e){
-        console.log(e)
-    }
-}
 const Stack = createStackNavigator()
-setUpSettings()
 
 const App = () => {
 
@@ -58,6 +50,7 @@ const App = () => {
             <Stack.Screen name={SCREEN_NAME.ACCELEROMETER_LIB} component={AccelerometerLib}/>
             <Stack.Screen name={SCREEN_NAME.PHOTO_PICKER} component={PhotoPicker}/>
             <Stack.Screen name={SCREEN_NAME.MASK_VIEW} component={MaskView}/>
+            <Stack.Screen name={SCREEN_NAME.COLOR_NAV_PICKER} component={ColorNavPicker}/>
         </Stack.Navigator>
     </NavigationContainer>
 }
