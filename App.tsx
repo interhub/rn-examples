@@ -23,8 +23,18 @@ import AccelerometerLib from './examples/AccelerometerLib'
 import PhotoPicker from './examples/PhotoPicker'
 import MaskView from './examples/MaskView'
 
+import changeNavigationBarColor from 'react-native-navigation-bar-color'
 enableScreens()
+const setUpSettings=async ()=>{
+    try{
+        const response = await changeNavigationBarColor('#80b3ff', true, true);
+        console.log(response)
+    }catch(e){
+        console.log(e)
+    }
+}
 const Stack = createStackNavigator()
+setUpSettings()
 
 const App = () => {
 

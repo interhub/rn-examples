@@ -42,6 +42,7 @@ export default function Start() {
         cropperToolbarColor: '#2b2b3b',
         cropperActiveWidgetColor: PRIMARY_COLOR,
         cropperStatusBarColor: '#2b2b3b',
+        includeExif: true
     }
 
     const base64ToUri = (base: any = ''): string => {
