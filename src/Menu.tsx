@@ -16,6 +16,7 @@ const Menu = () => {
             contentContainerStyle={{paddingTop: top, paddingBottom: bottom + 10}}
             style={{flex: 1}}
             data={SCREENS}
+            initialNumToRender={14}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item, index}) => {
                 return <NavigateButton screenName={item}/>
@@ -23,7 +24,6 @@ const Menu = () => {
         />
     )
 }
-
 
 const NavigateButton = ({screenName}: { screenName: SCREEN_NAME }) => {
     const {navigate} = useNavigation()
