@@ -24,9 +24,10 @@ import PhotoPicker from './examples/PhotoPicker'
 import MaskView from './examples/MaskView'
 import ColorNavPicker from './examples/ColorNavPicker'
 
-import changeNavigationBarColor from 'react-native-navigation-bar-color'
 enableScreens()
 const Stack = createStackNavigator()
+
+//TODO TEST EJECT FOR SET UP NORMAL ANDROID ICON SIZE AND DONT USE MANUAL SET ICONS
 
 const App = () => {
 
