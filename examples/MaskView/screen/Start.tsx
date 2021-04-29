@@ -3,7 +3,6 @@ import {Image, SafeAreaView} from 'react-native'
 import MaskedView from '@react-native-masked-view/masked-view'
 import Animated, {useAnimatedStyle, useSharedValue, withRepeat, withSequence, withTiming} from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
-import CameraBox from '../components/CameraBox'
 
 export default function () {
     const posY = useSharedValue(0)

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, StyleSheet, View} from 'react-native'
+import {I18nManager, StyleSheet, View} from 'react-native'
 import {useNavigation,} from '@react-navigation/native'
 import useGetShowAnimatedStyle from '../config/useGetShowAnimatedStyle'
 import Animated, {interpolate} from 'react-native-reanimated'
