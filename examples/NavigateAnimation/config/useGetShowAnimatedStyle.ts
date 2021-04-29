@@ -21,7 +21,6 @@ const useGetShowAnimatedStyle = (setStyle: (setPoints: (start: number, end: numb
 
     const animatedStyle = useAnimatedStyle(() => {
         const setPoints = (start: number, end: number) => {
-            console.log(start, end, 'ends')
             return interpolate(shared.value, inputRange, [start, end])
         }
         return setStyle(setPoints)
