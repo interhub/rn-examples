@@ -1,8 +1,8 @@
 import React from 'react'
-import {I18nManager, StyleSheet, View} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {useNavigation,} from '@react-navigation/native'
 import useGetShowAnimatedStyle from '../config/useGetShowAnimatedStyle'
-import Animated, {interpolate} from 'react-native-reanimated'
+import Animated from 'react-native-reanimated'
 import ButtonCustom from '../../../components/ButtonCustom'
 
 const LeftScreen = () => {
