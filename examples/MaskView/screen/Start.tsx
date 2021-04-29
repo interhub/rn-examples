@@ -3,6 +3,7 @@ import {Image, SafeAreaView} from 'react-native'
 import MaskedView from '@react-native-masked-view/masked-view'
 import Animated, {useAnimatedStyle, useSharedValue, withRepeat, withSequence, withTiming} from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
+import CameraBox from '../components/CameraBox'
 
 export default function () {
     const posY = useSharedValue(0)
@@ -16,9 +17,11 @@ export default function () {
 
 
     return (
-        <SafeAreaView style={{flex: 1}}>
+        <SafeAreaView style={{flex: 1, backgroundColor: '#222222'}}>
+            {/*<CameraBox>*/}
             <MaskedView
-                style={{flex: 1}}
+                onTouchStart={() => console.log('aaaa')}
+                style={{flex: 1,}}
                 maskElement={
                     <Animated.Text
                         numberOfLines={3}
@@ -35,6 +38,7 @@ export default function () {
             >
                 <Image source={require('../img/bg.jpg')} style={{width: '100%', height: '100%'}}/>
             </MaskedView>
+            {/*</CameraBox>*/}
         </SafeAreaView>
     )
 }

@@ -20,7 +20,6 @@ const CameraBox = ({children}: { children: React.ReactNode }) => {
         onActive: (event, ctx) => {
             y.value = ctx.startY + event.translationY
             x.value = ctx.startX + event.translationX
-            console.log('rotate')
         },
         onEnd: (event) => {
             y.value = withDecay({velocity: event.velocityY})
@@ -31,12 +30,8 @@ const CameraBox = ({children}: { children: React.ReactNode }) => {
     const animatedStyle = useAnimatedStyle(() => {
         return {
             transform: [
-                {
-                    rotateX: interpolate(y.value, [-500, 0, 500], [-2 * Math.PI * 180, 0, 2 * Math.PI * 180]) + 'deg',
-                },
-                {
-                    rotateY: interpolate(-x.value, [-500, 0, 500], [-2 * Math.PI * 180, 0, 2 * Math.PI * 180]) + 'deg',
-                },
+                {translateX: x.value},
+                {translateY: y.value},
             ],
         }
     })
@@ -44,7 +39,7 @@ const CameraBox = ({children}: { children: React.ReactNode }) => {
     return (
         <PanGestureHandler onGestureEvent={gestureHandler}>
             <Animated.View>
-                <Animated.View style={[{height: 300, width: 300}, animatedStyle]}>
+                <Animated.View style={[animatedStyle, {width: 300, height: 300}]}>
                     {children}
                 </Animated.View>
             </Animated.View>
