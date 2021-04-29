@@ -8,7 +8,7 @@ import changeNavigationBarColor, {hideNavigationBar, showNavigationBar} from 're
 const setUpColor = async (color: string) => {
     if (!color) return
     try {
-        const response = await changeNavigationBarColor(color, false, true)
+        const response = await changeNavigationBarColor(color, false, false)
         console.log(response)
     } catch (e) {
         console.log(e)

@@ -13,7 +13,12 @@
       "bundleIdentifier": "com.interhub.examples"
     },
     "android": {
-      "package": "com.interhub.examples"
+      "package": "com.interhub.examples",
+      "adaptiveIcon": {
+        "backgroundColor": "#4649ad",
+        "backgroundImage": "./assets/icon.png",
+        "foregroundImage": "./assets/icon.png"
+      }
     },
     "androidNavigationBar": {
       "backgroundColor": "#ffd129",
