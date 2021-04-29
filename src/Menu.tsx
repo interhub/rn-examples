@@ -17,6 +17,7 @@ const Menu = () => {
             style={{flex: 1}}
             data={SCREENS}
             initialNumToRender={14}
+            inverted
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item, index}) => {
                 return <NavigateButton screenName={item}/>
