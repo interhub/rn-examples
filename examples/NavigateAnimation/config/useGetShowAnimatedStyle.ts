@@ -1,7 +1,7 @@
-import Animated, {useAnimatedStyle, useSharedValue, withDelay, withSpring} from 'react-native-reanimated'
+import Animated, {interpolate, useAnimatedStyle, useSharedValue, withDelay, withSpring} from 'react-native-reanimated'
 import useShowScreen from './useShowScreen'
 
-const useGetShowAnimatedStyle = (setStyle: (shared: Animated.SharedValue<any>, inputRange: [number, number]) => Animated.AnimatedStyleProp<any>, {delay = 50}) => {
+const useGetShowAnimatedStyle = (setStyle: (setPoints: (start: number, end: number) => number) => Animated.AnimatedStyleProp<any>, {delay = 50}) => {
     const anim_state = {
         show: 100,
         hide: 0
@@ -13,7 +13,19 @@ const useGetShowAnimatedStyle = (setStyle: (shared: Animated.SharedValue<any>, i
         shared.value = withDelay(delay, animation)
     })
     const inputRange: [number, number] = [anim_state.hide, anim_state.show]
-    const animatedStyle = useAnimatedStyle(() => setStyle(shared, inputRange))
+
+    // const getStyleFromJS=()=>{
+    //     "worklet";
+    //     return setStyle()
+    // }
+
+    const animatedStyle = useAnimatedStyle(() => {
+        const setPoints = (start: number, end: number) => {
+            console.log(start, end, 'ends')
+            return interpolate(shared.value, inputRange, [start, end])
+        }
+        return setStyle(setPoints)
+    })
     return [animatedStyle]
 }
 

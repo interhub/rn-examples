@@ -1,9 +1,8 @@
 import React from 'react'
-import {Button, StyleSheet, View} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
-import Animated, {interpolate, useAnimatedStyle, useSharedValue, withDelay, withSpring} from 'react-native-reanimated'
-import useShowScreen from '../config/useShowScreen'
+import Animated from 'react-native-reanimated'
 import useGetShowAnimatedStyle from '../config/useGetShowAnimatedStyle'
 import ButtonCustom from '../../../components/ButtonCustom'
 
@@ -35,22 +34,22 @@ const Start = () => {
     //     posTxt.value = animation
     // })
 
-    const [imageStyle] = useGetShowAnimatedStyle((shared, inputRange) => {
+    const [imageStyle] = useGetShowAnimatedStyle((setPoints) => {
         'worklet'
         return {
-            transform: [{translateY: interpolate(shared.value, inputRange, [500, 0])}],
+            transform: [{translateY: setPoints(500, 0)}],
         }
     }, {delay: 60})
-    const [textStyle] = useGetShowAnimatedStyle((shared, inputRange) => {
+    const [textStyle] = useGetShowAnimatedStyle((setPoints) => {
         'worklet'
         return {
-            transform: [{translateY: interpolate(shared.value, inputRange, [500, 0])}],
+            transform: [{translateY: setPoints(500, 0)}],
         }
     }, {delay: 0})
-    const [textStyle2] = useGetShowAnimatedStyle((shared, inputRange) => {
+    const [textStyle2] = useGetShowAnimatedStyle((setPoints) => {
         'worklet'
         return {
-            transform: [{translateY: interpolate(shared.value, inputRange, [-500, 0])}],
+            transform: [{translateY: setPoints(-500, 0)}],
         }
     }, {delay: 120})
 

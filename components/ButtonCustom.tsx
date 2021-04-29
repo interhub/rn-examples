@@ -31,6 +31,7 @@ const ButtonCustom = ({
     return (
         <View style={{width: '100%', marginVertical: m, paddingHorizontal: m}}>
             <TouchableOpacity
+                delayPressIn={30}
                 onPress={onPress}
                 disabled={false}
                 style={[{

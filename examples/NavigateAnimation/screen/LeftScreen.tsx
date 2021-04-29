@@ -9,25 +9,25 @@ const LeftScreen = () => {
 
     const navigation = useNavigation()
 
-    const [imageStyle] = useGetShowAnimatedStyle((shared, inputRange) => {
+    const [imageStyle] = useGetShowAnimatedStyle((setPoints) => {
         'worklet'
         return {
-            transform: [{translateX: interpolate(shared.value, inputRange, [500, 0])}],
+            transform: [{translateX: setPoints(500, 0)}],
         }
     }, {delay: 200})
 
 
-    const [titleStyle] = useGetShowAnimatedStyle((shared, inputRange) => {
+    const [titleStyle] = useGetShowAnimatedStyle((setPoints) => {
         'worklet'
         return {
-            transform: [{translateX: interpolate(shared.value, inputRange, [500, 0])}],
+            transform: [{translateX: setPoints(500, 0)}],
         }
     }, {delay: 300})
 
-    const [imageStyle1] = useGetShowAnimatedStyle((shared, inputRange) => {
+    const [imageStyle1] = useGetShowAnimatedStyle((setPoints) => {
         'worklet'
         return {
-            transform: [{scale: interpolate(shared.value, inputRange, [0, 1])}],
+            transform: [{scale: setPoints(0, 1)}],
         }
     }, {delay: 400})
 

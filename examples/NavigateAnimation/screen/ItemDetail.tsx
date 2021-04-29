@@ -10,17 +10,17 @@ const ItemDetail = () => {
 
     const navigation = useNavigation()
 
-    const [imageStyle] = useGetShowAnimatedStyle((shared, inputRange) => {
+    const [imageStyle] = useGetShowAnimatedStyle((setPoints) => {
         'worklet'
         return {
-            transform: [{translateY: interpolate(shared.value, inputRange, [600, 0])}],
+            transform: [{translateY: setPoints(600, 0)}],
         }
     }, {delay: 200})
 
-    const [titleStyle] = useGetShowAnimatedStyle((shared, inputRange) => {
+    const [titleStyle] = useGetShowAnimatedStyle((setPoints) => {
         'worklet'
         return {
-            transform: [{translateY: interpolate(shared.value, inputRange, [-600, 0])}],
+            transform: [{translateY: setPoints(-600, 0)}],
         }
     }, {delay: 100})
 
