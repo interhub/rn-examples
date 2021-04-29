@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import {Image, SafeAreaView} from 'react-native'
 import MaskedView from '@react-native-masked-view/masked-view'
 import Animated, {
+    runOnJS,
     useAnimatedGestureHandler,
     useAnimatedStyle,
     useSharedValue, withDecay,
@@ -43,7 +44,7 @@ export default function () {
                     </MaskedView>
                 </Animated.View>
             </PanGestureHandler>
-            <ButtonCustom onPress={goBack} m={10} >Back</ButtonCustom>
+            <ButtonCustom onPress={goBack} m={10}>Back</ButtonCustom>
         </SafeAreaView>
     )
 }
@@ -53,9 +54,13 @@ const useGestureTranslate = () => {
     const x = useSharedValue(0)
 
     const setUpAutoAnimate = () => {
-        "worklet"
-        x.value = withTiming(0,{duration:3000})
+        x.value = withTiming(0, {duration: 3000})
         y.value = withRepeat(withSequence(withTiming(SIZE.height / 2.5, {duration: 3000}), withTiming(0, {duration: 3000})), -1, true)
+    }
+    const setTimer=()=>{
+        setTimeout(()=>{
+            setUpAutoAnimate()
+        },1000)
     }
 
     const gestureHandler = useAnimatedGestureHandler<PanGestureHandlerGestureEvent, { startY: number, startX: number }>({
@@ -68,10 +73,9 @@ const useGestureTranslate = () => {
             x.value = ctx.startX + event.translationX
         },
         onEnd: (event) => {
-            y.value = withDecay({velocity: event.velocityY},()=>{
-                setUpAutoAnimate()
-            })
+            y.value = withDecay({velocity: event.velocityY})
             x.value = withDecay({velocity: event.velocityX})
+            runOnJS(setTimer)()
         },
     })
 
