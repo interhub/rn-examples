@@ -54,6 +54,7 @@ const useGestureTranslate = () => {
 
     const setUpAutoAnimate = () => {
         "worklet"
+        x.value = withTiming(0,{duration:3000})
         y.value = withRepeat(withSequence(withTiming(SIZE.height / 2.5, {duration: 3000}), withTiming(0, {duration: 3000})), -1, true)
     }
 
