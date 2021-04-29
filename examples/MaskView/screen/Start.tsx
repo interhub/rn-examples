@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react'
 import {Image, Text, View} from 'react-native'
-import MaskedView from '@react-native-community/masked-view'
+import MaskedView from '@react-native-masked-view/masked-view'
 import Animated, {useAnimatedStyle, useSharedValue, withRepeat, withSequence, withTiming} from 'react-native-reanimated'
 
 export default function () {
     const posY = useSharedValue(0)
     const posX = useSharedValue(0)
     useEffect(() => {
-        posY.value = withRepeat(withSequence(withTiming(100, {duration: 2000}), withTiming(-100, {duration: 2000})), -1, true)
+        posY.value = withRepeat(withSequence(withTiming(200, {duration: 2000}), withTiming(-200, {duration: 2000})), -1, true)
     }, [])
     const textStyle = useAnimatedStyle(() => ({
         transform: [{translateY: posY.value}, {translateX: posX.value}]
