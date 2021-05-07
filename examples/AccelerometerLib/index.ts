@@ -1,3 +1,3 @@
-import AccelerometerLib from './screen/Start'
+import AccelerometerNavigator from './navigators/AccelerometerNavigator'
 
-export default AccelerometerLib
+export default AccelerometerNavigator

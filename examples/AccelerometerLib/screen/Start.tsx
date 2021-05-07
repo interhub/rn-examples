@@ -39,7 +39,7 @@ const BoxItem = React.memo(() => {
     const maxSpeed = 3
     const randomSpeed = (Math.random() + minSpeed) * maxSpeed
 
-    const {animStyle} = useParallax({speed: randomSpeed* 2})
+    const {animStyle} = useParallax({speed: randomSpeed * 2})
 
     const SIZE_DIFF = POINT_SIZE + ((POINT_SIZE / 2) * (randomSpeed))
 
