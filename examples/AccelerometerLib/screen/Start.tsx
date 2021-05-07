@@ -6,13 +6,24 @@ import {useParallax} from '../components/ParallaxProvider'
 import {useNavigation} from '@react-navigation/native'
 
 import {SCREEN_NAME_ACCELEROMETER} from '../constants/SCREEN_NAME_ACCELEROMETER'
+import ButtonCustom from '../../../components/ButtonCustom'
 
 export default function App() {
 
     const POINT_MATCH = 20
+    const {navigate} = useNavigation()
+    const goNext = () => {
+        navigate(SCREEN_NAME_ACCELEROMETER.ITEM_DETAIL)
+        // console.log('press')
+    }
+
+    const {animStyle} = useParallax({speed: 0.5})
 
     return (
         <View style={styles.container}>
+            <Animated.View style={[animStyle, {width: '100%'}]}>
+                <ButtonCustom onPress={goNext}>Go Next</ButtonCustom>
+            </Animated.View>
             <Text style={styles.text}>Accelerometer: (in Gs where 1 G = 9.81 m s^-2)</Text>
             {new Array(POINT_MATCH).fill(1).map((_, index) => {
                 return <BoxItem key={index}/>
@@ -23,12 +34,6 @@ export default function App() {
 
 const BoxItem = React.memo(() => {
     const POINT_SIZE = 20
-    const {navigate} = useNavigation()
-    const goNext = () => {
-        navigate(SCREEN_NAME_ACCELEROMETER.ITEM_DETAIL)
-        // console.log('press')
-    }
-
 
     const getRandomCoord = useMemo(() => () => {
         'worklet'
@@ -61,9 +66,7 @@ const BoxItem = React.memo(() => {
             shadowRadius: 10,
             shadowOpacity: 2,
         }, animStyle]}>
-        <TouchableOpacity style={styles.pressBox} onPress={goNext}>
-            <Text numberOfLines={1} style={styles.text}>NEXT</Text>
-        </TouchableOpacity>
+        <Text numberOfLines={1} style={styles.text}>NEXT</Text>
     </Animated.View>
 }, () => true)
 
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        paddingHorizontal: 10,
+        paddingHorizontal: 30,
     },
     text: {
         textAlign: 'center',
