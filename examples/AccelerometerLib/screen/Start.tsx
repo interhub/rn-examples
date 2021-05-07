@@ -4,6 +4,7 @@ import Animated from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
 import {useParallax} from '../components/ParallaxProvider'
 import {useNavigation} from '@react-navigation/native'
+
 import {SCREEN_NAME_ACCELEROMETER} from '../constants/SCREEN_NAME_ACCELEROMETER'
 
 export default function App() {
@@ -25,23 +26,24 @@ const BoxItem = React.memo(() => {
     const {navigate} = useNavigation()
     const goNext = () => {
         navigate(SCREEN_NAME_ACCELEROMETER.ITEM_DETAIL)
+        // console.log('press')
     }
 
 
-    const getRandomCoord = () => {
+    const getRandomCoord = useMemo(() => () => {
         'worklet'
         const diff = (POINT_SIZE / 2)
         const {width, height} = SIZE
         const x = Math.random() * width - diff
         const y = Math.random() * height - diff
         return {x, y}
-    }
+    }, [])
 
     const {x: left, y: top} = useMemo(() => getRandomCoord(), [])
 
     const minSpeed = 0.2
     const maxSpeed = 3
-    const randomSpeed = (Math.random() + minSpeed) * maxSpeed
+    const randomSpeed = useMemo(() => (Math.random() + minSpeed) * maxSpeed, [])
 
     const {animStyle} = useParallax({speed: randomSpeed * 2})
 
@@ -80,3 +82,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     }
 })
+

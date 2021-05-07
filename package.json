@@ -17,6 +17,7 @@
     "@react-navigation/native": "^5.0.9",
     "@react-navigation/stack": "^5.1.1",
     "@types/clamp": "^1.0.0",
+    "axios": "^0.21.1",
     "clamp": "^1.0.1",
     "expo": "~41.0.0",
     "expo-media-library": "^12.0.2",
