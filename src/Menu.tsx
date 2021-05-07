@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native'
-import React from 'react'
+import React, {useMemo} from 'react'
 import {Button, Text, View} from 'react-native'
 import {FlatList} from 'react-native-gesture-handler'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
@@ -9,7 +9,7 @@ import ButtonCustom from '../components/ButtonCustom'
 const Menu = () => {
 
     const {top, bottom} = useSafeAreaInsets()
-    const SCREENS = Object.values(SCREEN_NAME)
+    const SCREENS = useMemo(() => Object.values(SCREEN_NAME).reverse(), [])
 
     return (
         <FlatList
@@ -17,7 +17,6 @@ const Menu = () => {
             style={{flex: 1}}
             data={SCREENS}
             initialNumToRender={14}
-            inverted
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item, index}) => {
                 return <NavigateButton screenName={item}/>

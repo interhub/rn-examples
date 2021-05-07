@@ -2,7 +2,7 @@ import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
 import Start from '../screen/Start'
 import React from 'react'
 import ItemDetail from '../screen/ItemDetail'
-import getScreenAnimation, {SCREEN_ANIMATION} from '../config/getScreenAnimation'
+import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/getScreenAnimation'
 import {createStackNavigator} from '@react-navigation/stack'
 import LeftScreen from '../screen/LeftScreen'
 

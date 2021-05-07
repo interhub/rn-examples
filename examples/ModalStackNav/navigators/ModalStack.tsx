@@ -4,7 +4,7 @@ import React from 'react'
 import ItemDetail from '../screen/ItemDetail'
 import Setting from '../screen/Setting'
 import {createStackNavigator} from '@react-navigation/stack'
-import getScreenAnimation, {SCREEN_ANIMATION} from '../config/getScreenAnimation'
+import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/getScreenAnimation'
 
 const Stack = createStackNavigator()
 
