@@ -24,7 +24,6 @@ export default function App() {
             <Animated.View style={[animStyle, {width: '100%'}]}>
                 <ButtonCustom onPress={goNext}>Go Next</ButtonCustom>
             </Animated.View>
-            <Text style={styles.text}>Accelerometer: (in Gs where 1 G = 9.81 m s^-2)</Text>
             {new Array(POINT_MATCH).fill(1).map((_, index) => {
                 return <BoxItem key={index}/>
             })}
