@@ -1,27 +1,31 @@
 import React, {useMemo} from 'react'
-import {StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import Animated from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
-import {ParallaxProvider, useParallax} from '../components/ParallaxProvider'
+import {useParallax} from '../components/ParallaxProvider'
+import {useNavigation} from '@react-navigation/native'
+import {SCREEN_NAME_ACCELEROMETER} from '../constants/SCREEN_NAME_ACCELEROMETER'
 
 export default function App() {
 
     const POINT_MATCH = 20
 
     return (
-        <ParallaxProvider>
             <View style={styles.container}>
                 <Text style={styles.text}>Accelerometer: (in Gs where 1 G = 9.81 m s^-2)</Text>
                 {new Array(POINT_MATCH).fill(1).map((_, index) => {
                     return <BoxItem key={index}/>
                 })}
             </View>
-        </ParallaxProvider>
     )
 }
 
 const BoxItem = React.memo(() => {
     const POINT_SIZE = 20
+    const {navigate} = useNavigation()
+    const goNext = () => {
+        navigate(SCREEN_NAME_ACCELEROMETER.ITEM_DETAIL)
+    }
 
 
     const getRandomCoord = () => {
@@ -54,7 +58,11 @@ const BoxItem = React.memo(() => {
             elevation: 10,
             shadowRadius: 10,
             shadowOpacity: 2,
-        }, animStyle]}/>
+        }, animStyle]}>
+        <TouchableOpacity onPress={goNext}>
+            <Text>NEXT</Text>
+        </TouchableOpacity>
+    </Animated.View>
 }, () => true)
 
 const styles = StyleSheet.create({
