@@ -11,12 +11,12 @@ export default function App() {
     const POINT_MATCH = 20
 
     return (
-            <View style={styles.container}>
-                <Text style={styles.text}>Accelerometer: (in Gs where 1 G = 9.81 m s^-2)</Text>
-                {new Array(POINT_MATCH).fill(1).map((_, index) => {
-                    return <BoxItem key={index}/>
-                })}
-            </View>
+        <View style={styles.container}>
+            <Text style={styles.text}>Accelerometer: (in Gs where 1 G = 9.81 m s^-2)</Text>
+            {new Array(POINT_MATCH).fill(1).map((_, index) => {
+                return <BoxItem key={index}/>
+            })}
+        </View>
     )
 }
 
@@ -59,8 +59,8 @@ const BoxItem = React.memo(() => {
             shadowRadius: 10,
             shadowOpacity: 2,
         }, animStyle]}>
-        <TouchableOpacity onPress={goNext}>
-            <Text>NEXT</Text>
+        <TouchableOpacity style={styles.pressBox} onPress={goNext}>
+            <Text numberOfLines={1} style={styles.text}>NEXT</Text>
         </TouchableOpacity>
     </Animated.View>
 }, () => true)
@@ -73,5 +73,10 @@ const styles = StyleSheet.create({
     },
     text: {
         textAlign: 'center',
+        color: '#999999'
     },
+    pressBox: {
+        flex: 1,
+        justifyContent: 'center'
+    }
 })
