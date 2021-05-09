@@ -1,14 +1,13 @@
 import React, {useMemo} from 'react'
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 import Animated from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
-import {useParallax} from '../components/lib/react-native-accelerometer-parallax/ParallaxProvider'
 import {useNavigation} from '@react-navigation/native'
-
+import {useParallax} from 'react-native-accelerometer-parallax'
 import {SCREEN_NAME_ACCELEROMETER} from '../constants/SCREEN_NAME_ACCELEROMETER'
 import ButtonCustom from '../../../components/ButtonCustom'
 
-export default function App() {
+export default function Start() {
 
     const POINT_MATCH = 20
     const {navigate} = useNavigation()

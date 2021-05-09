@@ -44,7 +44,11 @@ export const ParallaxProvider = ({children}: { children: React.ReactNode }) => {
     </AccelerometerContext.Provider>
 }
 
-export const useParallax = (config?: { speed?: number }) => {
+export type ParallaxConfig = {
+    speed?: number
+}
+ 
+export const useParallax = (config?: ParallaxConfig) => {
     const speed = config?.speed || 1
     const {posY, posX} = useContext(AccelerometerContext)
 

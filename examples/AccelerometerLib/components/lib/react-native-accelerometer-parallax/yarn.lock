@@ -1259,6 +1259,15 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
+react-native-accelerometer-parallax@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-accelerometer-parallax/-/react-native-accelerometer-parallax-1.0.1.tgz#651b4c7f5d180883c8f6abdd39c3ab60a734a4a5"
+  integrity sha512-XsA4ZhZCsta1uw+rOX/PMv44lL3LczdWBYN2AYjWfsYyzXVbPQr7m6aw6i7g4Ld6JyMWHere7jsGNmORvSniiQ==
+  dependencies:
+    expo-sensors "^10.1.2"
+    react "^17.0.2"
+    react-native-reanimated "^2.1.0"
+
 react-native-reanimated@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.1.0.tgz#b9ad04aee490e1e030d0a6cdaa43a14895d9a54d"
