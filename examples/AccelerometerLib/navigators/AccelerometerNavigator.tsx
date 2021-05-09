@@ -4,7 +4,7 @@ import React from 'react'
 import ItemDetail from '../screen/ItemDetail'
 import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/getScreenAnimation'
 import {createStackNavigator} from '@react-navigation/stack'
-import {ParallaxProvider} from '../components/ParallaxProvider'
+import {ParallaxProvider} from '../components/lib/react-native-accelerometer-parallax/ParallaxProvider'
 
 const Stack = createStackNavigator()
 

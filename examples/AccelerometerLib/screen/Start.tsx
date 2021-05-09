@@ -2,7 +2,7 @@ import React, {useMemo} from 'react'
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import Animated from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
-import {useParallax} from '../components/ParallaxProvider'
+import {useParallax} from '../components/lib/react-native-accelerometer-parallax/ParallaxProvider'
 import {useNavigation} from '@react-navigation/native'
 
 import {SCREEN_NAME_ACCELEROMETER} from '../constants/SCREEN_NAME_ACCELEROMETER'
@@ -64,6 +64,7 @@ const BoxItem = React.memo(() => {
             elevation: 10,
             shadowRadius: 10,
             shadowOpacity: 2,
+            zIndex: SIZE_DIFF
         }, animStyle]}>
         <Text numberOfLines={1} style={styles.text}>NEXT</Text>
     </Animated.View>

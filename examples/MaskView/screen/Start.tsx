@@ -57,10 +57,10 @@ const useGestureTranslate = () => {
         x.value = withTiming(0, {duration: 3000})
         y.value = withRepeat(withSequence(withTiming(SIZE.height / 2.5, {duration: 3000}), withTiming(0, {duration: 3000})), -1, true)
     }
-    const setTimer=()=>{
-        setTimeout(()=>{
+    const setTimer = () => {
+        setTimeout(() => {
             setUpAutoAnimate()
-        },1000)
+        }, 1000)
     }
 
     const gestureHandler = useAnimatedGestureHandler<PanGestureHandlerGestureEvent, { startY: number, startX: number }>({
@@ -76,6 +76,9 @@ const useGestureTranslate = () => {
             y.value = withDecay({velocity: event.velocityY})
             x.value = withDecay({velocity: event.velocityX})
             runOnJS(setTimer)()
+        },
+        onFinish: (event) => {
+            console.log(event.y, 'finish')
         },
     })
 
