@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react'
 import Animated, {Easing, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
 import {Accelerometer} from 'expo-sensors'
-
+ 
 const AccelerometerContext = React.createContext<{ posX: Animated.SharedValue<number>, posY: Animated.SharedValue<number> }>({} as any)
 
 export const ParallaxProvider = ({children}: { children: React.ReactNode }) => {
@@ -47,7 +47,7 @@ export const ParallaxProvider = ({children}: { children: React.ReactNode }) => {
 export type ParallaxConfig = {
     speed?: number
 }
- 
+
 export const useParallax = (config?: ParallaxConfig) => {
     const speed = config?.speed || 1
     const {posY, posX} = useContext(AccelerometerContext)
