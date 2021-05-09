@@ -2,8 +2,8 @@
 
 ### Simple Accelerometer animation react-native library for animate translateXY some View RN.
 
-Library stand by expo-sensors and react-native-reanimated. Now you can see first versions library, but it's going
-to grow up and more.
+Library stand by expo-sensors and react-native-reanimated. Now you can see first versions library, but it's going to
+grow up and more.
 
 <video width="320" height="400" controls>
   <source src="doc/doc.mov" type="video/mp4">
@@ -24,7 +24,7 @@ to grow up and more.
 
 ```tsx
 import React from 'react'
-import {ParallaxProvider} from 'react-native-accelerometer-parralax'
+// import {ParallaxProvider} from 'react-native-accelerometer-parralax'
 
 const App = () => {
     return <ParallaxProvider>
@@ -39,11 +39,11 @@ export default App
 ### 2. Get context value to use animated value (hook shared value from [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated))
 
 ```tsx
-import {useParallax} from 'react-native-accelerometer-parralax'
+// import {useParallax} from 'react-native-accelerometer-parralax'
 
 
 const Screen = () => {
-    const {animStyle} = useParallax()
+    // const {animStyle} = useParallax()
 
     return <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>Parralax text test</Text>
@@ -54,13 +54,13 @@ const Screen = () => {
 
 ### 3. Wrap your some component to Animated.View from [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated) and pass animated style to style prop
 
-```tsx
-import {useParallax} from 'react-native-accelerometer-parralax'
+```tsx 
+// import {useParallax} from 'react-native-accelerometer-parralax'
 import Animated from 'react-native-reanimated'
 
 
 const Screen = () => {
-    const {animStyle} = useParallax()
+    // const {animStyle} = useParallax()
 
     return <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Animated.View style={animStyle}>
@@ -68,7 +68,7 @@ const Screen = () => {
         </Animated.View>
     </View>
 }
-
+ 
 ```
 
 ### 4. Final - ✨📲 Look at work view motion!
