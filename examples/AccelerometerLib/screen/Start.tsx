@@ -3,7 +3,9 @@ import {StyleSheet, Text, View} from 'react-native'
 import Animated from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
 import {useNavigation} from '@react-navigation/native'
-import {useParallax} from 'react-native-accelerometer-parallax'
+// import {useParallax} from 'react-native-accelerometer-parallax'
+import {useParallax} from '../../../lib/react-native-accelerometer-parallax-copy/ParallaxProvider'
+
 import {SCREEN_NAME_ACCELEROMETER} from '../constants/SCREEN_NAME_ACCELEROMETER'
 import ButtonCustom from '../../../components/ButtonCustom'
 

@@ -4143,7 +4143,7 @@ expo-permissions@~12.0.1:
   resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-12.0.1.tgz#5163c00d991bf565bf987354611628c298ddd0c4"
   integrity sha512-TtypNPPLG4SdVEKBlrArLLZIyhlhE+3B4dhz2HaY1Mve2rcvKE0C7z/e1WoUVU8+LgcdKoNGwg/wRVeCkxeEhg==
 
-expo-sensors@*, expo-sensors@^10.1.2:
+expo-sensors@^10.1.2:
   version "10.1.2"
   resolved "https://registry.yarnpkg.com/expo-sensors/-/expo-sensors-10.1.2.tgz#e27d0683c72fdcf1f7361f3372658b06d77d3c6e"
   integrity sha512-XTC5ay4XMmv6ughWzdDBMsKwsdBimxUubWUbqLDC1Xye3RzphZ7fky9sfaKsqBONRhUhtAcuHvcoAx6GV5en4A==
@@ -7664,6 +7664,15 @@ react-devtools-core@^4.6.0:
     shell-quote "^1.6.1"
     ws "^7"
 
+react-dom@*:
+  version "17.0.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
+  integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    scheduler "^0.20.2"
+
 react-dom@16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.13.1.tgz#c1bd37331a0486c078ee54c4740720993b2e0e7f"
@@ -7684,15 +7693,17 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-native-accelerometer-parallax@^1.0.10:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/react-native-accelerometer-parallax/-/react-native-accelerometer-parallax-1.0.10.tgz#28029850d08517c0c6e4d71b8d6a76e56ebe6c2e"
-  integrity sha512-7800+z3qxbOVfYF/O7fIlXu10zcAhhlV3htE2n7wXHWlfulNGDWRA8urOot0nwTgdtI/q3aAcY+MeYJMiKpWEw==
+react-native-accelerometer-parallax@^1.0.13:
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/react-native-accelerometer-parallax/-/react-native-accelerometer-parallax-1.0.13.tgz#2397462640e3bf553e7eaa1f350d15328159d99b"
+  integrity sha512-iW4SjeU0cEK6Psgw8hdvQ4gfOYv0iEHpJDMI678yxsGpIP0I78Q9M9wVQkdRzNiLPp2XRE7Dzghs94L1r2H1og==
   dependencies:
-    expo-sensors "*"
+    expo-sensors "^10.1.2"
     react "*"
+    react-dom "*"
     react-native "*"
     react-native-gesture-handler "*"
+    react-native-reanimated "^2.1.0"
 
 react-native-codegen@^0.0.6:
   version "0.0.6"
@@ -8313,7 +8324,7 @@ scheduler@^0.17.0:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-scheduler@^0.20.1:
+scheduler@^0.20.1, scheduler@^0.20.2:
   version "0.20.2"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.20.2.tgz#4baee39436e34aa93b4874bddcbf0fe8b8b50e91"
   integrity sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==

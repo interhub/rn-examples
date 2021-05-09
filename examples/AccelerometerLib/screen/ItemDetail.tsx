@@ -2,10 +2,12 @@ import React from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
 import {useNavigation,} from '@react-navigation/native'
 import ButtonCustom from '../../../components/ButtonCustom'
-import {useParallax} from 'react-native-accelerometer-parallax'
+// import {useParallax} from 'react-native-accelerometer-parallax'
+import {useParallax} from '../../../lib/react-native-accelerometer-parallax-copy/ParallaxProvider'
+
 import Animated from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
- 
+
 const ItemDetail = () => {
 
     const {goBack} = useNavigation()

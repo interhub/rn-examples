@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react'
 import Animated, {Easing, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
 import {Accelerometer} from 'expo-sensors'
- 
+
 const AccelerometerContext = React.createContext<{ posX: Animated.SharedValue<number>, posY: Animated.SharedValue<number> }>({} as any)
 
 export const ParallaxProvider = ({children}: { children: React.ReactNode }) => {
@@ -13,6 +13,8 @@ export const ParallaxProvider = ({children}: { children: React.ReactNode }) => {
         'worklet'
         return parseFloat(Number(num || 0).toFixed(DEC))
     }
+
+    const [posX, posY] = [useSharedValue(0), useSharedValue(0)]
 
     const setUpNewPos = ({x, y}: { x: number, y: number }) => {
         'worklet'
@@ -37,7 +39,6 @@ export const ParallaxProvider = ({children}: { children: React.ReactNode }) => {
         }
     }, [])
 
-    const [posX, posY] = [useSharedValue(0), useSharedValue(0)]
 
     return <AccelerometerContext.Provider value={{posX, posY}}>
         {children}
