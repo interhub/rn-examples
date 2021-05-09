@@ -2,7 +2,7 @@
 
 ### Simple Accelerometer animation react-native library for animate translateXY some View RN.
 
-Library stand by expo-accelerometer and react-native-reanimated. Now you can see first versions library, but it's going
+Library stand by expo-sensors and react-native-reanimated. Now you can see first versions library, but it's going
 to grow up and more.
 
 <video width="320" height="400" controls>

@@ -1,6 +1,6 @@
 {
   "name": "react-native-accelerometer-parallax",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "scripts": {
     "publish": "npm publish",
     "build": "npx tsc ParallaxProvider.tsx"
@@ -8,10 +8,13 @@
   "main": "ParallaxProvider.tsx",
   "license": "MIT",
   "dependencies": {
+    "expo": "^41.0.1",
     "expo-sensors": "^10.1.2",
     "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-native-accelerometer-parallax": "^1.0.1",
-    "react-native-reanimated": "^2.1.0"
+    "react-native-reanimated": "^2.1.0",
+    "typescript": "^4.2.4"
   },
   "types": "ParallaxProvider.tsx"
 }
