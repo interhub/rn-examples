@@ -7693,10 +7693,10 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-native-accelerometer-parallax@^1.1.9:
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/react-native-accelerometer-parallax/-/react-native-accelerometer-parallax-1.1.9.tgz#8e16037c789efcb711e4fc55e4cf53a4e960252c"
-  integrity sha512-Ud3Em0jMElYqZqLlUcmyw9xrm68l84k/HAfjNirGR6uHhzyjU1B8XIDrUVyA7rBrv6FgSjKTpuRS8LewC/m4Tw==
+react-native-accelerometer-parallax@^1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/react-native-accelerometer-parallax/-/react-native-accelerometer-parallax-1.1.10.tgz#a7654b8173b3f6dfb7ec4263b175c9b95c2205a7"
+  integrity sha512-f2ukK7Izr4fJsJIwwWoMxvm9QiSooyps9dIv+uBVxABea+et7hc3g1wjvzFwTcY//glopu/eamUrQ62JUD6FVw==
   dependencies:
     expo-sensors "*"
     react "*"

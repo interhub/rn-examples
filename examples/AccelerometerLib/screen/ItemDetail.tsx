@@ -2,7 +2,7 @@ import React from 'react'
 import {Image, StyleSheet, View} from 'react-native'
 import {useNavigation,} from '@react-navigation/native'
 import ButtonCustom from '../../../components/ButtonCustom'
-import {useParallax} from '../../../lib/react-native-accelerometer-parallax-copy/ParallaxProvider'
+import {useParallax} from 'react-native-accelerometer-parallax'
 
 import Animated, {Extrapolate, interpolate, useAnimatedStyle} from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
