@@ -1,6 +1,6 @@
 {
   "name": "react-native-accelerometer-parallax",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "scripts": {
     "publish": "npm publish",
     "build": "npx tsc ParallaxProvider.tsx"
