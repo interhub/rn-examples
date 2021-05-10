@@ -4,13 +4,17 @@ import {useNavigation,} from '@react-navigation/native'
 import ButtonCustom from '../../../components/ButtonCustom'
 import {useParallax} from 'react-native-accelerometer-parallax'
 
-import Animated from 'react-native-reanimated'
+import Animated, {useAnimatedStyle} from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
 
 const ItemDetail = () => {
 
     const {goBack} = useNavigation()
-    const {animStyle} = useParallax({speed: 0.5})
+    const {animStyle, } = useParallax({speed: 0.5})
+
+    const animatedTextStyle = useAnimatedStyle(() => ({
+        opacity: 1
+    }))
 
     return (
         <View style={{flex: 1}}>
@@ -18,9 +22,9 @@ const ItemDetail = () => {
                 <ButtonCustom m={10} onPress={goBack}>
                     back
                 </ButtonCustom>
-                <Text style={[styles.text]}>
+                <Animated.Text style={[styles.text, animatedTextStyle]}>
                     ELEMENT PAGE
-                </Text>
+                </Animated.Text>
                 <Animated.View style={animStyle}>
                     <Image
                         style={[styles.image]}
@@ -43,7 +47,7 @@ const styles = StyleSheet.create({
     image: {
         width: SIZE.width * 0.8, height: SIZE.width / 2
     },
-    text: {fontSize: 30, color: '#FFF', fontWeight: 'bold'},
+    text: {fontSize: 30, color: '#000', fontWeight: 'bold'},
 })
 
 export default ItemDetail
