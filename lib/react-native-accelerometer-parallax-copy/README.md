@@ -5,7 +5,7 @@
 Library stand by expo-sensors and react-native-reanimated. Now you can see first versions library, but it's going to
 grow up and more.
 
-![alt text](parallax.gif)
+![alt text](http://interhub.github.io/source/parallax-lib.gif)
 
 # Install
 
