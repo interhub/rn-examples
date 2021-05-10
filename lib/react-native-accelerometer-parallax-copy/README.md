@@ -1,11 +1,11 @@
 # React Native Accelerometer Parallax 🍻
 
-### Simple Accelerometer animation react-native library for animate translateXY some View RN.
+### Simple Accelerometer animation react-native library for animate translateXY some View RN for IOS and Android 🍎 🤖
 
 Library stand by expo-sensors and react-native-reanimated. Now you can see first versions library, but it's going to
 grow up and more. 
 
-![alt text](http://interhub.github.io/source/parallax-lib.gif)
+![video example not load 🤖](http://interhub.github.io/source/parallax-lib.gif)
 
 # Install
 
