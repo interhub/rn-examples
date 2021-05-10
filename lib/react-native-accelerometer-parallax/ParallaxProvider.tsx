@@ -1,10 +1,11 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useEffect} from 'react'
 import Animated, {Easing, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
 import {Accelerometer} from 'expo-sensors'
 
 const AccelerometerContext = React.createContext<{ posX: Animated.SharedValue<number>, posY: Animated.SharedValue<number> }>({} as any)
 
 export const ParallaxProvider = ({children}: { children: React.ReactNode }) => {
+
     const PERIOD = 50
 
     const fixedRound = (num: number) => {
@@ -38,6 +39,7 @@ export const ParallaxProvider = ({children}: { children: React.ReactNode }) => {
         }
     }, [])
 
+
     return <AccelerometerContext.Provider value={{posX, posY}}>
         {children}
     </AccelerometerContext.Provider>
@@ -55,5 +57,5 @@ export const useParallax = (config?: ParallaxConfig) => {
         transform: [{translateY: posY.value * speed}, {translateX: posX.value * speed}]
     }))
 
-    return {animStyle, posX, posY}
+    return {animStyle}
 }
