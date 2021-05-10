@@ -3,8 +3,8 @@ import {StyleSheet, Text, View} from 'react-native'
 import Animated from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
 import {useNavigation} from '@react-navigation/native'
-import {useParallax} from 'react-native-accelerometer-parallax'
- 
+import {useParallax} from '../../../lib/react-native-accelerometer-parallax-copy/ParallaxProvider'
+
 import {SCREEN_NAME_ACCELEROMETER} from '../constants/SCREEN_NAME_ACCELEROMETER'
 import ButtonCustom from '../../../components/ButtonCustom'
 
@@ -17,7 +17,7 @@ export default function Start() {
         // console.log('press')
     }
 
-    const {animStyle} = useParallax({speed: 0.5})
+    const {animStyle} = useParallax({sensitivity: 0.5})
 
     return (
         <View style={styles.container}>
@@ -35,7 +35,6 @@ const BoxItem = React.memo(() => {
     const POINT_SIZE = 20
 
     const getRandomCoord = useMemo(() => () => {
-        'worklet'
         const diff = (POINT_SIZE / 2)
         const {width, height} = SIZE
         const x = Math.random() * width - diff
@@ -49,7 +48,7 @@ const BoxItem = React.memo(() => {
     const maxSpeed = 3
     const randomSpeed = useMemo(() => (Math.random() + minSpeed) * maxSpeed, [])
 
-    const {animStyle} = useParallax({speed: randomSpeed * 2})
+    const {animStyle} = useParallax({sensitivity: randomSpeed})
 
     const SIZE_DIFF = POINT_SIZE + ((POINT_SIZE / 2) * (randomSpeed))
 
