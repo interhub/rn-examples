@@ -22,7 +22,7 @@ grow up and more.
 
 ```tsx
 import React from 'react'
-// import {ParallaxProvider} from 'react-native-accelerometer-parralax'
+import {ParallaxProvider} from 'react-native-accelerometer-parralax'
 
 const App = () => {
     return <ParallaxProvider>

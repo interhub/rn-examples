@@ -24,7 +24,7 @@ export const ParallaxProvider = ({children}: { children: React.ReactNode }) => {
         posX.value = withTiming(-newX, config)
         posY.value = withTiming(newY, config)
     }
-
+ 
     useEffect(() => {
         Accelerometer.setUpdateInterval(PERIOD)
 
@@ -47,13 +47,20 @@ export type ParallaxConfig = {
     speed?: number
 }
 
-export const useParallax = (config?: ParallaxConfig) => {
+export type ParallaxObject = {
+    animStyle: { transform: [{ translateX: number }, { translateY: number }] },
+    posY: Animated.SharedValue<number>,
+    posX: Animated.SharedValue<number>,
+}
+
+export const useParallax = (config?: ParallaxConfig): ParallaxObject => {
     const speed = config?.speed || 1
     const {posY, posX} = useContext(AccelerometerContext)
 
     const animStyle = useAnimatedStyle(() => ({
-        transform: [{translateY: posY.value * speed}, {translateX: posX.value * speed}]
+        transform: [{translateY: posY.value * speed || 0}, {translateX: posX.value * speed || 0}]
     }))
 
+    // @ts-ignore
     return {animStyle, posX, posY}
 }
