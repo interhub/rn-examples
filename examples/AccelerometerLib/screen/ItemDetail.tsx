@@ -13,9 +13,10 @@ const ItemDetail = () => {
     const {animStyle, posX, posY} = useParallax({speed: 0.5})
 
     const animatedTextStyle = useAnimatedStyle(() => {
-        console.log(posY.value,'val')
-       return  {
-            opacity: interpolate(posY.value, [-20, 20], [0, 1], Extrapolate.CLAMP)
+        console.log(posY.value, 'val')
+        return {
+            opacity: interpolate(posY.value, [-20, 20], [0, 1], Extrapolate.CLAMP),
+            transform: [{scale: interpolate(posY.value, [-40, 40], [1.5, 0.8], Extrapolate.CLAMP),}]
         }
     })
 
