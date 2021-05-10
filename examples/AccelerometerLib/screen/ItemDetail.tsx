@@ -2,7 +2,7 @@ import React from 'react'
 import {Image, StyleSheet, View} from 'react-native'
 import {useNavigation,} from '@react-navigation/native'
 import ButtonCustom from '../../../components/ButtonCustom'
-import {} from '../../../lib/react-native-accelerometer-parallax-copy'
+import {useParallax} from '../../../lib/react-native-accelerometer-parallax-copy/ParallaxProvider'
 
 import Animated, {Extrapolate, interpolate, useAnimatedStyle} from 'react-native-reanimated'
 import SIZE from '../../../src/SIZE'
@@ -10,7 +10,7 @@ import SIZE from '../../../src/SIZE'
 const ItemDetail = () => {
 
     const {goBack} = useNavigation()
-    const {animStyle, posX, posY} = useParallax({speed: 0.5})
+    const {animStyle, posY} = useParallax({speed: 0.5})
 
     const animatedTextStyle = useAnimatedStyle(() => {
         return {
