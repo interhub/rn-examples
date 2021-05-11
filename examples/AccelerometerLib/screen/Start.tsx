@@ -10,7 +10,7 @@ import ButtonCustom from '../../../components/ButtonCustom'
 
 export default function Start() {
 
-    const POINT_MATCH = 20
+    const POINT_MATCH = 10
     const {navigate} = useNavigation()
     const goNext = () => {
         navigate(SCREEN_NAME_ACCELEROMETER.ITEM_DETAIL)
