@@ -19,7 +19,6 @@ import Menu from './src/Menu'
 import {enableScreens} from 'react-native-screens'
 import getScreenAnimation, {SCREEN_ANIMATION} from './src/getScreenAnimation'
 import TabsNavigator from './examples/TabNavigator'
-import AccelerometerLib from './examples/AccelerometerLib'
 import PhotoPicker from './examples/PhotoPicker'
 import MaskView from './examples/MaskView'
 import ColorNavPicker from './examples/ColorNavPicker'
@@ -48,7 +47,7 @@ const App = () => {
             <Stack.Screen name={SCREEN_NAME.NAVIGATE_ANIMATION} component={NavigateAnimation}
                           options={getScreenAnimation(SCREEN_ANIMATION.LEFT)}/>
             <Stack.Screen name={SCREEN_NAME.TAB_NAVIGATOR} component={TabsNavigator}/>
-            <Stack.Screen name={SCREEN_NAME.ACCELEROMETER_LIB} component={AccelerometerLib}/>
+            {/*<Stack.Screen name={SCREEN_NAME.ACCELEROMETER_LIB} component={AccelerometerLib}/>*/}
             <Stack.Screen name={SCREEN_NAME.PHOTO_PICKER} component={PhotoPicker}/>
             <Stack.Screen name={SCREEN_NAME.MASK_VIEW} component={MaskView}/>
             <Stack.Screen name={SCREEN_NAME.COLOR_NAV_PICKER} component={ColorNavPicker}/>
