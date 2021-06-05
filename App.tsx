@@ -23,6 +23,7 @@ import PhotoPicker from './examples/PhotoPicker'
 import MaskView from './examples/MaskView'
 import ColorNavPicker from './examples/ColorNavPicker'
 import SpringScroll from './examples/SpringScroll'
+import ClampHeader from './examples/ClampHeader'
 
 enableScreens()
 const Stack = createStackNavigator()
@@ -53,6 +54,7 @@ const App = () => {
             <Stack.Screen name={SCREEN_NAME.MASK_VIEW} component={MaskView}/>
             <Stack.Screen name={SCREEN_NAME.COLOR_NAV_PICKER} component={ColorNavPicker}/>
             <Stack.Screen name={SCREEN_NAME.SPRING_SCROLL} component={SpringScroll}/>
+            <Stack.Screen name={SCREEN_NAME.CLAMP_HEADER} component={ClampHeader}/>
         </Stack.Navigator>
     </NavigationContainer>
 }

@@ -18,8 +18,8 @@ export enum SCREEN_NAME {
     MASK_VIEW = 'MASK_VIEW🎭',
     COLOR_NAV_PICKER = 'COLOR_NAV_PICKER🌈',
     SPRING_SCROLL = 'SPRING_SCROLL🧹',
+    CLAMP_HEADER = 'CLAMP_HEADER🎃',
 }
-
 //3 мая
 
 
