@@ -4,6 +4,11 @@ import {StyleSheet, useWindowDimensions, View} from 'react-native'
 
 
 const Start = () => {
+    const r = 100
+    const circle = r * (Math.PI * 2)
+    const alpha = Math.PI / 4
+    const strokeDashoffset = r * alpha
+
     const {width, height} = useWindowDimensions()
     return (
         <View style={styles.container}>
@@ -27,6 +32,25 @@ const Start = () => {
                 />
                 <Path d={'M 0 0 L 100 100'} stroke={'#4649ad'} strokeWidth={10}/>
             </Svg>
+            {/*<Svg width={SIZE.width} height={SIZE.width}>*/}
+            {/*    <Defs>*/}
+            {/*        <LinearGradient id={'grad'} x1={'0'} y1={'0'} x2={'0'} y2={'100%'}>*/}
+            {/*            <Stop offset={'0'} stopColor={theme.brandPrimary} />*/}
+            {/*            <Stop offset={'0.5'} stopColor={theme.brandPrimary} />*/}
+            {/*            <Stop offset={'1'} stopColor={theme.listNoteColor} />*/}
+            {/*        </LinearGradient>*/}
+            {/*    </Defs>*/}
+            {/*    <Circle*/}
+            {/*        cx={SIZE.width / 2}*/}
+            {/*        cy={SIZE.width / 2}*/}
+            {/*        strokeLinecap={'round'}*/}
+            {/*        strokeWidth={40}*/}
+            {/*        stroke={'url(#grad)'}*/}
+            {/*        strokeDasharray={`${circle} ${circle}`}*/}
+            {/*        strokeDashoffset={strokeDashoffset}*/}
+            {/*        r={r}*/}
+            {/*    />*/}
+            {/*</Svg>*/}
         </View>
     )
 }
