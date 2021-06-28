@@ -1,5 +1,5 @@
 import {NavigationContainer} from '@react-navigation/native'
-import {createStackNavigator} from '@react-navigation/stack'
+import {createStackNavigator, useCardAnimation} from '@react-navigation/stack'
 import * as React from 'react'
 import 'react-native-gesture-handler'
 import NativeGesture from './examples/NativeGesture'
@@ -31,6 +31,7 @@ const Stack = createStackNavigator()
 //TODO TEST EJECT FOR SET UP NORMAL ANDROID ICON SIZE AND DONT USE MANUAL SET ICONS
 
 const App = () => {
+
 
     return <NavigationContainer>
         <Stack.Navigator detachInactiveScreens={false} headerMode={'none'}>

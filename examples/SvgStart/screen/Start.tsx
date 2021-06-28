@@ -1,9 +1,15 @@
 import React from 'react'
 import Svg, {Circle, Path, Rect} from 'react-native-svg'
-import {StyleSheet, useWindowDimensions, View} from 'react-native'
-
+import {Animated, StyleSheet, useWindowDimensions} from 'react-native'
+import useNavigationAnimateValue from '../../../src/useNavigationAnimateValue'
 
 const Start = () => {
+    const animateValue = useNavigationAnimateValue({startOpen: -200, endOpen: 0})
+
+    const animateStyle = {
+        transform: [{translateY: animateValue}]
+    }
+
     const r = 100
     const circle = r * (Math.PI * 2)
     const alpha = Math.PI / 4
@@ -11,7 +17,7 @@ const Start = () => {
 
     const {width, height} = useWindowDimensions()
     return (
-        <View style={styles.container}>
+        <Animated.View style={[styles.container, animateStyle]}>
             <Svg height="100%" width="100%" viewBox="0 0 100 100">
                 <Circle
                     cx="50"
@@ -51,7 +57,7 @@ const Start = () => {
             {/*        r={r}*/}
             {/*    />*/}
             {/*</Svg>*/}
-        </View>
+        </Animated.View>
     )
 }
 
