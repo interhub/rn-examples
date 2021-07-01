@@ -32,7 +32,6 @@ const Stack = createStackNavigator()
 
 const App = () => {
 
-
     return <NavigationContainer>
         <Stack.Navigator detachInactiveScreens={false} headerMode={'none'}>
             <Stack.Screen name={SCREEN_NAME.MENU} component={Menu}/>
