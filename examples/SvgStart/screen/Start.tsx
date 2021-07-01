@@ -1,7 +1,8 @@
 import React from 'react'
-import Svg, {Circle, Path, Rect} from 'react-native-svg'
+import Svg, {Circle, Defs, LinearGradient, Path, Rect, Stop} from 'react-native-svg'
 import {Animated, StyleSheet, useWindowDimensions} from 'react-native'
 import useNavigationAnimateValue from '../../../src/useNavigationAnimateValue'
+import SIZE from '../../../src/SIZE'
 
 const Start = () => {
     const animateValue = useNavigationAnimateValue({startOpen: -200, endOpen: 0})
@@ -18,11 +19,11 @@ const Start = () => {
     const {width, height} = useWindowDimensions()
     return (
         <Animated.View style={[styles.container, animateStyle]}>
-            <Svg height="100%" width="100%" viewBox="0 0 100 100">
+            <Svg height={SIZE.height} width={SIZE.width} viewBox={`0 0 ${'100'} ${'200'}`}>
                 <Circle
-                    cx="50"
-                    cy="50"
-                    r="45"
+                    cx="100"
+                    cy="0"
+                    r="80"
                     stroke="blue"
                     strokeWidth="2.5"
                     fill="green"
@@ -37,26 +38,24 @@ const Start = () => {
                     fill="yellow"
                 />
                 <Path d={'M 0 0 L 100 100'} stroke={'#4649ad'} strokeWidth={10}/>
+                <Defs>
+                    <LinearGradient id={'grad'} x1={'0'} y1={'0'} x2={'0'} y2={'100%'}>
+                        <Stop offset={'0'} stopColor={'#4649ad'} />
+                        <Stop offset={'0.5'} stopColor={'#dfdfdf'} />
+                        <Stop offset={'1'} stopColor={'#4649ad'} />
+                    </LinearGradient>
+                </Defs>
+                <Circle
+                    cx={SIZE.width / 2}
+                    cy={SIZE.width / 2}
+                    strokeLinecap={'round'}
+                    strokeWidth={40}
+                    stroke={'url(#grad)'}
+                    strokeDasharray={`${circle} ${circle}`}
+                    strokeDashoffset={strokeDashoffset}
+                    r={r}
+                />
             </Svg>
-            {/*<Svg width={SIZE.width} height={SIZE.width}>*/}
-            {/*    <Defs>*/}
-            {/*        <LinearGradient id={'grad'} x1={'0'} y1={'0'} x2={'0'} y2={'100%'}>*/}
-            {/*            <Stop offset={'0'} stopColor={theme.brandPrimary} />*/}
-            {/*            <Stop offset={'0.5'} stopColor={theme.brandPrimary} />*/}
-            {/*            <Stop offset={'1'} stopColor={theme.listNoteColor} />*/}
-            {/*        </LinearGradient>*/}
-            {/*    </Defs>*/}
-            {/*    <Circle*/}
-            {/*        cx={SIZE.width / 2}*/}
-            {/*        cy={SIZE.width / 2}*/}
-            {/*        strokeLinecap={'round'}*/}
-            {/*        strokeWidth={40}*/}
-            {/*        stroke={'url(#grad)'}*/}
-            {/*        strokeDasharray={`${circle} ${circle}`}*/}
-            {/*        strokeDashoffset={strokeDashoffset}*/}
-            {/*        r={r}*/}
-            {/*    />*/}
-            {/*</Svg>*/}
         </Animated.View>
     )
 }

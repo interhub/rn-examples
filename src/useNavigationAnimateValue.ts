@@ -8,3 +8,4 @@ const useNavigationAnimateValue = ({startOpen, endOpen, extra}: animateNavConfig
     return progress.interpolate({inputRange: [0, 1], outputRange: [startOpen, endOpen], extrapolate: extra})
 }
 export default useNavigationAnimateValue
+
