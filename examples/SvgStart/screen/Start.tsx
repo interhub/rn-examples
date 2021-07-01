@@ -19,10 +19,10 @@ const Start = () => {
     const {width, height} = useWindowDimensions()
     return (
         <Animated.View style={[styles.container, animateStyle]}>
-            <Svg height={SIZE.height} width={SIZE.width} viewBox={`0 0 ${'100'} ${'200'}`}>
+            <Svg height={SIZE.height} width={SIZE.width} viewBox={`0 0 ${width} ${height}`}>
                 <Circle
                     cx="100"
-                    cy="0"
+                    cy="200"
                     r="80"
                     stroke="blue"
                     strokeWidth="2.5"
