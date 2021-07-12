@@ -1,10 +1,9 @@
-import React, {MutableRefObject, useContext, useEffect, useRef} from 'react'
-import {Button, StyleSheet, View, Text, Image} from 'react-native'
-import Animated, {interpolate, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
+import React, {MutableRefObject, useContext, useRef} from 'react'
+import {Button, Image, StyleSheet, Text, View} from 'react-native'
+import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
 import {useNavigation} from '@react-navigation/native'
-import {SCREEN_NAME} from '../../../src/SCREEN_NAME'
 import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
-import CameraBox from '../components/CameraBox'
+import SIZE from '../../../src/SIZE'
 
 type Coord = {
     x: number,
@@ -16,7 +15,6 @@ type Coord = {
 const config: Animated.WithTimingConfig = {duration: 500}
 
 const Start = () => {
-
 
     const {navigate} = useNavigation()
     const goToDetail = () => {
@@ -32,9 +30,9 @@ const Start = () => {
             <Button title={'reset'} onPress={reset}/>
             <Button title={'move1'} onPress={move1}/>
             <Button title={'reset1'} onPress={reset1}/>
-            {/*<Button title={'navigate'} onPress={goToDetail}/>*/}
+            <Button color={'red'} title={'navigate'} onPress={goToDetail}/>
             <ViewMove nodeRef={twoRef}>
-                <Text style={[{fontSize: 40, color: '#000',opacity:0}]}>hello world!</Text>
+                <Text style={[{fontSize: 40, color: '#000', opacity: 0}]}>hello world!</Text>
             </ViewMove>
             <ViewMove nodeRef={twoRef1}>
                 <Image source={require('../img/bg.jpg')} style={styles.image}/>
@@ -44,9 +42,10 @@ const Start = () => {
                 <Text style={[{fontSize: 70, color: '#000'}]}>hello world!</Text>
             </ViewMove>
 
-            <ViewMove nodeRef={oneRef1} oneStyle={oneStyle1}>
-                <Image source={require('../img/bg.jpg')} style={[styles.image,{width:300, height:150}]}/>
-            </ViewMove>
+            {/*<ViewMove nodeRef={oneRef1} oneStyle={oneStyle1}>*/}
+            <Animated.Image source={require('../img/bg.jpg')} ref={oneRef1}
+                            style={[oneStyle1, {width: SIZE.width, height: 300}, styles.image,]}/>
+            {/*</ViewMove>*/}
 
         </View>
     )
@@ -148,7 +147,7 @@ export const useMovaLocal = () => {
         })
     }
 
-    const [posX, posY, scale, opacity] = [useSharedValue(0), useSharedValue(0), useSharedValue(1), useSharedValue(1)]
+    const [posX, posY, scale, opacity, width, height] = [useSharedValue(0), useSharedValue(0), useSharedValue(1), useSharedValue(1), useSharedValue<number | undefined>(undefined), useSharedValue<number | undefined>(undefined)]
 
 
     const oneRef = useRef<View>(null)
@@ -156,7 +155,8 @@ export const useMovaLocal = () => {
 
     const oneStyle = useAnimatedStyle(() => ({
         transform: [{translateX: posX.value}, {translateY: posY.value}, {scale: scale.value}],
-        opacity: opacity.value
+        opacity: opacity.value,
+        width: width.value, height: height.value
     }))
 
     const show = () => {
@@ -175,6 +175,8 @@ export const useMovaLocal = () => {
         const diff = getCoordDiff(coordOne, coordTwo)
         posX.value = withTiming(diff.x, config)
         posY.value = withTiming(diff.y, config)
+        width.value = withTiming(coordOne.width, config)
+        height.value = withTiming(coordOne.height, config)
         scale.value = withTiming(diff.size, config, () => {
             hide()
         })
@@ -195,7 +197,7 @@ const ViewMove = ({
                       oneStyle
                   }: { nodeRef: MutableRefObject<any>, children: React.ReactNode, oneStyle?: any }) => {
 
-    return <Animated.View style={[{opacity: 1}, oneStyle]} ref={nodeRef as any}
+    return <Animated.View style={[{opacity: 1, overflow: 'hidden'}, oneStyle]} ref={nodeRef as any}
                           collapsable={false}>
         {children}
     </Animated.View>
@@ -219,7 +221,7 @@ const styles = StyleSheet.create({
     image: {
         width: 200,
         height: 100,
-        borderRadius: 15,
+        // borderRadius: 15,
         shadowOpacity: 0.5,
         shadowRadius: 10,
         alignSelf: 'center'

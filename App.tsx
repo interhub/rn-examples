@@ -24,6 +24,8 @@ import MaskView from './examples/MaskView'
 import ColorNavPicker from './examples/ColorNavPicker'
 import SpringScroll from './examples/SpringScroll'
 import ClampHeader from './examples/ClampHeader'
+import CodePushWrapper from './src/wrappers/CodePushWrapper'
+import codePush from 'react-native-code-push'
 
 enableScreens()
 const Stack = createStackNavigator()
@@ -32,32 +34,41 @@ const Stack = createStackNavigator()
 
 const App = () => {
 
-    return <NavigationContainer>
-        <Stack.Navigator detachInactiveScreens={false} headerMode={'none'}>
-            <Stack.Screen name={SCREEN_NAME.MENU} component={Menu}/>
-            <Stack.Screen name={SCREEN_NAME.NATIVE_GESTURE} component={NativeGesture}/>
-            <Stack.Screen name={SCREEN_NAME.REANIMATE_GESTURE} component={ReanimateGesture}/>
-            <Stack.Screen name={SCREEN_NAME.SHARED_NAV} component={SharedNav}/>
-            <Stack.Screen name={SCREEN_NAME.SCROLL_ANIMATE} component={ScrollAnimate}/>
-            <Stack.Screen name={SCREEN_NAME.SCROLL_ANIMATE_HORIZONT} component={ScrollAnimateHorizont}/>
-            <Stack.Screen name={SCREEN_NAME.SORT_ANIMATE} component={SortAnimate}/>
-            <Stack.Screen name={SCREEN_NAME.PAN_ROTATE_SQUARE} component={PanSquareRotate}/>
-            <Stack.Screen name={SCREEN_NAME.PAN_ROTATE_CIRCLE} component={PanCircleRotate}/>
-            <Stack.Screen name={SCREEN_NAME.SVG_START} component={SvgStart}/>
-            <Stack.Screen name={SCREEN_NAME.MODAL_STACK_NAV} component={ModalStackNav}/>
-            <Stack.Screen name={SCREEN_NAME.CUSTOM_SHARED} component={CustomShared}/>
-            <Stack.Screen name={SCREEN_NAME.NAVIGATE_ANIMATION} component={NavigateAnimation}
-                          options={getScreenAnimation(SCREEN_ANIMATION.LEFT)}/>
-            <Stack.Screen name={SCREEN_NAME.TAB_NAVIGATOR} component={TabsNavigator}/>
-            {/*<Stack.Screen name={SCREEN_NAME.ACCELEROMETER_LIB} component={AccelerometerLib}/>*/}
-            <Stack.Screen name={SCREEN_NAME.PHOTO_PICKER} component={PhotoPicker}/>
-            <Stack.Screen name={SCREEN_NAME.MASK_VIEW} component={MaskView}/>
-            <Stack.Screen name={SCREEN_NAME.COLOR_NAV_PICKER} component={ColorNavPicker}/>
-            <Stack.Screen name={SCREEN_NAME.SPRING_SCROLL} component={SpringScroll}/>
-            <Stack.Screen name={SCREEN_NAME.CLAMP_HEADER} component={ClampHeader}/>
-        </Stack.Navigator>
-    </NavigationContainer>
+    return <CodePushWrapper>
+        <NavigationContainer>
+            <Stack.Navigator detachInactiveScreens={false} headerMode={'none'}>
+                <Stack.Screen name={SCREEN_NAME.MENU} component={Menu}/>
+                <Stack.Screen name={SCREEN_NAME.NATIVE_GESTURE} component={NativeGesture}/>
+                <Stack.Screen name={SCREEN_NAME.REANIMATE_GESTURE} component={ReanimateGesture}/>
+                <Stack.Screen name={SCREEN_NAME.SHARED_NAV} component={SharedNav}/>
+                <Stack.Screen name={SCREEN_NAME.SCROLL_ANIMATE} component={ScrollAnimate}/>
+                <Stack.Screen name={SCREEN_NAME.SCROLL_ANIMATE_HORIZONT} component={ScrollAnimateHorizont}/>
+                <Stack.Screen name={SCREEN_NAME.SORT_ANIMATE} component={SortAnimate}/>
+                <Stack.Screen name={SCREEN_NAME.PAN_ROTATE_SQUARE} component={PanSquareRotate}/>
+                <Stack.Screen name={SCREEN_NAME.PAN_ROTATE_CIRCLE} component={PanCircleRotate}/>
+                <Stack.Screen options={getScreenAnimation(SCREEN_ANIMATION.LEFT)} name={SCREEN_NAME.SVG_START}
+                              component={SvgStart}/>
+                <Stack.Screen name={SCREEN_NAME.MODAL_STACK_NAV} component={ModalStackNav}/>
+                <Stack.Screen name={SCREEN_NAME.CUSTOM_SHARED} component={CustomShared}/>
+                <Stack.Screen name={SCREEN_NAME.NAVIGATE_ANIMATION} component={NavigateAnimation}
+                              options={getScreenAnimation(SCREEN_ANIMATION.TOP)}/>
+                <Stack.Screen name={SCREEN_NAME.TAB_NAVIGATOR} component={TabsNavigator}/>
+                {/*<Stack.Screen name={SCREEN_NAME.ACCELEROMETER_LIB} component={AccelerometerLib}/>*/}
+                <Stack.Screen name={SCREEN_NAME.PHOTO_PICKER} component={PhotoPicker}/>
+                <Stack.Screen name={SCREEN_NAME.MASK_VIEW} component={MaskView}/>
+                <Stack.Screen name={SCREEN_NAME.COLOR_NAV_PICKER} component={ColorNavPicker}/>
+                <Stack.Screen name={SCREEN_NAME.SPRING_SCROLL} component={SpringScroll}/>
+                <Stack.Screen name={SCREEN_NAME.CLAMP_HEADER} component={ClampHeader}/>
+            </Stack.Navigator>
+        </NavigationContainer>
+    </CodePushWrapper>
 }
 
-export default App
+
+const codePushOptions = {
+    checkFrequency: codePush.CheckFrequency.MANUAL,
+    installMode: codePush.InstallMode.IMMEDIATE,
+}
+codePush.notifyAppReady()
+export default __DEV__ ? App : codePush(codePushOptions)(App)
 

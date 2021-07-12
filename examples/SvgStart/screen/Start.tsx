@@ -1,7 +1,7 @@
 import React from 'react'
 import Svg, {Circle, Defs, LinearGradient, Path, Rect, Stop} from 'react-native-svg'
 import {Animated, StyleSheet, useWindowDimensions} from 'react-native'
-import useNavigationAnimateValue from '../../../src/useNavigationAnimateValue'
+import useNavigationAnimateValue from '../../../src/hooks/useNavigationAnimateValue'
 import SIZE from '../../../src/SIZE'
 
 const Start = () => {

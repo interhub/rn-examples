@@ -8,7 +8,10 @@
     "ios": "react-native run-ios",
     "pod:install": "npx pod-install",
     "xcode:open": "xed ./ios",
-    "android_studio:open": "open -a Android\\ Studio \"android\""
+    "android_studio:open": "open -a Android\\ Studio \"android\"",
+    "codepush:android": "appcenter codepush release-react -a interhub/examples-android",
+    "codepush:ios": "appcenter codepush release-react -a interhub/examples-ios --plist-file ios/examples/Info.plist",
+    "codepush": "npm run codepush:android && npm run codepush:ios"
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "^0.2.4",
@@ -17,6 +20,7 @@
     "@react-navigation/native": "^5.0.9",
     "@react-navigation/stack": "^5.1.1",
     "@types/clamp": "^1.0.0",
+    "@types/lodash": "^4.14.171",
     "axios": "^0.21.1",
     "clamp": "^1.0.1",
     "expo": "^41.0.1",
@@ -25,10 +29,12 @@
     "expo-splash-screen": "~0.10.2",
     "expo-status-bar": "~1.0.4",
     "expo-updates": "~0.5.4",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-native": "^0.64.2",
     "react-native-accelerometer-parallax": "^1.4.8",
+    "react-native-code-push": "^7.0.1",
     "react-native-color-picker": "^0.6.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-image-crop-picker": "^0.36.0",
