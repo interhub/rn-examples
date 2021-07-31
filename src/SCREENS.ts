@@ -19,6 +19,7 @@ import ColorNavPicker from '../examples/ColorNavPicker'
 import SpringScroll from '../examples/SpringScroll'
 import ClampHeader from '../examples/ClampHeader'
 import Menu from './Menu'
+import CodePushUpdates from '../examples/CodePushUpdates'
 
 export const SCREENS = {
     ['MENU🏁']: Menu,
@@ -40,6 +41,7 @@ export const SCREENS = {
     ['COLOR_NAV_PICKER🌈']: ColorNavPicker,
     ['SPRING_SCROLL🧹']: SpringScroll,
     ['CLAMP_HEADER🎃']: ClampHeader,
+    ['CODE_PUSH_UPDATES☁']: CodePushUpdates,
 }
 //3 мая
 
