@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import useCodePush from '../hooks/useCodePush'
 import WaitUpdateAlert from '../components/WaitUpdateAlert'
 import codePush from 'react-native-code-push'
@@ -13,6 +13,10 @@ const CodePushContext = React.createContext<CodePushContextType>({})
 
 const CodePushWrapper = ({children}: { children: React.ReactNode }) => {
     const {syncCodePush, isUpdating} = useCodePush()
+    useEffect(() => {
+        syncCodePush(true)
+    }, [])
+
     if (isUpdating) {
         return <WaitUpdateAlert/>
     }

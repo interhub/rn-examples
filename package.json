@@ -13,8 +13,8 @@
     "codepush:prod:android": "appcenter codepush release-react -a interhub/examples-android -d Production",
     "codepush:prod:ios": "appcenter codepush release-react -a interhub/examples-ios --plist-file ios/examples/Info.plist -d Production",
 
-    "codepush:stag:android": "appcenter codepush release-react -a interhub/examples-android",
-    "codepush:stag:ios": "appcenter codepush release-react -a interhub/examples-ios --plist-file ios/examples/Info.plist",
+    "codepush:stag:android": "appcenter codepush release-react -a interhub/examples-android -s Staging",
+    "codepush:stag:ios": "appcenter codepush release-react -a interhub/examples-ios --plist-file ios/examples/Info.plist -s Staging",
 
     "codepush:stag": "npm run codepush:stag:android && npm run codepush:stag:ios",
     "codepush:prod": "npm run codepush:prod:android && npm run codepush:prod:ios",
