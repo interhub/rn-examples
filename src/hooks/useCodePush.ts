@@ -7,6 +7,14 @@ import {useLayoutEffect, useState} from 'react';
 const SLEEP_TIME = 1000;
 
 /**
+code push dev keys
+ */
+enum CODE_PUSH_KEYS {
+  STAGING = 'cNG5Y9IF9Yd1tmpMfARSQU0t2A2QC_7nDnD-8',
+  PRODUCTION = 'y4ad57B9UBuP607WlBgqLj-Vupwhfq5pF2Ukb',
+}
+
+/**
  @hook for code push reload and update
  */
 const useCodePush = () => {
@@ -19,14 +27,16 @@ const useCodePush = () => {
     setIsUpdating(true);
   };
 
-  const syncCodePush = async (): Promise<any> => {
+  const syncCodePush = async (isProduction: boolean): Promise<any> => {
     if (__DEV__) {
       return stopUpdating();
     }
     startUpdating();
     return new Promise((ok) => {
+      const deploymentKey: CODE_PUSH_KEYS = isProduction ? CODE_PUSH_KEYS.PRODUCTION : CODE_PUSH_KEYS.STAGING
+
       codePush.sync(
-        {installMode: codePush.InstallMode.IMMEDIATE},
+        {installMode: codePush.InstallMode.IMMEDIATE, deploymentKey},
         (status) => {
           ok();
           switch (status) {
@@ -48,10 +58,6 @@ const useCodePush = () => {
     });
   };
 
-  useLayoutEffect(() => {
-    syncCodePush();
-  }, []);
-
-  return {isUpdating, syncCodePush};
+  return {syncCodePush, isUpdating};
 };
 export default useCodePush;

@@ -1,13 +1,27 @@
-import React from 'react';
+import React, {useContext, useState} from 'react'
 import useCodePush from '../hooks/useCodePush'
 import WaitUpdateAlert from '../components/WaitUpdateAlert'
+import codePush from 'react-native-code-push'
 
-const CodePushWrapper = ({children}: {children: React.ReactNode}) => {
-  const {isUpdating} = useCodePush();
-  if (isUpdating) {
-    return <WaitUpdateAlert />;
-  }
-  return <>{children}</>;
-};
+interface CodePushContextType {
+    isUpdating: boolean;
+    syncCodePush: (isProduction: boolean) => void
+}
 
-export default CodePushWrapper;
+//@ts-ignore
+const CodePushContext = React.createContext<CodePushContextType>({})
+
+const CodePushWrapper = ({children}: { children: React.ReactNode }) => {
+    const {syncCodePush, isUpdating} = useCodePush()
+    if (isUpdating) {
+        return <WaitUpdateAlert/>
+    }
+    return <CodePushContext.Provider value={{isUpdating, syncCodePush}}>{children}</CodePushContext.Provider>
+}
+
+export const useCodePushDynamicSync = () => {
+    const {syncCodePush, isUpdating} = useContext(CodePushContext)
+    return {syncCodePush, isUpdating}
+}
+
+export default CodePushWrapper

@@ -3,19 +3,19 @@ import React, {useMemo} from 'react'
 import {Button, Text, View} from 'react-native'
 import {FlatList} from 'react-native-gesture-handler'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
-import {SCREEN_NAME} from './SCREEN_NAME'
+import {SCREENS} from './SCREENS'
 import ButtonCustom from '../components/ButtonCustom'
 
 const Menu = () => {
 
     const {top, bottom} = useSafeAreaInsets()
-    const SCREENS = useMemo(() => Object.values(SCREEN_NAME).reverse(), [])
+    const SCREENS_NAMES = useMemo(() => Object.keys(SCREENS).reverse(), [])
 
     return (
         <FlatList
             contentContainerStyle={{paddingTop: top, paddingBottom: bottom + 10}}
             style={{flex: 1}}
-            data={SCREENS}
+            data={SCREENS_NAMES}
             initialNumToRender={14}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item, index}) => {
@@ -25,7 +25,7 @@ const Menu = () => {
     )
 }
 
-const NavigateButton = ({screenName}: { screenName: SCREEN_NAME }) => {
+const NavigateButton = ({screenName}: { screenName: string }) => {
     const {navigate} = useNavigation()
 
     const onPressHandler = () => navigate(screenName)

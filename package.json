@@ -9,9 +9,17 @@
     "pod:install": "npx pod-install",
     "xcode:open": "xed ./ios",
     "android_studio:open": "open -a Android\\ Studio \"android\"",
-    "codepush:android": "appcenter codepush release-react -a interhub/examples-android",
-    "codepush:ios": "appcenter codepush release-react -a interhub/examples-ios --plist-file ios/examples/Info.plist",
-    "codepush": "npm run codepush:android && npm run codepush:ios"
+
+    "codepush:prod:android": "appcenter codepush release-react -a interhub/examples-android -d Production",
+    "codepush:prod:ios": "appcenter codepush release-react -a interhub/examples-ios --plist-file ios/examples/Info.plist -d Production",
+
+    "codepush:stag:android": "appcenter codepush release-react -a interhub/examples-android",
+    "codepush:stag:ios": "appcenter codepush release-react -a interhub/examples-ios --plist-file ios/examples/Info.plist",
+
+    "codepush:stag": "npm run codepush:stag:android && npm run codepush:stag:ios",
+    "codepush:prod": "npm run codepush:prod:android && npm run codepush:prod:ios",
+
+    "codepush:all": "npm run codepush:stag && npm run codepush:prod"
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "^0.2.4",
