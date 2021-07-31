@@ -1,19 +1,6 @@
-import React, {useEffect} from 'react'
-import {Image, SafeAreaView} from 'react-native'
-import MaskedView from '@react-native-masked-view/masked-view'
-import Animated, {
-    runOnJS,
-    useAnimatedGestureHandler,
-    useAnimatedStyle,
-    useSharedValue, withDecay,
-    withRepeat,
-    withSequence,
-    withTiming
-} from 'react-native-reanimated'
-import SIZE from '../../../src/SIZE'
-import {PanGestureHandler, PanGestureHandlerGestureEvent} from 'react-native-gesture-handler'
+import React from 'react'
+import {SafeAreaView} from 'react-native'
 import ButtonCustom from '../../../components/ButtonCustom'
-import {useNavigation} from '@react-navigation/native'
 import {useCodePushDynamicSync} from '../../../src/wrappers/CodePushWrapper'
 
 export default function () {
