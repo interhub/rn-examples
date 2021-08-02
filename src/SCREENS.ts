@@ -20,6 +20,7 @@ import SpringScroll from '../examples/SpringScroll'
 import ClampHeader from '../examples/ClampHeader'
 import Menu from './Menu'
 import CodePushUpdates from '../examples/CodePushUpdates'
+import SwipeMenuOpen from '../examples/SwipeMenuOpen'
 
 export const SCREENS = {
     ['MENU🏁']: Menu,
@@ -42,6 +43,7 @@ export const SCREENS = {
     ['SPRING_SCROLL🧹']: SpringScroll,
     ['CLAMP_HEADER🎃']: ClampHeader,
     ['CODE_PUSH_UPDATES☁']: CodePushUpdates,
+    ['SWIPE MENU OPEN🏃']: SwipeMenuOpen,
 }
 //3 мая
 
