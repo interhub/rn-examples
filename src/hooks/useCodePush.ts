@@ -45,7 +45,6 @@ const useCodePush = () => {
             case codePush.SyncStatus.UNKNOWN_ERROR:
               return stopUpdating();
             case codePush.SyncStatus.SYNC_IN_PROGRESS:
-                console.log('hello')
               return startUpdating();
           }
         },
