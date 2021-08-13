@@ -11,6 +11,13 @@ enableScreens()
 const Stack = createStackNavigator()
 
 //TODO TEST EJECT FOR SET UP NORMAL ANDROID ICON SIZE AND DONT USE MANUAL SET ICONS
+//TODo add examples
+/*
+* 1) usage accelerometer parallax animate library
+* 2) usage expo config module full read documentation
+* 3) usage lottie animate
+* 4) usage webrtc video connect module
+* */
 
 const App = () => {
 
