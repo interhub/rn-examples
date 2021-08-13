@@ -6,7 +6,7 @@ import {
 } from 'react-native-gesture-handler';
 import React, {useRef} from 'react';
 import {Animated} from 'react-native';
-import SIZE from '../../../../config/SIZE';
+import SIZE from './src/SIZE'
 
 interface StoriesGestureControllerProps {
   children: React.ReactNode;
