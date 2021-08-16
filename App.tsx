@@ -17,7 +17,7 @@ const Stack = createStackNavigator()
 * 2) usage expo config module full read documentation
 * 3) usage lottie animate
 * 4) usage webrtc video connect module
-* 5) interpolate scroll bottom position post line with move to scroll position and stop on the end post point
+* 5) interpolate scroll bottom position post line with move to scroll position and stop on the end post  point
 * */
 
 const App = () => {
