@@ -2,6 +2,8 @@
 
 ### Simple Accelerometer animation react-native library for animate translateXY some View RN for IOS and Android 🍎 🤖
 
+## That now Library is supporting and work ⚙️
+
 Library stand by expo-sensors and react-native-reanimated. TS only.
 
 [video example source link 🪐]( https://interhub.github.io/source/parallax-lib.gif )
@@ -23,16 +25,16 @@ Library stand by expo-sensors and react-native-reanimated. TS only.
 
 # Usage
 
-### 1. Wrap your root App.tsx to Index to provide context value for hooks.
+### 1. Wrap your root App.tsx to ParallaxProvider to provide context value for hooks.
 
 ```tsx
 import React from 'react'
-import {Index} from 'react-native-accelerometer-parallax'
+import {ParallaxProvider} from 'react-native-accelerometer-parallax'
 
 const App = () => {
-    return <Index>
-        <SomeStack/>
-    </Index>
+    return <ParallaxProvider>
+        <SomeStack/> 
+    </ParallaxProvider>
 }
 
 export default App
@@ -62,7 +64,7 @@ import React from 'react'
 import {useParallax} from 'react-native-accelerometer-parallax'
 import Animated from 'react-native-reanimated'
 import {View, Text} from 'react-native'
-import {Index} from 'react-native-accelerometer-parallax'
+import {ParallaxProvider} from 'react-native-accelerometer-parallax'
 
 const Screen = () => {
    const {animStyle} = useParallax()
@@ -74,9 +76,9 @@ const Screen = () => {
 }
 
 const App = () => {
-   return <Index>
+   return <ParallaxProvider>
       <Screen/>
-   </Index>
+   </ParallaxProvider>
 }
 
 export default App

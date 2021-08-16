@@ -1,12 +1,11 @@
-
 {
   "name": "react-native-accelerometer-parallax",
-  "version": "1.5.5",
+  "version": "1.5.6",
   "description": "add reanimated animation connected with accelerometer context animation from wrapper",
   "main": "index.tsx",
   "scripts": {
     "publish": "sudo npm publish --access=public",
-    "build": "npx tsc -p ./ParallaxProvider.tsx -d"
+    "build": "npx tsc -p ./index.tsx -d"
   },
   "keywords": [
     "react-native"
@@ -14,15 +13,18 @@
   "author": "interhub",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": "^0.41.2",
-    "react-native-windows": "0.41.0-rc.1",
     "expo-sensors": "*",
+    "react": "*",
+    "react-native": "^0.41.2",
     "react-native-reanimated": "*",
-    "react": "*"
+    "react-native-windows": "0.41.0-rc.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
   "types": "index.d.tsx",
-  "homepage": "https://github.com/interhub/react-native-accelerometer-parallax"
+  "homepage": "https://github.com/interhub/react-native-accelerometer-parallax",
+  "dependencies": {
+    "react-native-accelerometer-parallax": "^1.5.6"
+  }
 }
