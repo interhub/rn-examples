@@ -5,7 +5,7 @@
 Library stand by expo-sensors and react-native-reanimated. TS only.
 
 [video example source link 🪐]( https://interhub.github.io/source/parallax-lib.gif )
-  
+
 ![video example not loads 🤖]( https://interhub.github.io/source/parallax-lib.gif  )
 
 [repository code example from video*](https://github.com/interhub/rn-examples/tree/master/examples/AccelerometerLib)
@@ -14,25 +14,25 @@ Library stand by expo-sensors and react-native-reanimated. TS only.
 
 1. Install last version [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated) (v2.0.0
    or more)
-   
-2. Install last version [expo-sensors](https://docs.expo.io/versions/latest/sdk/sensors) 
- 
+
+2. Install last version [expo-sensors](https://docs.expo.io/versions/latest/sdk/sensors)
+
 3. Install library
 
 > yarn add react-native-accelerometer-parallax
 
 # Usage
 
-### 1. Wrap your root App.tsx to ParallaxProvider to provide context value for hooks.
+### 1. Wrap your root App.tsx to Index to provide context value for hooks.
 
 ```tsx
 import React from 'react'
-import {ParallaxProvider} from 'react-native-accelerometer-parallax'
+import {Index} from 'react-native-accelerometer-parallax'
 
 const App = () => {
-    return <ParallaxProvider>
+    return <Index>
         <SomeStack/>
-    </ParallaxProvider>
+    </Index>
 }
 
 export default App
@@ -62,7 +62,7 @@ import React from 'react'
 import {useParallax} from 'react-native-accelerometer-parallax'
 import Animated from 'react-native-reanimated'
 import {View, Text} from 'react-native'
-import {ParallaxProvider} from 'react-native-accelerometer-parallax'
+import {Index} from 'react-native-accelerometer-parallax'
 
 const Screen = () => {
    const {animStyle} = useParallax()
@@ -74,9 +74,9 @@ const Screen = () => {
 }
 
 const App = () => {
-   return <ParallaxProvider>
+   return <Index>
       <Screen/>
-   </ParallaxProvider>
+   </Index>
 }
 
 export default App
@@ -99,7 +99,7 @@ export default App
 
 - posX: Animated.SharedValue<number> (for use it or interpolate, for example style={{opacity: posY.value}})
 
-- posY: Animated.SharedValue<number> (equal posX) 
+- posY: Animated.SharedValue<number> (equal posX)
 
 
 #Contact
