@@ -20,22 +20,20 @@ const ItemDetail = () => {
     })
 
     return (
-        <View style={{flex: 1}}>
-            <View style={styles.container}>
-                <ButtonCustom m={10} onPress={goBack}>
-                    back
-                </ButtonCustom>
-                <Animated.Text style={[styles.text, animatedTextStyle]}>
-                    ELEMENT PAGE
-                </Animated.Text>
-                <Animated.View style={animStyle}>
-                    <Image
-                        style={[styles.image]}
-                        resizeMode="cover"
-                        source={require('../img/bg.jpg')}
-                    />
-                </Animated.View>
-            </View>
+        <View style={styles.container}>
+            <Animated.View style={animStyle}>
+                <Image
+                    style={[styles.image]}
+                    resizeMode={'cover'}
+                    source={require('../img/bg.jpeg')}
+                />
+            </Animated.View>
+            <ButtonCustom m={10} onPress={goBack}>
+                back
+            </ButtonCustom>
+            <Animated.Text style={[styles.text, animatedTextStyle]}>
+                ELEMENT PAGE
+            </Animated.Text>
         </View>
     )
 }
@@ -43,14 +41,16 @@ const ItemDetail = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: '#dddddd',
     },
     image: {
-        width: SIZE.width * 0.8, height: SIZE.width / 2
+        ...StyleSheet.absoluteFillObject,
+        position: 'absolute',
+        width: '100%',
+        height: SIZE.height,
+        transform:[{scale:1.3}]
     },
-    text: {fontSize: 30, color: '#000', fontWeight: 'bold'},
+    text: {fontSize: 30, color: '#fff', fontWeight: 'bold', textAlign:'center'},
 })
 
 export default ItemDetail
