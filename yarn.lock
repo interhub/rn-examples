@@ -4676,7 +4676,7 @@ expo-sensors@*:
     "@expo/config-plugins" "^1.0.18"
     invariant "^2.2.4"
 
-expo-sensors@~10.2.2:
+expo-sensors@^10.2.2:
   version "10.2.2"
   resolved "https://registry.yarnpkg.com/expo-sensors/-/expo-sensors-10.2.2.tgz#882e25b3135995e383d88b21b17e5f1b1155d4e0"
   integrity sha512-kZZobyfQQPA7PwuTQ2+HwunZ1o2emWLKqWP9jYOBPI4toQAproSLzhlhKmpm2vRDOL1ctC12Fb0g9elv7r9Omg==
@@ -8499,12 +8499,14 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
-react-native-accelerometer-parallax@^1.4.8:
-  version "1.4.8"
-  resolved "https://registry.yarnpkg.com/react-native-accelerometer-parallax/-/react-native-accelerometer-parallax-1.4.8.tgz#ed3bdddf8eb92cd155e3f0eb7d1567ddb7e89aca"
-  integrity sha512-H6K5rACvr7ybvTOeshUyrHf0LNbQ3Cv3SD5wC8yqhVOeRzcZkVLhnjAWpB2jyM5xoVvVV1QN2O8/PxzW1GabSw==
+react-native-accelerometer-parallax@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/react-native-accelerometer-parallax/-/react-native-accelerometer-parallax-1.5.2.tgz#e98823894d1afe898c55c3338c96fad23f5ecf2f"
+  integrity sha512-Dn92G5IIsp/iije+gZXgNy/61TLbOCXBlMK0+cvgU+xTMur23dm1cJlXnUtrl1eTYBeNORUa5Ou+DIwgnMzpUw==
   dependencies:
     expo-sensors "*"
+    react-native-reanimated "*"
+    react-native-spring-scrollview "^2.0.23"
 
 react-native-code-push@^7.0.1:
   version "7.0.1"
@@ -8553,7 +8555,7 @@ react-native-navigation-bar-color@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-native-navigation-bar-color/-/react-native-navigation-bar-color-2.0.1.tgz#ee2be25cc37105f7da355717b0a9a32c9c059ae6"
   integrity sha512-1kE/oxWt+HYjRxdZdvke9tJ365xaee5n3+euOQA1En8zQuSbOxiE4SYEGM7TeaWnmLJ0l37mRnPHaB2H4mGh0A==
 
-react-native-reanimated@~2.2.0:
+react-native-reanimated@*, react-native-reanimated@~2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.2.0.tgz#a6412c56b4e591d1f00fac949f62d0c72c357c78"
   integrity sha512-lOJDd+5w1gY6DHGXG2jD1dsjzQmXQ2699HUc3IztvI2WP4zUT+UAA+zSG+5JiBS5DUnTL8YhhkmUQmr1KNGO5w==
@@ -8588,6 +8590,11 @@ react-native-shared-element@0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/react-native-shared-element/-/react-native-shared-element-0.7.0.tgz#c5e02eb372f6e38e48eb1030fd59be8f3d8c7a1f"
   integrity sha512-TJTGwQceABYete+vH3ahNSgzVzXz7X2SPv3thT91gdcFCrm7ht7IKXBXJiYjOA+4TfdqnGEAWkspCy80oEnOgw==
+
+react-native-spring-scrollview@^2.0.23:
+  version "2.0.23"
+  resolved "https://registry.yarnpkg.com/react-native-spring-scrollview/-/react-native-spring-scrollview-2.0.23.tgz#23febfc0d28c63b87dcb260ac3b6d1ad886de3ae"
+  integrity sha512-2PTj07oqsYG0p8BMd4NzG0kKEEKqvPlI0NlQqVckhIxg7UiH4zZGG+2tn6oRg4O65F+ZsU68HNzFYE9cyCGkOQ==
 
 react-native-svg@12.1.1:
   version "12.1.1"

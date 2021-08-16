@@ -21,6 +21,7 @@ import ClampHeader from '../examples/ClampHeader'
 import Menu from './Menu'
 import CodePushUpdates from '../examples/CodePushUpdates'
 import SwipeMenuOpen from '../examples/SwipeMenuOpen'
+import AccelerometerLib from '../examples/AccelerometerLib'
 
 export const SCREENS = {
     ['MENU🏁']: Menu,
@@ -44,6 +45,7 @@ export const SCREENS = {
     ['CLAMP_HEADER🎃']: ClampHeader,
     ['CODE_PUSH_UPDATES☁']: CodePushUpdates,
     ['SWIPE MENU OPEN🏃']: SwipeMenuOpen,
+    ['ACCELEROMETER LIB🎇']: AccelerometerLib,
 }
 //3 мая
 
