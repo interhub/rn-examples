@@ -79,9 +79,12 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (RCTBridge *)initializeReactNativeApp
 {
+  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:self.launchOptions];
 //DEV MENU ADD BLOCK
 #if defined(EX_DEV_LAUNCHER_ENABLED)
     NSDictionary *launchOptions = [EXDevLauncherController.sharedInstance getLaunchOptions];
+    self.launchOptions = launchOptions;
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 #else
     NSDictionary *launchOptions = self.launchOptions;
 #endif
