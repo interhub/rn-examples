@@ -6,6 +6,7 @@ import {SCREENS} from './src/SCREENS'
 import {enableScreens} from 'react-native-screens'
 import CodePushWrapper from './src/wrappers/CodePushWrapper'
 import codePush from 'react-native-code-push'
+import 'expo-dev-client';
 
 enableScreens()
 const Stack = createStackNavigator()
@@ -13,7 +14,8 @@ const Stack = createStackNavigator()
 //TODO TEST EJECT FOR SET UP NORMAL ANDROID ICON SIZE AND DONT USE MANUAL SET ICONS
 //TODo add examples
 /*
-* 1) usage accelerometer parallax animate library
+* 1) usage accelerometer parallax animate library ✅
+* 2) image open screen show from down
 * 2) usage expo config module full read documentation
 * 3) usage lottie animate
 * 4) usage webrtc video connect module

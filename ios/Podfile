@@ -6,6 +6,10 @@ platform :ios, '11.0'
 
 target 'GoodExamples' do
   use_unimodules!
+
+  pod 'expo-dev-menu', path: '../node_modules/expo-dev-menu', :configurations => :debug
+  pod 'expo-dev-launcher', path: '../node_modules/expo-dev-launcher', :configurations => :debug
+
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])

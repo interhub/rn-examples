@@ -34,6 +34,37 @@ PODS:
   - EXPermissions (12.1.1):
     - ExpoModulesCore
     - UMCore
+  - expo-dev-client (0.4.7):
+    - expo-dev-launcher
+    - expo-dev-menu
+    - expo-dev-menu-interface
+    - EXUpdatesInterface
+  - expo-dev-launcher (0.6.7):
+    - expo-dev-launcher/Main (= 0.6.7)
+    - expo-dev-menu-interface
+    - EXUpdatesInterface
+    - React
+  - expo-dev-launcher/Main (0.6.7):
+    - expo-dev-launcher/Unsafe
+    - expo-dev-menu-interface
+    - EXUpdatesInterface
+    - React
+  - expo-dev-launcher/Unsafe (0.6.7):
+    - expo-dev-menu-interface
+    - EXUpdatesInterface
+    - React
+  - expo-dev-menu (0.7.7):
+    - expo-dev-menu-interface
+    - expo-dev-menu/Main (= 0.7.7)
+    - React
+  - expo-dev-menu-interface (0.3.4)
+  - expo-dev-menu/Main (0.7.7):
+    - expo-dev-menu-interface
+    - expo-dev-menu/Vendored
+    - React
+  - expo-dev-menu/Vendored (0.7.7):
+    - expo-dev-menu-interface
+    - React
   - ExpoModulesCore (0.2.0):
     - ExpoModulesCore/Core (= 0.2.0)
     - ExpoModulesCore/Interfaces (= 0.2.0)
@@ -428,6 +459,10 @@ DEPENDENCIES:
   - EXKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - EXMediaLibrary (from `../node_modules/expo-media-library/ios`)
   - EXPermissions (from `../node_modules/expo-permissions/ios`)
+  - expo-dev-client (from `../node_modules/expo-dev-client`)
+  - expo-dev-launcher (from `../node_modules/expo-dev-launcher`)
+  - expo-dev-menu (from `../node_modules/expo-dev-menu`)
+  - expo-dev-menu-interface (from `../node_modules/expo-dev-menu-interface`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core/ios`)
   - EXSensors (from `../node_modules/expo-sensors/ios`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
@@ -535,6 +570,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-media-library/ios"
   EXPermissions:
     :path: "../node_modules/expo-permissions/ios"
+  expo-dev-client:
+    :path: "../node_modules/expo-dev-client"
+  expo-dev-launcher:
+    :path: "../node_modules/expo-dev-launcher"
+  expo-dev-menu:
+    :path: "../node_modules/expo-dev-menu"
+  expo-dev-menu-interface:
+    :path: "../node_modules/expo-dev-menu-interface"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core/ios"
   EXSensors:
@@ -637,6 +680,10 @@ SPEC CHECKSUMS:
   EXKeepAwake: f4105ef469be7b283f66ce2d7234bb71ac80cd26
   EXMediaLibrary: c87254f83db976563e4ee54ee67eeb065570e92b
   EXPermissions: 916efb5b817cb0a40160c0cd2f369af3c23a78be
+  expo-dev-client: 6deebc5a4525c8b39ffc090448ccd21e6b008e35
+  expo-dev-launcher: 08aa4331ca13f4a4698ef9c346c092942332cc25
+  expo-dev-menu: 751bb170ea1024c1ea8fa2c0c1f952360a68e48f
+  expo-dev-menu-interface: 145d352ba9edff66b0c1fb13773f0f0dd9d50afd
   ExpoModulesCore: 2734852616127a6c1fc23012197890a6f3763dc7
   EXSensors: 45614e17a2a8596fc797b17c1a7cf64ba3482163
   EXSplashScreen: 6208ca88470ff5979fd49a08ef3feb01143a2b79
@@ -694,6 +741,6 @@ SPEC CHECKSUMS:
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: b9ed7d29928305250ca3a78a8492a1805ee3286e
+PODFILE CHECKSUM: e08468bbd6e9d8a1de5af7ff9cc857dfb149bcb8
 
 COCOAPODS: 1.10.1
