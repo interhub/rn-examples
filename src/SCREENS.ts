@@ -22,6 +22,7 @@ import Menu from './Menu'
 import CodePushUpdates from '../examples/CodePushUpdates'
 import SwipeMenuOpen from '../examples/SwipeMenuOpen'
 import AccelerometerLib from '../examples/AccelerometerLib'
+import AnimateHeaderNav from '../examples/AnimateHeaderNav'
 
 export const SCREENS = {
     ['MENU🏁']: Menu,
@@ -46,6 +47,7 @@ export const SCREENS = {
     ['CODE_PUSH_UPDATES☁']: CodePushUpdates,
     ['SWIPE MENU OPEN🏃']: SwipeMenuOpen,
     ['ACCELEROMETER LIB🎇']: AccelerometerLib,
+    ['ANIMATE SCREENS NAV💸']: AnimateHeaderNav,
 }
 //3 мая
 

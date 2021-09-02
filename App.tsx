@@ -6,6 +6,7 @@ import {SCREENS} from './src/SCREENS'
 import {enableScreens} from 'react-native-screens'
 import CodePushWrapper from './src/wrappers/CodePushWrapper'
 import codePush from 'react-native-code-push'
+import getScreenAnimation, {SCREEN_ANIMATION} from './src/getScreenAnimation'
 
 enableScreens()
 const Stack = createStackNavigator()
@@ -24,9 +25,12 @@ const App = () => {
 
     return <CodePushWrapper>
         <NavigationContainer>
-            <Stack.Navigator detachInactiveScreens={false} headerMode={'none'}>
+            <Stack.Navigator detachInactiveScreens={false} headerMode={'screen'}>
                 {Object.entries(SCREENS).map(([screenName, screenComponent], index) => {
-                    return <Stack.Screen key={index} name={screenName} component={screenComponent}/>
+                    return <Stack.Screen
+                        options={{...getScreenAnimation(SCREEN_ANIMATION.TOP), headerShown: true}}
+                        key={index}
+                        name={screenName} component={screenComponent}/>
                 })}
             </Stack.Navigator>
         </NavigationContainer>

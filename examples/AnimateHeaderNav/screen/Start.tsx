@@ -1,45 +1,29 @@
 import React, {useEffect, useRef} from 'react'
 import {Animated, ScrollView, StyleSheet, Text, View} from 'react-native'
+import useNavigationAnimateValue from '../../../src/hooks/useNavigationAnimateValue'
 
 const HEADER_SIZE = 100
 
 export default function () {
-    const scrollY = useRef(new Animated.Value(0)).current
+    const animateValue = useNavigationAnimateValue({startOpen: -1, endOpen: 1, extra: 'clamp'})
 
-    const headerTranslate =
-        Animated.diffClamp(scrollY, 0, HEADER_SIZE
-        )
-            .interpolate({
-                inputRange: [0, 1],
-                outputRange: [0, -1],
-            })
-
-    useEffect(() => {
-        scrollY.addListener(({value}) => {
-            console.log(value, 'val', headerTranslate)
-        })
-        return () => {
-            scrollY.removeAllListeners()
-        }
-    }, [])
-
+    const animateTranslateHeaderStyle = {
+        opacity: animateValue
+    }
 
     return (
         <View style={styles.container}>
-            <Animated.View style={[styles.header, {transform: [{translateY: headerTranslate}]}]}>
+            <Animated.View style={[styles.header, animateTranslateHeaderStyle]}>
                 <Text style={styles.title}>Title</Text>
             </Animated.View>
-            <Animated.ScrollView bounces={false}
+            <ScrollView bounces={false}
                         contentContainerStyle={{paddingTop: HEADER_SIZE}}
                         scrollEventThrottle={16}
-                        onScroll={Animated.event(
-                            [{nativeEvent: {contentOffset: {y: scrollY}}}], {useNativeDriver: false}
-                        )}
             >
                 {new Array(300).fill(1).map((_, key) => {
                     return <Text key={key}>{key + ' hello'}</Text>
                 })}
-            </Animated.ScrollView>
+            </ScrollView>
         </View>
     )
 }

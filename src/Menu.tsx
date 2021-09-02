@@ -8,12 +8,12 @@ import ButtonCustom from '../components/ButtonCustom'
 
 const Menu = () => {
 
-    const {top, bottom} = useSafeAreaInsets()
+    const {bottom} = useSafeAreaInsets()
     const SCREENS_NAMES = useMemo(() => Object.keys(SCREENS).reverse(), [])
 
     return (
         <FlatList
-            contentContainerStyle={{paddingTop: top, paddingBottom: bottom + 10}}
+            contentContainerStyle={{paddingBottom: bottom + 10}}
             style={{flex: 1}}
             data={SCREENS_NAMES}
             initialNumToRender={14}
