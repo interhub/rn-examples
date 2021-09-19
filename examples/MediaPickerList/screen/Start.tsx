@@ -4,6 +4,7 @@ import * as MediaLibrary from 'expo-media-library'
 import {Video} from 'expo-av'
 import _ from 'lodash'
 import {Ionicons} from '@expo/vector-icons'
+import * as VideoThumbnails from 'expo-video-thumbnails'
 
 import ButtonCustom from '../../../components/ButtonCustom'
 import Message from '../../../src/config/Message'
@@ -105,13 +106,15 @@ const VideoAssetListItem = ({asset}: {asset?: MediaLibrary.Asset}) => {
 
   const uri = asset?.uri || ''
 
+  const {thumbUri, isLoadedThumb} = useThumbnalVideo(uri)
+
   const isExist = !!uri
   if (!isExist) return null
 
   return (
     <TouchableOpacity onPress={onPressImage}>
       <Ionicons name={'videocam'} size={15} color={'#8e8f90'} style={styles.camIcon} />
-      {!isPlay && <Image source={{uri}} style={styles.media} />}
+      {!isPlay && isLoadedThumb && <Image source={{uri: thumbUri}} style={styles.media} />}
       {isPlay && (
         <Video
           ref={videoRef}
@@ -119,14 +122,32 @@ const VideoAssetListItem = ({asset}: {asset?: MediaLibrary.Asset}) => {
           source={{
             uri,
           }}
-          // useNativeControls
           resizeMode={'cover'}
           isLooping
-          // onPlaybackStatusUpdate={status => setStatus(() => status)}
         />
       )}
     </TouchableOpacity>
   )
+}
+
+const useThumbnalVideo = (videoUri?: string) => {
+  const [thumbUri, setThumbUri] = useState('')
+
+  const generateThumbnail = async () => {
+    try {
+      if (!videoUri) return
+      const {uri = ''} = await VideoThumbnails.getThumbnailAsync(videoUri, {time: 100})
+      if (!uri) return
+      setThumbUri(uri)
+    } catch (e) {
+      console.warn(e)
+    }
+  }
+  useEffect(() => {
+    generateThumbnail()
+  }, [])
+
+  return {thumbUri, isLoadedThumb: !!thumbUri}
 }
 
 const styles = StyleSheet.create({
