@@ -1,6 +1,9 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import * as MediaLibrary from 'expo-media-library'
+import {Video} from 'expo-av'
+import _ from 'lodash'
+import {Ionicons} from '@expo/vector-icons'
 
 import ButtonCustom from '../../../components/ButtonCustom'
 import Message from '../../../src/config/Message'
@@ -14,21 +17,26 @@ import SIZE from '../../../src/config/SIZE'
 
 const IMAGE_SIZE = 200
 const NUM_COL = 3
-const SHOW_COUNT = Math.ceil(SIZE.height / IMAGE_SIZE || 0) + 1
+const SHOW_COUNT = Math.floor((SIZE.height * 3) / IMAGE_SIZE || 0) + 1
+console.log(SHOW_COUNT, 'SHOW_COUNT')
 
 export default function () {
-  const [photos, setPhotos] = useState<string[]>([])
+  const [files, setFiles] = useState<MediaLibrary.Asset[]>([])
 
-  const showPhotos = async () => {
+  const getSortedAssets = (assets: MediaLibrary.Asset[]) => {
+    return _.sortBy(_.clone(assets), (a) => -a.creationTime)
+  }
+
+  const showMedia = async () => {
     try {
       const {granted} = await MediaLibrary.requestPermissionsAsync()
-      console.log(granted)
       if (!granted) return Message('Доступ не был предоставлен 🤷‍♂️ ⛔️ ')
-
-      const {assets} = await MediaLibrary.getAssetsAsync({first: 30, mediaType: 'photo'})
-      const uris = assets.map(({uri}) => uri)
-      if (!uris?.length) return Message('Фото не найдено 🤷‍♂️ ⛔️ ')
-      setPhotos(uris)
+      const first = 1000
+      const {assets: videoAssets} = await MediaLibrary.getAssetsAsync({first, mediaType: 'video'})
+      const {assets: photoAssets} = await MediaLibrary.getAssetsAsync({first, mediaType: 'photo'})
+      const assetSorted = getSortedAssets(videoAssets.concat(photoAssets))
+      if (!assetSorted?.length) return Message('Фото не найдено 🤷‍♂️ ⛔️ ')
+      setFiles(assetSorted)
     } catch (e) {
       console.log(e, 'err')
       return Message('Ошибка 🤷‍♂️ ⛔️ ')
@@ -40,32 +48,83 @@ export default function () {
         keyExtractor={(item, index) => String(index)}
         initialNumToRender={SHOW_COUNT}
         numColumns={NUM_COL}
-        windowSize={SHOW_COUNT}
+        windowSize={NUM_COL}
+        data={files}
         ListHeaderComponent={
           <View>
             <Text style={styles.title}>Show local images list</Text>
-            <ButtonCustom m={20} onPress={showPhotos}>
-              Show photos
+            <ButtonCustom m={10} onPress={showMedia}>
+              Show media
             </ButtonCustom>
           </View>
         }
-        data={photos}
-        renderItem={({item: uri}) => {
-          return <ImageListItem uri={uri} />
+        renderItem={({item: asset}) => {
+          const isVideo = asset?.mediaType === 'video'
+          if (isVideo) return <VideoAssetListItem asset={asset} />
+          if (!isVideo) return <ImageAssetListItem asset={asset} />
+          return null
         }}
       />
     </View>
   )
 }
 
-const ImageListItem = ({uri}: {uri: string}) => {
+const ImageAssetListItem = ({asset}: {asset?: MediaLibrary.Asset}) => {
   const onPressImage = () => {
-    console.log('was press image', uri)
+    console.log('was press image', asset)
   }
+
+  const uri = asset?.uri || ''
+
+  const isExist = !!uri
+  if (!isExist) return null
 
   return (
     <TouchableOpacity onPress={onPressImage}>
-      <Image source={{uri}} style={styles.img} />
+      <Image source={{uri}} style={styles.media} />
+    </TouchableOpacity>
+  )
+}
+
+const VideoAssetListItem = ({asset}: {asset?: MediaLibrary.Asset}) => {
+  const [isPlay, setIsPlay] = useState(false)
+  const videoRef = React.useRef<Video>(null)
+
+  const onPressImage = async () => {
+    if (isPlay) return setIsPlay(false)
+    setIsPlay(true)
+  }
+
+  useEffect(() => {
+    if (isPlay) videoRef?.current?.playAsync()
+    if (!isPlay) {
+      videoRef?.current?.stopAsync()
+      videoRef?.current?.unloadAsync()
+    }
+  }, [isPlay])
+
+  const uri = asset?.uri || ''
+
+  const isExist = !!uri
+  if (!isExist) return null
+
+  return (
+    <TouchableOpacity onPress={onPressImage}>
+      <Ionicons name={'videocam'} size={15} color={'#8e8f90'} style={styles.camIcon} />
+      {!isPlay && <Image source={{uri}} style={styles.media} />}
+      {isPlay && (
+        <Video
+          ref={videoRef}
+          style={styles.media}
+          source={{
+            uri,
+          }}
+          // useNativeControls
+          resizeMode={'cover'}
+          isLooping
+          // onPlaybackStatusUpdate={status => setStatus(() => status)}
+        />
+      )}
     </TouchableOpacity>
   )
 }
@@ -73,8 +132,9 @@ const ImageListItem = ({uri}: {uri: string}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#7be354',
+    backgroundColor: '#27391f',
   },
-  img: {width: SIZE.width / NUM_COL, height: IMAGE_SIZE},
-  title: {textAlign: 'center', marginTop: 10, color: '#133213', fontSize: 20, fontWeight: 'bold'},
+  media: {width: SIZE.width / NUM_COL, height: IMAGE_SIZE},
+  title: {textAlign: 'center', marginTop: 10, color: '#c0d7c0', fontSize: 20, fontWeight: 'bold'},
+  camIcon: {position: 'absolute', bottom: 5, right: 5, zIndex: 3, backgroundColor: '#fefefe', padding: 5, borderRadius: 20, overflow: 'hidden'},
 })

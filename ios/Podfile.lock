@@ -10,6 +10,9 @@ PODS:
   - DoubleConversion (1.1.6)
   - EXApplication (3.2.0):
     - UMCore
+  - EXAV (9.2.3):
+    - ExpoModulesCore
+    - UMCore
   - EXConstants (11.0.1):
     - ExpoModulesCore
     - UMCore
@@ -420,6 +423,7 @@ DEPENDENCIES:
   - CodePush (from `../node_modules/react-native-code-push`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXApplication (from `../node_modules/expo-application/ios`)
+  - EXAV (from `../node_modules/expo-av/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - EXErrorRecovery (from `../node_modules/expo-error-recovery/ios`)
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
@@ -519,6 +523,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   EXApplication:
     :path: "../node_modules/expo-application/ios"
+  EXAV:
+    :path: "../node_modules/expo-av/ios"
   EXConstants:
     :path: "../node_modules/expo-constants/ios"
   EXErrorRecovery:
@@ -629,6 +635,7 @@ SPEC CHECKSUMS:
   CodePush: 9bb93f52a44ee80b72739d89dead9c7e86c3bd3a
   DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
   EXApplication: 9ff2a206009d6e55bca6c20b3f33d07986b51ef3
+  EXAV: 67bcc1d0afeb1fab854b206c84b9f2afbd61d0cd
   EXConstants: 3babb61f8f4bb7dffe85b8b7d6eaa31d903e4d7e
   EXErrorRecovery: 404d827bc7d42f306c062d58a60b06afc4d082b3
   EXFileSystem: 0a04aba8da751b9ac954065911bcf166503f8267
