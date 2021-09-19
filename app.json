@@ -3,9 +3,6 @@
     "name": "Good Examples!",
     "slug": "examples",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "ios": {
@@ -28,6 +25,10 @@
       "image": "./assets/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#FFFFFF"
-    }
+    },
+    "scheme": "examples",
+    "assetBundlePatterns": [
+      "assets/*"
+    ]
   }
 }

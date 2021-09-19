@@ -1,15 +1,27 @@
 import {useNavigation} from '@react-navigation/native'
-import React, {useMemo} from 'react'
+import React, {useEffect, useLayoutEffect, useMemo, useState} from 'react'
 import {Button, Text, View} from 'react-native'
 import {FlatList} from 'react-native-gesture-handler'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {SCREENS} from './SCREENS'
 import ButtonCustom from '../components/ButtonCustom'
+import * as Linking from 'expo-linking'
+import useHandleDeepLink from './hooks/useHandleDeepLink'
 
 const Menu = () => {
 
     const {bottom} = useSafeAreaInsets()
     const SCREENS_NAMES = useMemo(() => Object.keys(SCREENS).reverse(), [])
+    const {deepUrl, removeLink} = useHandleDeepLink()
+
+    useEffect(() => {
+        if (deepUrl) {
+            //usage action or navigate
+            console.log(deepUrl, 'usage deep links ✅ ')
+            removeLink()
+        }
+    }, [deepUrl])
+
 
     return (
         <FlatList
@@ -36,6 +48,7 @@ const NavigateButton = ({screenName}: { screenName: string }) => {
         </ButtonCustom>
     </View>
 }
+
 
 export default Menu
 
