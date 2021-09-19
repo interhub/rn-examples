@@ -1,6 +1,7 @@
 import {CardStyleInterpolators, StackNavigationOptions} from '@react-navigation/stack'
 
 import SIZE from './SIZE'
+import IS_IOS from './IS_IOS'
 
 /**
  animation types for react-navigation from https://reactnavigation.org/docs/stack-navigator/#transitionpresets
@@ -32,7 +33,7 @@ export enum SCREEN_ANIMATION {
  */
 export default (animation: SCREEN_ANIMATION = SCREEN_ANIMATION.NONE, swipe = true): StackNavigationOptions => {
   const isVerticalSwipe = animation === SCREEN_ANIMATION.TOP
-  const gestureWorkPercent = 100 //%
+  const gestureWorkPercent = IS_IOS ? 100 : 15 //%
   const gestureWorkDistance = (isVerticalSwipe ? SIZE.height : SIZE.width) * (gestureWorkPercent / 100)
   const config: StackNavigationOptions = {
     headerShown: false,

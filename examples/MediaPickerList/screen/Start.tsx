@@ -6,6 +6,12 @@ import ButtonCustom from '../../../components/ButtonCustom'
 import Message from '../../../src/config/Message'
 import SIZE from '../../../src/config/SIZE'
 
+/**
+ * TODO solwe problem
+ * 1) show video with photos and select it settings
+ * 2) android top swipe problem screen
+ */
+
 const IMAGE_SIZE = 200
 const NUM_COL = 3
 const SHOW_COUNT = Math.ceil(SIZE.height / IMAGE_SIZE || 0) + 1
