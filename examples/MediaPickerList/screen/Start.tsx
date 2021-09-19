@@ -50,6 +50,7 @@ export default function () {
         initialNumToRender={SHOW_COUNT}
         numColumns={NUM_COL}
         windowSize={NUM_COL}
+        removeClippedSubviews
         data={files}
         ListHeaderComponent={
           <View>
@@ -104,6 +105,10 @@ const VideoAssetListItem = ({asset}: {asset?: MediaLibrary.Asset}) => {
     }
   }, [isPlay])
 
+  useEffect(() => {
+    return () => setIsPlay(false)
+  }, [])
+
   const uri = asset?.uri || ''
 
   const {thumbUri, isLoadedThumb} = useThumbnalVideo(uri)
@@ -113,7 +118,7 @@ const VideoAssetListItem = ({asset}: {asset?: MediaLibrary.Asset}) => {
 
   return (
     <TouchableOpacity onPress={onPressImage}>
-      <Ionicons name={'videocam'} size={15} color={'#8e8f90'} style={styles.camIcon} />
+      <Ionicons name={'play'} size={15} color={'#8e8f90'} style={styles.camIcon} />
       {!isPlay && isLoadedThumb && <Image source={{uri: thumbUri}} style={styles.media} />}
       {isPlay && (
         <Video
@@ -157,5 +162,14 @@ const styles = StyleSheet.create({
   },
   media: {width: SIZE.width / NUM_COL, height: IMAGE_SIZE},
   title: {textAlign: 'center', marginTop: 10, color: '#c0d7c0', fontSize: 20, fontWeight: 'bold'},
-  camIcon: {position: 'absolute', bottom: 5, right: 5, zIndex: 3, backgroundColor: '#fefefe', padding: 5, borderRadius: 20, overflow: 'hidden'},
+  camIcon: {
+    position: 'absolute',
+    bottom: 5,
+    right: 5,
+    zIndex: 3,
+    backgroundColor: '#fefefe',
+    padding: 6,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
 })
