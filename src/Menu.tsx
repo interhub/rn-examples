@@ -1,11 +1,10 @@
 import {useNavigation} from '@react-navigation/native'
-import React, {useEffect, useLayoutEffect, useMemo, useState} from 'react'
-import {Button, Text, View} from 'react-native'
+import React, {useEffect, useMemo} from 'react'
+import {View} from 'react-native'
 import {FlatList} from 'react-native-gesture-handler'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {SCREENS} from './SCREENS'
 import ButtonCustom from '../components/ButtonCustom'
-import * as Linking from 'expo-linking'
 import useHandleDeepLink from './hooks/useHandleDeepLink'
 
 const Menu = () => {
