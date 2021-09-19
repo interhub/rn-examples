@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Alert, FlatList, Image, ScrollView, StyleSheet, Text, View} from 'react-native'
+import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import * as MediaLibrary from 'expo-media-library'
 
 import ButtonCustom from '../../../components/ButtonCustom'
@@ -7,6 +7,7 @@ import Message from '../../../src/config/Message'
 import SIZE from '../../../src/config/SIZE'
 
 const IMAGE_SIZE = 200
+const NUM_COL = 3
 const SHOW_COUNT = Math.ceil(SIZE.height / IMAGE_SIZE || 0) + 1
 
 export default function () {
@@ -20,8 +21,8 @@ export default function () {
 
       const {assets} = await MediaLibrary.getAssetsAsync({first: 30, mediaType: 'photo'})
       const uris = assets.map(({uri}) => uri)
+      if (!uris?.length) return Message('Фото не найдено 🤷‍♂️ ⛔️ ')
       setPhotos(uris)
-      // console.log('[showPhotos]',uris)
     } catch (e) {
       console.log(e, 'err')
       return Message('Ошибка 🤷‍♂️ ⛔️ ')
@@ -32,11 +33,15 @@ export default function () {
       <FlatList
         keyExtractor={(item, index) => String(index)}
         initialNumToRender={SHOW_COUNT}
+        numColumns={NUM_COL}
         windowSize={SHOW_COUNT}
         ListHeaderComponent={
-          <ButtonCustom m={20} onPress={showPhotos}>
-            Show photos
-          </ButtonCustom>
+          <View>
+            <Text style={styles.title}>Show local images list</Text>
+            <ButtonCustom m={20} onPress={showPhotos}>
+              Show photos
+            </ButtonCustom>
+          </View>
         }
         data={photos}
         renderItem={({item: uri}) => {
@@ -48,10 +53,14 @@ export default function () {
 }
 
 const ImageListItem = ({uri}: {uri: string}) => {
+  const onPressImage = () => {
+    console.log('was press image', uri)
+  }
+
   return (
-    <View collapsable={false}>
+    <TouchableOpacity onPress={onPressImage}>
       <Image source={{uri}} style={styles.img} />
-    </View>
+    </TouchableOpacity>
   )
 }
 
@@ -60,5 +69,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#7be354',
   },
-  img: {width: '100%', height: IMAGE_SIZE},
+  img: {width: SIZE.width / NUM_COL, height: IMAGE_SIZE},
+  title: {textAlign: 'center', marginTop: 10, color: '#133213', fontSize: 20, fontWeight: 'bold'},
 })
