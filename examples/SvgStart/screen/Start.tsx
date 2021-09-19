@@ -3,7 +3,7 @@ import Svg, {Circle, Defs, LinearGradient, Path, Rect, Stop} from 'react-native-
 import {Animated, StyleSheet, useWindowDimensions} from 'react-native'
 
 import useNavigationAnimateValue from '../../../src/hooks/useNavigationAnimateValue'
-import SIZE from '../../../src/SIZE'
+import SIZE from '../../../src/config/SIZE'
 
 const Start = () => {
   const animateValue = useNavigationAnimateValue({startOpen: -200, endOpen: 0})

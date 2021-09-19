@@ -5,7 +5,7 @@ import {useParallax} from 'react-native-accelerometer-parallax'
 import Animated, {Extrapolate, interpolate, useAnimatedStyle} from 'react-native-reanimated'
 
 import ButtonCustom from '../../../components/ButtonCustom'
-import SIZE from '../../../src/SIZE'
+import SIZE from '../../../src/config/SIZE'
 
 const ItemDetail = () => {
   const {goBack} = useNavigation()

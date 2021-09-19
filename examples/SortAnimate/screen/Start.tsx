@@ -3,7 +3,7 @@ import {Image, SafeAreaView, StyleSheet, Text} from 'react-native'
 import Animated, {useAnimatedGestureHandler, useAnimatedRef, useAnimatedStyle, useSharedValue, withSpring} from 'react-native-reanimated'
 import {PanGestureHandler, PanGestureHandlerGestureEvent} from 'react-native-gesture-handler'
 
-import SIZE from '../../../src/SIZE'
+import SIZE from '../../../src/config/SIZE'
 
 const BOX_SIZE = SIZE.width * 0.5
 

@@ -5,7 +5,7 @@ import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
 import Start from '../screen/Start'
 import ItemDetail from '../screen/ItemDetail'
 import Setting from '../screen/Setting'
-import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/getScreenAnimation'
+import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/config/getScreenAnimation'
 
 const Stack = createStackNavigator()
 

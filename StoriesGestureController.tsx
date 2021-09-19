@@ -2,7 +2,7 @@ import {LongPressGestureHandler, State, TapGestureHandler, TapGestureHandlerStat
 import React, {useRef} from 'react'
 import {Animated} from 'react-native'
 
-import SIZE from './src/SIZE'
+import SIZE from './src/config/SIZE'
 
 interface StoriesGestureControllerProps {
   children: React.ReactNode

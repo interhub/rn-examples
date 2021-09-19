@@ -4,7 +4,7 @@ import React from 'react'
 import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
 import Start from '../screen/Start'
 import ItemDetail from '../screen/ItemDetail'
-import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/getScreenAnimation'
+import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/config/getScreenAnimation'
 import Setting from '../screen/Setting'
 
 const sharedElementsConfig: SharedElementsComponentConfig<SharedElementRoute<SCREEN_NAME_SHARED.START_LIST, {}>, SharedElementRoute<SCREEN_NAME_SHARED.ITEM_DETAIL, {}>> = (

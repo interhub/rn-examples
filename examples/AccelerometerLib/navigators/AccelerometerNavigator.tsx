@@ -5,7 +5,7 @@ import {ParallaxProvider} from 'react-native-accelerometer-parallax'
 import {SCREEN_NAME_ACCELEROMETER} from '../constants/SCREEN_NAME_ACCELEROMETER'
 import Start from '../screen/Start'
 import ItemDetail from '../screen/ItemDetail'
-import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/getScreenAnimation'
+import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/config/getScreenAnimation'
 
 const Stack = createStackNavigator()
 

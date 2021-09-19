@@ -8,7 +8,7 @@ import codePush from 'react-native-code-push'
 
 import {SCREENS} from './src/SCREENS'
 import CodePushWrapper from './src/wrappers/CodePushWrapper'
-import getScreenAnimation, {SCREEN_ANIMATION} from './src/getScreenAnimation'
+import getScreenAnimation, {SCREEN_ANIMATION} from './src/config/getScreenAnimation'
 
 enableScreens()
 const Stack = createStackNavigator()

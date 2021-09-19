@@ -4,7 +4,7 @@ import Animated, {useAnimatedStyle, useSharedValue, withTiming} from 'react-nati
 import {useNavigation} from '@react-navigation/native'
 
 import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
-import SIZE from '../../../src/SIZE'
+import SIZE from '../../../src/config/SIZE'
 
 type Coord = {
   x: number

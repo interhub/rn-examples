@@ -5,7 +5,7 @@ import Animated, {runOnJS, useAnimatedGestureHandler, useAnimatedStyle, useShare
 import {PanGestureHandler, PanGestureHandlerGestureEvent} from 'react-native-gesture-handler'
 import {useNavigation} from '@react-navigation/native'
 
-import SIZE from '../../../src/SIZE'
+import SIZE from '../../../src/config/SIZE'
 import ButtonCustom from '../../../components/ButtonCustom'
 
 export default function () {

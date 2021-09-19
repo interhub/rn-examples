@@ -5,7 +5,7 @@ import {PanGestureHandler, PanGestureHandlerGestureEvent} from 'react-native-ges
 import {inRange} from 'lodash'
 import {integerColor} from 'react-native-svg/lib/typescript/lib/extract/extractColor'
 
-import SIZE from '../../../src/SIZE'
+import SIZE from '../../../src/config/SIZE'
 
 const BOX_SIZE = 100
 const HALF_SCREEN = SIZE.getVH(50)

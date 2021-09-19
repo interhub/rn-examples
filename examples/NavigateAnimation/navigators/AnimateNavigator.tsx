@@ -4,7 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack'
 import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
 import Start from '../screen/Start'
 import ItemDetail from '../screen/ItemDetail'
-import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/getScreenAnimation'
+import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/config/getScreenAnimation'
 import LeftScreen from '../screen/LeftScreen'
 
 const Stack = createStackNavigator()
