@@ -132,7 +132,7 @@ const VideoAssetListItem = ({asset}: {asset?: MediaLibrary.Asset}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#27391f',
+    backgroundColor: '#655b25',
   },
   media: {width: SIZE.width / NUM_COL, height: IMAGE_SIZE},
   title: {textAlign: 'center', marginTop: 10, color: '#c0d7c0', fontSize: 20, fontWeight: 'bold'},
