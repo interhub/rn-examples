@@ -12,69 +12,66 @@ import * as MediaLibrary from 'expo-media-library'
  3) copy paste it module and usage
  */
 export default function Start() {
-    const [imageUri, setImageUri] = useState('')
+  const [imageUri, setImageUri] = useState('')
 
-    const IMAGE_SIZE = 500
+  const IMAGE_SIZE = 500
 
-    const reqPermissions = async () => {
-        const {granted} = await MediaLibrary.requestPermissionsAsync()
-        return granted
-    }
+  const reqPermissions = async () => {
+    const {granted} = await MediaLibrary.requestPermissionsAsync()
+    return granted
+  }
 
-    const PRIMARY_COLOR = '#4649ad'
+  const PRIMARY_COLOR = '#4649ad'
 
-    const options: Options = {
-        multiple: false,
-        cropping: true,
-        height: IMAGE_SIZE,
-        width: IMAGE_SIZE,
-        includeBase64: true,
-        mediaType: 'photo',
-        useFrontCamera: false,
-        waitAnimationEnd: true,
-        maxFiles: 1,
-        minFiles: 1,
-        cropperToolbarTitle: 'Изменить',
-        cropperChooseText: 'Выбрать',
-        cropperCancelText: 'Отменить',
-        loadingLabelText: 'Загрузка...',
-        cropperToolbarWidgetColor: PRIMARY_COLOR,
-        cropperToolbarColor: '#2b2b3b',
-        cropperActiveWidgetColor: PRIMARY_COLOR,
-        cropperStatusBarColor: '#2b2b3b',
-        includeExif: true
-    }
+  const options: Options = {
+    multiple: false,
+    cropping: true,
+    height: IMAGE_SIZE,
+    width: IMAGE_SIZE,
+    includeBase64: true,
+    mediaType: 'photo',
+    useFrontCamera: false,
+    waitAnimationEnd: true,
+    maxFiles: 1,
+    minFiles: 1,
+    cropperToolbarTitle: 'Изменить',
+    cropperChooseText: 'Выбрать',
+    cropperCancelText: 'Отменить',
+    loadingLabelText: 'Загрузка...',
+    cropperToolbarWidgetColor: PRIMARY_COLOR,
+    cropperToolbarColor: '#2b2b3b',
+    cropperActiveWidgetColor: PRIMARY_COLOR,
+    cropperStatusBarColor: '#2b2b3b',
+    includeExif: true,
+  }
 
-    const base64ToUri = (base: any = ''): string => {
-        if (!base) return base
-        return 'data:image/jpg;base64,' + base
-    }
+  const base64ToUri = (base: any = ''): string => {
+    if (!base) return base
+    return 'data:image/jpg;base64,' + base
+  }
 
-    const selectPhoto = async () => {
-        const access = await reqPermissions()
-        if (!access) return
-        ImagePicker.openPicker(options).then(image => {
-            setImageUri(base64ToUri(image.data))
-        })
-    }
-    const takePhoto = async () => {
-        const access = await reqPermissions()
-        if (!access) return
-        ImagePicker.openCamera(options).then(image => {
-            setImageUri(base64ToUri(image.data))
-        })
-    }
+  const selectPhoto = async () => {
+    const access = await reqPermissions()
+    if (!access) return
+    ImagePicker.openPicker(options).then((image) => {
+      setImageUri(base64ToUri(image.data))
+    })
+  }
+  const takePhoto = async () => {
+    const access = await reqPermissions()
+    if (!access) return
+    ImagePicker.openCamera(options).then((image) => {
+      setImageUri(base64ToUri(image.data))
+    })
+  }
 
-    const imageExist = !!imageUri
+  const imageExist = !!imageUri
 
-    return (
-        <SafeAreaView style={{flex: 1}}>
-            {imageExist && <Image
-                style={{height: 300, width: 300, alignSelf: 'center'}}
-                source={{uri: imageUri}}
-            />}
-            <Button title="Select Photo" onPress={() => selectPhoto()}/>
-            <Button title="Take Photo" onPress={() => takePhoto()}/>
-        </SafeAreaView>
-    )
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      {imageExist && <Image style={{height: 300, width: 300, alignSelf: 'center'}} source={{uri: imageUri}} />}
+      <Button title="Select Photo" onPress={() => selectPhoto()} />
+      <Button title="Take Photo" onPress={() => takePhoto()} />
+    </SafeAreaView>
+  )
 }

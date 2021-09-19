@@ -1,10 +1,10 @@
-import codePush from 'react-native-code-push';
-import {useLayoutEffect, useState} from 'react';
+import codePush from 'react-native-code-push'
+import {useLayoutEffect, useState} from 'react'
 
 /**
  TIME BEFORE RESET APP START (AFTER UPDATE) for sync code push
  */
-const SLEEP_TIME = 1000;
+const SLEEP_TIME = 1000
 
 /**
 code push dev keys
@@ -18,45 +18,45 @@ enum CODE_PUSH_KEYS {
  @hook for code push reload and update
  */
 const useCodePush = () => {
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false)
   const stopUpdating = () => {
-    setIsUpdating(false);
-  };
+    setIsUpdating(false)
+  }
 
   const startUpdating = () => {
-    setIsUpdating(true);
-  };
+    setIsUpdating(true)
+  }
 
   const syncCodePush = async (isProduction: boolean): Promise<any> => {
     if (__DEV__) {
-      return stopUpdating();
+      return stopUpdating()
     }
-    startUpdating();
+    startUpdating()
     return new Promise((ok) => {
       const deploymentKey: CODE_PUSH_KEYS = isProduction ? CODE_PUSH_KEYS.PRODUCTION : CODE_PUSH_KEYS.STAGING
 
       codePush.sync(
         {installMode: codePush.InstallMode.IMMEDIATE, deploymentKey},
         (status) => {
-          ok();
+          ok()
           switch (status) {
             case codePush.SyncStatus.UP_TO_DATE:
-              return stopUpdating();
+              return stopUpdating()
             case codePush.SyncStatus.UNKNOWN_ERROR:
-              return stopUpdating();
+              return stopUpdating()
             case codePush.SyncStatus.SYNC_IN_PROGRESS:
-              return startUpdating();
+              return startUpdating()
           }
         },
         async (progress) => {
           if (progress.receivedBytes === progress.totalBytes) {
-            setTimeout(ok, SLEEP_TIME);
+            setTimeout(ok, SLEEP_TIME)
           }
         },
-      );
-    });
-  };
+      )
+    })
+  }
 
-  return {syncCodePush, isUpdating};
-};
-export default useCodePush;
+  return {syncCodePush, isUpdating}
+}
+export default useCodePush

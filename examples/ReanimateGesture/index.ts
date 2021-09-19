@@ -1,3 +1,3 @@
-import Start from "./screen/Start";
+import Start from './screen/Start'
 
 export default Start

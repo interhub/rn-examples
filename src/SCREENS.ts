@@ -1,5 +1,7 @@
 //['SCREEN_NAME']:ScreenComponent/
 
+import Menu from './Menu'
+
 import NativeGesture from '../examples/NativeGesture'
 import ReanimateGesture from '../examples/ReanimateGesture'
 import SharedNav from '../examples/SharedNav'
@@ -18,37 +20,35 @@ import MaskView from '../examples/MaskView'
 import ColorNavPicker from '../examples/ColorNavPicker'
 import SpringScroll from '../examples/SpringScroll'
 import ClampHeader from '../examples/ClampHeader'
-import Menu from './Menu'
 import CodePushUpdates from '../examples/CodePushUpdates'
 import SwipeMenuOpen from '../examples/SwipeMenuOpen'
 import AccelerometerLib from '../examples/AccelerometerLib'
 import AnimateHeaderNav from '../examples/AnimateHeaderNav'
+import MediaPickerList from '../examples/MediaPickerList'
 
 export const SCREENS = {
-    ['MENU🏁']: Menu,
-    ['NATIVE_GESTURE👈']: NativeGesture,
-    ['REANIMATE_GESTURE🙌']: ReanimateGesture,
-    ['SHARED_NAV🦈']: SharedNav,
-    ['SCROLL_ANIMATE📜']: ScrollAnimate,
-    ['SCROLL_ANIMATE_HORIZONT📜']: ScrollAnimateHorizont,
-    ['SORT_ANIMATE📆']: SortAnimate,
-    ['PAN_ROTATE_SQUARE🟩']: PanSquareRotate,
-    ['PAN_ROTATE_CIRCLE🔘']: PanCircleRotate,
-    ['SVG_START🫀']: SvgStart,
-    ['MODAL_STACK_NAV⚙️']: ModalStackNav,
-    ['CUSTOM_SHARED🧵']: CustomShared,
-    ['NAVIGATE_ANIMATION👑']: NavigateAnimation,
-    ['TAB_NAVIGATOR☘️']: TabsNavigator,
-    ['PHOTO_PICKER📸']: PhotoPicker,
-    ['MASK_VIEW🎭']: MaskView,
-    ['COLOR_NAV_PICKER🌈']: ColorNavPicker,
-    ['SPRING_SCROLL🧹']: SpringScroll,
-    ['CLAMP_HEADER🎃']: ClampHeader,
-    ['CODE_PUSH_UPDATES☁']: CodePushUpdates,
-    ['SWIPE MENU OPEN🏃']: SwipeMenuOpen,
-    ['ACCELEROMETER LIB🎇']: AccelerometerLib,
-    ['ANIMATE SCREENS NAV💸']: AnimateHeaderNav,
+  ['MENU🏁']: Menu,
+  ['NATIVE_GESTURE👈']: NativeGesture,
+  ['REANIMATE_GESTURE🙌']: ReanimateGesture,
+  ['SHARED_NAV🦈']: SharedNav,
+  ['SCROLL_ANIMATE📜']: ScrollAnimate,
+  ['SCROLL_ANIMATE_HORIZONT📜']: ScrollAnimateHorizont,
+  ['SORT_ANIMATE📆']: SortAnimate,
+  ['PAN_ROTATE_SQUARE🟩']: PanSquareRotate,
+  ['PAN_ROTATE_CIRCLE🔘']: PanCircleRotate,
+  ['SVG_START🫀']: SvgStart,
+  ['MODAL_STACK_NAV⚙️']: ModalStackNav,
+  ['CUSTOM_SHARED🧵']: CustomShared,
+  ['NAVIGATE_ANIMATION👑']: NavigateAnimation,
+  ['TAB_NAVIGATOR☘️']: TabsNavigator,
+  ['PHOTO_PICKER📸']: PhotoPicker,
+  ['MASK_VIEW🎭']: MaskView,
+  ['COLOR_NAV_PICKER🌈']: ColorNavPicker,
+  ['SPRING_SCROLL🧹']: SpringScroll,
+  ['CLAMP_HEADER🎃']: ClampHeader,
+  ['CODE_PUSH_UPDATES☁']: CodePushUpdates,
+  ['SWIPE MENU OPEN🏃']: SwipeMenuOpen,
+  ['ACCELEROMETER LIB🎇']: AccelerometerLib,
+  ['ANIMATE SCREENS NAV💸']: AnimateHeaderNav,
+  ['MEDIA PICKER LIST ☑️']: MediaPickerList,
 }
-//3 мая
-
-

@@ -7,25 +7,25 @@ import * as Linking from 'expo-linking'
  * navigate somewhere or make custom action func
  */
 const useHandleDeepLink = () => {
-    const [deepUrl, setDeepUrl] = useState('')
-    const removeLink = () => {
-        setDeepUrl('')
-    }
-    const initDeepUrl = async () => {
-        const initialUrl = await Linking.getInitialURL()
-        if (!initialUrl) return
-        // console.log('[getInitialURL] url', initialUrl)
-        setDeepUrl(initialUrl)
-    }
-    useLayoutEffect(() => {
-        Linking.addEventListener('url', ({url = ''}) => {
-            // console.log('[addEventListener] url', url)
-            if (!url) return
-            setDeepUrl(url)
-        })
-        initDeepUrl()
-    }, [])
-    return {deepUrl, removeLink}
+  const [deepUrl, setDeepUrl] = useState('')
+  const removeLink = () => {
+    setDeepUrl('')
+  }
+  const initDeepUrl = async () => {
+    const initialUrl = await Linking.getInitialURL()
+    if (!initialUrl) return
+    // console.log('[getInitialURL] url', initialUrl)
+    setDeepUrl(initialUrl)
+  }
+  useLayoutEffect(() => {
+    Linking.addEventListener('url', ({url = ''}) => {
+      // console.log('[addEventListener] url', url)
+      if (!url) return
+      setDeepUrl(url)
+    })
+    initDeepUrl()
+  }, [])
+  return {deepUrl, removeLink}
 }
 
 // useEffect(() => {
@@ -38,6 +38,5 @@ const useHandleDeepLink = () => {
 //         removeLink()
 //     }
 // }, [deepUrl])
-
 
 export default useHandleDeepLink
