@@ -1,7 +1,9 @@
-import React, {useCallback, useMemo, useRef} from 'react'
-import {Animated, Image, StyleSheet, Text, View} from 'react-native'
-import {BottomSheetModal, useBottomSheetModal, BottomSheetScrollView} from '@gorhom/bottom-sheet'
+import React, {useMemo, useRef} from 'react'
+import {Image, StyleSheet, Text, View} from 'react-native'
+import {BottomSheetModal, BottomSheetScrollView, useBottomSheetModal} from '@gorhom/bottom-sheet'
 import faker from 'faker'
+import Animated, {interpolate, useAnimatedStyle, useSharedValue, Extrapolate} from 'react-native-reanimated'
+import _ from 'lodash'
 
 import ButtonCustom from '../../../components/ButtonCustom'
 
@@ -10,15 +12,17 @@ export default () => {
   const bottomSheetModalRef = useRef<BottomSheetModal>(null)
   const {dismiss} = useBottomSheetModal()
   // variables
-  const snapPoints: React.Key[] = useMemo(() => ['25%', '50%', '90%'], [])
+  const snapPoints: React.Key[] = useMemo(() => ['25%', '50%', '70%'], [])
 
+  const animate = useSharedValue(0)
   // callbacks
-  const handlePresentModalPress = useCallback(() => {
+  const handlePresentModalPress = () => {
     bottomSheetModalRef.current?.present()
-  }, [])
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index)
-  }, [])
+  }
+  const handleSheetChanges = (index: number) => {
+    console.log(animate.value, 'val', index)
+  }
+
   const LIST_LEN = 50
   const listData = useMemo(
     () =>
@@ -26,18 +30,20 @@ export default () => {
         return {
           uri: faker.random.image(),
           name: faker.name.firstName(),
-          description: faker.lorem.words(40),
+          description: faker.lorem.words(_.random(10, 50)),
         }
       }),
     [],
   )
 
-  const animate = useRef(new Animated.Value(0)).current
+  const animStyle = useAnimatedStyle(() => {
+    return {transform: [{scale: interpolate(animate.value, [0, 800], [3.5, 1])}, {translateY: interpolate(animate.value, [0, 800], [-140, 0], Extrapolate.CLAMP)}]}
+  })
 
   // renders
   return (
     <View style={styles.container}>
-      <Animated.Image source={{uri: faker.random.image()}} style={[styles.avatar, {transform: [{translateX: animate}]}]} />
+      <Animated.Image source={{uri: faker.random.image()}} style={[styles.avatar, animStyle]} />
       <ButtonCustom m={5} onPress={handlePresentModalPress}>
         Present Modal
       </ButtonCustom>
@@ -45,10 +51,9 @@ export default () => {
         Close
       </ButtonCustom>
       <BottomSheetModal
-        onAnimate={(from, to) => {
-          console.log(to, 'to to')
-          Animated.timing(animate, {toValue: to * 10, useNativeDriver: false}).start()
-        }}
+        animatedPosition={animate}
+        enablePanDownToClose={false}
+        enableOverDrag
         name={'sheet1'}
         ref={bottomSheetModalRef}
         index={1}
@@ -84,7 +89,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     justifyContent: 'center',
-    backgroundColor: 'grey',
+    backgroundColor: '#bcbcff',
   },
   contentContainer: {
     flex: 1,
@@ -101,14 +106,17 @@ const styles = StyleSheet.create({
     width: AVATAR_SIZE,
     height: AVATAR_SIZE,
     borderRadius: AVATAR_SIZE / 2,
+    alignSelf: 'center',
   },
   nameTitle: {
     fontSize: 20,
     fontWeight: 'bold',
   },
-  descTitle: {},
+  descTitle: {
+    color: 'gray',
+  },
   rightBox: {paddingLeft: 15, flex: 1},
   listBox: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
   },
 })
