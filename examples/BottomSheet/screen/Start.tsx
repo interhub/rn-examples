@@ -1,8 +1,8 @@
-import React, {useMemo, useRef} from 'react'
+import React, {useEffect, useMemo, useRef} from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
 import {BottomSheetModal, BottomSheetScrollView, useBottomSheetModal} from '@gorhom/bottom-sheet'
 import faker from 'faker'
-import Animated, {interpolate, useAnimatedStyle, useSharedValue, Extrapolate} from 'react-native-reanimated'
+import Animated, {interpolate, useAnimatedStyle, useSharedValue, Extrapolate, withTiming} from 'react-native-reanimated'
 import _ from 'lodash'
 
 import ButtonCustom from '../../../components/ButtonCustom'
@@ -14,7 +14,7 @@ export default () => {
   // variables
   const snapPoints: React.Key[] = useMemo(() => ['25%', '50%', '70%'], [])
 
-  const animate = useSharedValue(0)
+  const animate = useSharedValue(800)
   // callbacks
   const handlePresentModalPress = () => {
     bottomSheetModalRef.current?.present()
@@ -37,7 +37,7 @@ export default () => {
   )
 
   const animStyle = useAnimatedStyle(() => {
-    return {transform: [{scale: interpolate(animate.value, [0, 800], [3.5, 1])}, {translateY: interpolate(animate.value, [0, 800], [-140, 0], Extrapolate.CLAMP)}]}
+    return {transform: [{scale: interpolate(animate.value, [0, 800], [3.5, 1], Extrapolate.CLAMP)}, {translateY: interpolate(animate.value, [0, 800], [-140, 0], Extrapolate.CLAMP)}]}
   })
 
   // renders
