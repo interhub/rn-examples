@@ -37,13 +37,23 @@ export default () => {
   // renders
   return (
     <View style={styles.container}>
+      <Animated.Image source={{uri: faker.random.image()}} style={[styles.avatar, {transform: [{translateX: animate}]}]} />
       <ButtonCustom m={5} onPress={handlePresentModalPress}>
         Present Modal
       </ButtonCustom>
       <ButtonCustom m={5} onPress={() => dismiss('sheet1')}>
         Close
       </ButtonCustom>
-      <BottomSheetModal name={'sheet1'} ref={bottomSheetModalRef} index={1} snapPoints={snapPoints} onChange={handleSheetChanges}>
+      <BottomSheetModal
+        onAnimate={(from, to) => {
+          console.log(to, 'to to')
+          Animated.timing(animate, {toValue: to * 10, useNativeDriver: false}).start()
+        }}
+        name={'sheet1'}
+        ref={bottomSheetModalRef}
+        index={1}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
         <BottomSheetScrollView>
           <View style={styles.contentContainer}>
             <Text>Awesome 🎉</Text>
