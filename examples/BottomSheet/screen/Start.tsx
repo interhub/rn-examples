@@ -1,8 +1,8 @@
-import React, {useEffect, useMemo, useRef} from 'react'
+import React, {useMemo, useRef} from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
 import {BottomSheetModal, BottomSheetScrollView, useBottomSheetModal} from '@gorhom/bottom-sheet'
 import faker from 'faker'
-import Animated, {interpolate, useAnimatedStyle, useSharedValue, Extrapolate, withTiming} from 'react-native-reanimated'
+import Animated, {Extrapolate, interpolate, useAnimatedStyle, useSharedValue} from 'react-native-reanimated'
 import _ from 'lodash'
 
 import ButtonCustom from '../../../components/ButtonCustom'
