@@ -25,6 +25,7 @@ import SwipeMenuOpen from '../examples/SwipeMenuOpen'
 import AccelerometerLib from '../examples/AccelerometerLib'
 import AnimateHeaderNav from '../examples/AnimateHeaderNav'
 import MediaPickerList from '../examples/MediaPickerList'
+import BottomSheet from '../examples/BottomSheet'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -51,4 +52,5 @@ export const SCREENS = {
   ['ACCELEROMETER LIB🎇']: AccelerometerLib,
   ['ANIMATE SCREENS NAV💸']: AnimateHeaderNav,
   ['MEDIA PICKER LIST ☑️']: MediaPickerList,
+  ['BOTTOM SHEET PANEL 🍭']: BottomSheet,
 }

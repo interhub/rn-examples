@@ -5,6 +5,7 @@ import * as React from 'react'
 import 'react-native-gesture-handler'
 import {enableScreens} from 'react-native-screens'
 import codePush from 'react-native-code-push'
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet'
 
 import {SCREENS} from './src/SCREENS'
 import CodePushWrapper from './src/wrappers/CodePushWrapper'
@@ -26,13 +27,15 @@ const Stack = createStackNavigator()
 const App = () => {
   return (
     <CodePushWrapper>
-      <NavigationContainer>
-        <Stack.Navigator detachInactiveScreens={false} headerMode={'screen'}>
-          {Object.entries(SCREENS).map(([screenName, screenComponent], index) => {
-            return <Stack.Screen options={{...getScreenAnimation(SCREEN_ANIMATION.TOP), headerShown: true}} key={index} name={screenName} component={screenComponent} />
-          })}
-        </Stack.Navigator>
-      </NavigationContainer>
+      <BottomSheetModalProvider>
+        <NavigationContainer>
+          <Stack.Navigator detachInactiveScreens={false} headerMode={'screen'}>
+            {Object.entries(SCREENS).map(([screenName, screenComponent], index) => {
+              return <Stack.Screen options={{...getScreenAnimation(SCREEN_ANIMATION.TOP), headerShown: true}} key={index} name={screenName} component={screenComponent} />
+            })}
+          </Stack.Navigator>
+        </NavigationContainer>
+      </BottomSheetModalProvider>
     </CodePushWrapper>
   )
 }

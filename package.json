@@ -19,6 +19,7 @@
     "lint": "npx eslint . --fix ; npx prettier --write ./src"
   },
   "dependencies": {
+    "@gorhom/bottom-sheet": "^4",
     "@react-native-community/eslint-config": "^3.0.1",
     "@react-native-masked-view/masked-view": "0.2.4",
     "@react-navigation/bottom-tabs": "^5.11.10",
@@ -26,6 +27,7 @@
     "@react-navigation/native": "^5.0.9",
     "@react-navigation/stack": "^5.1.1",
     "@types/clamp": "^1.0.0",
+    "@types/faker": "^5.5.8",
     "@types/lodash": "^4.14.171",
     "axios": "^0.21.1",
     "clamp": "^1.0.1",
@@ -40,6 +42,7 @@
     "expo-status-bar": "~1.0.4",
     "expo-updates": "~0.8.1",
     "expo-video-thumbnails": "~5.2.1",
+    "faker": "^5.5.3",
     "lodash": "^4.17.21",
     "react": "16.13.1",
     "react-dom": "16.13.1",
