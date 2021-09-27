@@ -6,15 +6,18 @@ import Animated, {Extrapolate, interpolate, useAnimatedStyle, useSharedValue} fr
 import _ from 'lodash'
 
 import ButtonCustom from '../../../components/ButtonCustom'
+import SIZE from '../../../src/config/SIZE'
 
 export default () => {
   // ref
   const bottomSheetModalRef = useRef<BottomSheetModal>(null)
   const {dismiss} = useBottomSheetModal()
   // variables
-  const snapPoints: React.Key[] = useMemo(() => ['25%', '50%', '70%'], [])
+  const percentPoints = [25, 50, 70]
+  const snapPoints = percentPoints.map((val) => SIZE.height * (val / 100) || 0)
+  const maxPoint = Math.max(...snapPoints)
 
-  const animate = useSharedValue(800)
+  const animate = useSharedValue(maxPoint)
   // callbacks
   const handlePresentModalPress = () => {
     bottomSheetModalRef.current?.present()
@@ -37,7 +40,11 @@ export default () => {
   )
 
   const animStyle = useAnimatedStyle(() => {
-    return {transform: [{scale: interpolate(animate.value, [0, 800], [3.5, 1], Extrapolate.CLAMP)}, {translateY: interpolate(animate.value, [0, 800], [-140, 0], Extrapolate.CLAMP)}]}
+    const inputVals = [0, maxPoint]
+    const scale = interpolate(animate.value, inputVals, [4, 1], Extrapolate.CLAMP)
+    const translateY = interpolate(animate.value, inputVals, [-160, 0], Extrapolate.CLAMP)
+    const borderRadius = interpolate(animate.value, inputVals, [0, 20])
+    return {transform: [{scale}, {translateY}], borderRadius}
   })
 
   // renders
@@ -105,7 +112,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: AVATAR_SIZE,
     height: AVATAR_SIZE,
-    borderRadius: AVATAR_SIZE / 2,
+    // borderRadius: AVATAR_SIZE / 2,
     alignSelf: 'center',
   },
   nameTitle: {
