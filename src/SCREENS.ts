@@ -26,6 +26,7 @@ import AccelerometerLib from '../examples/AccelerometerLib'
 import AnimateHeaderNav from '../examples/AnimateHeaderNav'
 import MediaPickerList from '../examples/MediaPickerList'
 import BottomSheet from '../examples/BottomSheet'
+import FlubberSvg from '../examples/FlubberSvg'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -53,4 +54,5 @@ export const SCREENS = {
   ['ANIMATE SCREENS NAV💸']: AnimateHeaderNav,
   ['MEDIA PICKER LIST ☑️']: MediaPickerList,
   ['BOTTOM SHEET PANEL 🍭']: BottomSheet,
+  ['FLUBBER SVG 🏃‍♀️']: FlubberSvg,
 }
