@@ -33,7 +33,7 @@ export enum SCREEN_ANIMATION {
  */
 export default (animation: SCREEN_ANIMATION = SCREEN_ANIMATION.NONE, swipe = true): StackNavigationOptions => {
   const isVerticalSwipe = animation === SCREEN_ANIMATION.TOP
-  const gestureWorkPercent = IS_IOS ? 100 : 15 //%
+  const gestureWorkPercent = IS_IOS ? 15 : 15 //%
   const gestureWorkDistance = (isVerticalSwipe ? SIZE.height : SIZE.width) * (gestureWorkPercent / 100)
   const config: StackNavigationOptions = {
     headerShown: false,

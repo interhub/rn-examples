@@ -7,7 +7,7 @@ module.exports = {
   arrowParens: 'always',
   insertPragma: false,
   proseWrap: 'always',
-  printWidth: 200,
+  printWidth: 150,
   useTabs: false,
 }
 

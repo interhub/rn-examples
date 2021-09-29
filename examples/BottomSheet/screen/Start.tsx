@@ -1,6 +1,6 @@
 import React, {useMemo, useRef} from 'react'
 import {Image, StyleSheet, Text, View} from 'react-native'
-import {BottomSheetModal, BottomSheetScrollView, useBottomSheetModal} from '@gorhom/bottom-sheet'
+import BottomSheet, {BottomSheetScrollView, useBottomSheetModal} from '@gorhom/bottom-sheet'
 import faker from 'faker'
 import Animated, {Extrapolate, interpolate, useAnimatedStyle, useSharedValue} from 'react-native-reanimated'
 import _ from 'lodash'
@@ -10,7 +10,7 @@ import SIZE from '../../../src/config/SIZE'
 
 export default () => {
   // ref
-  const bottomSheetModalRef = useRef<BottomSheetModal>(null)
+  const bottomSheetModalRef = useRef<BottomSheet>(null)
   const {dismiss} = useBottomSheetModal()
   // variables
   const percentPoints = [25, 50, 70]
@@ -19,8 +19,11 @@ export default () => {
 
   const animate = useSharedValue(maxPoint)
   // callbacks
-  const handlePresentModalPress = () => {
-    bottomSheetModalRef.current?.present()
+  const showModalPress = () => {
+    bottomSheetModalRef.current?.snapToIndex(1)
+  }
+  const closeModalPress = () => {
+    bottomSheetModalRef.current?.close()
   }
   const handleSheetChanges = (index: number) => {
     console.log(animate.value, 'val', index)
@@ -42,7 +45,7 @@ export default () => {
   const animStyle = useAnimatedStyle(() => {
     const inputVals = [0, maxPoint]
     const scale = interpolate(animate.value, inputVals, [4, 1], Extrapolate.CLAMP)
-    const translateY = interpolate(animate.value, inputVals, [-160, 0], Extrapolate.CLAMP)
+    const translateY = interpolate(animate.value, inputVals, [-maxPoint / 5.7, 0], Extrapolate.CLAMP)
     const borderRadius = interpolate(animate.value, inputVals, [0, 20])
     return {transform: [{scale}, {translateY}], borderRadius}
   })
@@ -51,21 +54,13 @@ export default () => {
   return (
     <View style={styles.container}>
       <Animated.Image source={{uri: faker.random.image()}} style={[styles.avatar, animStyle]} />
-      <ButtonCustom m={5} onPress={handlePresentModalPress}>
-        Present Modal
+      <ButtonCustom m={5} onPress={showModalPress}>
+        Show
       </ButtonCustom>
-      <ButtonCustom m={5} onPress={() => dismiss('sheet1')}>
+      <ButtonCustom m={5} onPress={closeModalPress}>
         Close
       </ButtonCustom>
-      <BottomSheetModal
-        animatedPosition={animate}
-        enablePanDownToClose={false}
-        enableOverDrag
-        name={'sheet1'}
-        ref={bottomSheetModalRef}
-        index={1}
-        snapPoints={snapPoints}
-        onChange={handleSheetChanges}>
+      <BottomSheet animatedPosition={animate} enablePanDownToClose={false} enableOverDrag ref={bottomSheetModalRef} index={0} snapPoints={snapPoints} onChange={handleSheetChanges}>
         <BottomSheetScrollView>
           <View style={styles.contentContainer}>
             <Text>Awesome 🎉</Text>
@@ -84,7 +79,7 @@ export default () => {
             })}
           </View>
         </BottomSheetScrollView>
-      </BottomSheetModal>
+      </BottomSheet>
     </View>
   )
 }
@@ -112,7 +107,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: AVATAR_SIZE,
     height: AVATAR_SIZE,
-    // borderRadius: AVATAR_SIZE / 2,
+    borderRadius: AVATAR_SIZE / 2,
     alignSelf: 'center',
   },
   nameTitle: {

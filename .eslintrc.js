@@ -27,7 +27,6 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'off',
     'react-hooks/exhaustive-deps': 'off',
     'react-native/no-inline-styles': 'off',
-
     // 'react/jsx-first-prop-new-line': [1, 'always'],
     // 'react/jsx-max-props-per-line': [1, {maximum: 1}],
   },
