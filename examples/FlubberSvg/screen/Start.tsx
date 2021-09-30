@@ -1,11 +1,11 @@
 import React from 'react'
-import {Button, StyleSheet, View} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import Animated from 'react-native-reanimated'
 import Svg, {Path} from 'react-native-svg'
+import useFlubber from 'react-native-flubber'
 
 import SIZE from '../../../src/config/SIZE'
 import ButtonCustom from '../../../components/ButtonCustom'
-import useFlubber from '../../../lib/react-native-flubber'
 
 const AnimatePath = Animated.createAnimatedComponent(Path)
 const AnimateSvg = Animated.createAnimatedComponent(Svg)
@@ -36,7 +36,6 @@ export default () => {
       <ButtonCustom onPress={() => setFlubberIndex(2)} m={10}>
         set index 2
       </ButtonCustom>
-      <Button title={'set index 2'} onPress={() => setFlubberIndex(2)} />
     </Animated.View>
   )
 }
