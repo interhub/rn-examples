@@ -8919,10 +8919,10 @@ react-native-color-picker@^0.6.0:
     prop-types "^15.5.10"
     tinycolor2 "^1.4.1"
 
-react-native-flubber@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-flubber/-/react-native-flubber-1.0.2.tgz#41dbe21cddce808ad20c5ace297ed7860441fe0b"
-  integrity sha512-tBqdpijg5ULgtKgqEJ/p7BSLyjX+GgdcLMIkDEl68i/PLNGBRXED5KCa8WarqAqV3IWCJ5SddkOhMoy3KjEK5Q==
+react-native-flubber@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-flubber/-/react-native-flubber-1.0.3.tgz#35f5e7670b082acad400a8faeeea2cf14fedca09"
+  integrity sha512-rCdITcNHMTDP8yf2QTAWNrO7v4kPBroKQaT1hmbpMGu4rb7NQJ3+BwR3q2w1KlafHVWMbP7vPU6CN8S6Bvdz2A==
 
 react-native-gesture-handler@~1.10.2:
   version "1.10.3"
