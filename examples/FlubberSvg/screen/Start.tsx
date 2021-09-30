@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react'
-import {StyleSheet} from 'react-native'
+import {StyleSheet, View} from 'react-native'
 import Animated from 'react-native-reanimated'
 import Svg, {Path} from 'react-native-svg'
 
@@ -18,19 +18,27 @@ const one =
 const two =
   'M85.6666 135.667H135.667V85.6668L77.3333 27.3335C95.9938 18.4214 116.958 15.5136 137.34 19.0105C157.722 22.5075 176.518 32.2371 191.14 46.8597C205.763 61.4823 215.493 80.2786 218.99 100.66C222.486 121.042 219.579 142.006 210.667 160.667L310.667 260.667C317.297 267.297 321.022 276.29 321.022 285.667C321.022 295.044 317.297 304.036 310.667 310.667C304.036 317.297 295.043 321.022 285.667 321.022C276.29 321.022 267.297 317.297 260.667 310.667L160.667 210.667C142.006 219.579 121.042 222.487 100.66 218.99C80.2783 215.493 61.482 205.763 46.8595 191.141C32.2369 176.518 22.5072 157.722 19.0103 137.34C15.5134 116.958 18.4212 95.994 27.3333 77.3335L85.6666 135.667Z'
 
+const tree =
+  'M309.792 365.25C292.5 391.084 274.167 416.292 246.25 416.709C218.333 417.334 209.375 400.25 177.708 400.25C145.833 400.25 136.042 416.292 109.583 417.334C82.2917 418.375 61.6667 389.834 44.1667 364.625C8.54167 313.167 -18.75 218.375 17.9167 154.625C36.0417 122.959 68.5417 102.959 103.75 102.334C130.417 101.917 155.833 120.459 172.292 120.459C188.542 120.459 219.375 98.167 251.667 101.5C265.208 102.125 303.125 106.917 327.5 142.75C325.625 144 282.292 169.417 282.708 222.125C283.333 285.042 337.917 306.084 338.542 306.292C337.917 307.75 329.792 336.292 309.792 365.25ZM190.833 31.917C206.042 14.6253 231.25 1.50033 252.083 0.666992C254.792 25.042 245 49.6253 230.417 67.1253C216.042 84.8337 192.292 98.5837 168.958 96.7087C165.833 72.7503 177.5 47.7503 190.833 31.917V31.917Z'
+
 export default () => {
-  const {pathRef, setFlubberIndex} = useFlubber([one, two], {step: 0.03, initialIndex: 1})
+  const {pathRef, setFlubberIndex} = useFlubber([one, two, tree], {step: 0.03, initialIndex: 1})
 
   return (
     <Animated.View style={styles.container}>
-      <AnimateSvg height={SIZE.width} width={SIZE.height / 2}>
-        <AnimatePath ref={pathRef} fill="none" stroke="red" />
-      </AnimateSvg>
-      <ButtonCustom onPress={() => setFlubberIndex(0)} m={15}>
+      <View style={{flex: 1}}>
+        <AnimateSvg height={SIZE.height} width={SIZE.width}>
+          <AnimatePath ref={pathRef} fill="none" stroke="red" />
+        </AnimateSvg>
+      </View>
+      <ButtonCustom onPress={() => setFlubberIndex(0)} m={10}>
         set index 0
       </ButtonCustom>
-      <ButtonCustom onPress={() => setFlubberIndex(1)} m={15}>
+      <ButtonCustom onPress={() => setFlubberIndex(1)} m={10}>
         set index 1
+      </ButtonCustom>
+      <ButtonCustom onPress={() => setFlubberIndex(2)} m={10}>
+        set index 2
       </ButtonCustom>
     </Animated.View>
   )
@@ -52,12 +60,13 @@ const useFlubber = (paths: string[], config?: FlubberConfig) => {
   const pathRef = useRef<any>()
 
   const setNativePathProps = (path: string) => {
-    pathRef.current?.setNativeProps({
+    pathRef?.current?.setNativeProps({
       d: path,
     })
   }
 
   useEffect(() => {
+    let requestAnimationId: any
     const startPath = currentPath
     const endPath = paths[currentIndex]
     if (!startPath || !endPath) return
@@ -67,6 +76,7 @@ const useFlubber = (paths: string[], config?: FlubberConfig) => {
     const setFrame = (val: number) => {
       if (val >= 1 || val < 0) {
         const newPathState = paths[currentIndex]
+        setNativePathProps(newPathState)
         if (!newPathState) return
         setCurrentPath(newPathState)
         return
@@ -74,9 +84,13 @@ const useFlubber = (paths: string[], config?: FlubberConfig) => {
       const newPath = interpolator(val)
       setNativePathProps(newPath)
       const nextValue = val + step
-      requestAnimationFrame(() => setFrame(nextValue))
+      requestAnimationId = requestAnimationFrame(() => setFrame(nextValue))
     }
     setFrame(0)
+    return () => {
+      console.log(requestAnimationId, 'requestAnimationId')
+      cancelAnimationFrame(requestAnimationId)
+    }
   }, [currentIndex])
 
   return {pathRef, setFlubberIndex}
@@ -86,7 +100,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 24,
-    justifyContent: 'center',
-    backgroundColor: '#cec6a5',
+    backgroundColor: '#f5f1d8',
   },
 })
