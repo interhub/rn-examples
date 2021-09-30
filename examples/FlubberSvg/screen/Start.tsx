@@ -88,7 +88,6 @@ const useFlubber = (paths: string[], config?: FlubberConfig) => {
     }
     setFrame(0)
     return () => {
-      console.log(requestAnimationId, 'requestAnimationId')
       cancelAnimationFrame(requestAnimationId)
     }
   }, [currentIndex])
