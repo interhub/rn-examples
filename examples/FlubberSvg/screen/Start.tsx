@@ -1,15 +1,11 @@
-import React, {useEffect, useRef, useState} from 'react'
-import {StyleSheet, View} from 'react-native'
+import React from 'react'
+import {Button, StyleSheet, View} from 'react-native'
 import Animated from 'react-native-reanimated'
 import Svg, {Path} from 'react-native-svg'
 
-// import flubber from 'flubber'
-import _ from 'lodash'
-
 import SIZE from '../../../src/config/SIZE'
 import ButtonCustom from '../../../components/ButtonCustom'
-
-const flubber = require('flubber')
+import useFlubber from '../../../lib/react-native-flubber'
 
 const AnimatePath = Animated.createAnimatedComponent(Path)
 const AnimateSvg = Animated.createAnimatedComponent(Svg)
@@ -40,59 +36,9 @@ export default () => {
       <ButtonCustom onPress={() => setFlubberIndex(2)} m={10}>
         set index 2
       </ButtonCustom>
+      <Button title={'set index 2'} onPress={() => setFlubberIndex(2)} />
     </Animated.View>
   )
-}
-
-type FlubberConfig = {
-  //from 0 to 1
-  step?: number
-  //start path show
-  initialIndex?: number
-}
-
-const useFlubber = (paths: string[], config?: FlubberConfig) => {
-  const step = config?.step || 0.01
-  const initialIndex = config?.initialIndex || 0
-  const [currentIndex, setFlubberIndex] = useState(initialIndex)
-  const initialPath = paths[initialIndex]
-  const [currentPath, setCurrentPath] = useState(initialPath)
-  const pathRef = useRef<any>()
-
-  const setNativePathProps = (path: string) => {
-    pathRef?.current?.setNativeProps({
-      d: path,
-    })
-  }
-
-  useEffect(() => {
-    let requestAnimationId: any
-    const startPath = currentPath
-    const endPath = paths[currentIndex]
-    if (!startPath || !endPath) return
-    const interpolator = flubber.interpolate(startPath, endPath)
-    setNativePathProps(startPath)
-    if (startPath === endPath) return
-    const setFrame = (val: number) => {
-      if (val >= 1 || val < 0) {
-        const newPathState = paths[currentIndex]
-        setNativePathProps(newPathState)
-        if (!newPathState) return
-        setCurrentPath(newPathState)
-        return
-      }
-      const newPath = interpolator(val)
-      setNativePathProps(newPath)
-      const nextValue = val + step
-      requestAnimationId = requestAnimationFrame(() => setFrame(nextValue))
-    }
-    setFrame(0)
-    return () => {
-      cancelAnimationFrame(requestAnimationId)
-    }
-  }, [currentIndex])
-
-  return {pathRef, setFlubberIndex}
 }
 
 const styles = StyleSheet.create({
