@@ -3,7 +3,9 @@ import {StyleSheet, View} from 'react-native'
 import Animated, {useAnimatedProps, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
 import Svg, {Path} from 'react-native-svg'
 
-import {useFlubber} from '../../../lib/react-native-flubber'
+// import {useFlubber} from '../../../lib/react-native-flubber'
+import {useFlubber} from 'react-native-flubber'
+
 import SIZE from '../../../src/config/SIZE'
 import ButtonCustom from '../../../components/ButtonCustom'
 
@@ -21,7 +23,7 @@ export default () => {
     step: 0.03,
     initialIndex: 1,
     onChange: (path, frame) => {
-      console.log({path}, {frame})
+      // console.log({path}, {frame})
     },
   })
 
