@@ -1,6 +1,6 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
-import Animated, {useAnimatedProps, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
+import Animated from 'react-native-reanimated'
 import Svg, {Path} from 'react-native-svg'
 
 // import {useFlubber} from '../../../lib/react-native-flubber'
@@ -29,7 +29,6 @@ export default () => {
 
   return (
     <Animated.View style={styles.container}>
-      <Animated.View style={[{width: 100, height: 100, backgroundColor: 'green'}]} />
       <View style={{flex: 1}}>
         <Svg height={SIZE.height} width={SIZE.width}>
           <AnimatePath fill="none" stroke="red" animatedProps={animatedProps} />
