@@ -3,8 +3,8 @@ import {StyleSheet, View} from 'react-native'
 import Animated from 'react-native-reanimated'
 import Svg, {Path} from 'react-native-svg'
 
-// import {useFlubber} from '../../../lib/react-native-flubber'
-import {useFlubber} from 'react-native-flubber'
+import {useFlubber} from '../../../lib/react-native-flubber'
+// import {useFlubber} from 'react-native-flubber'
 
 import SIZE from '../../../src/config/SIZE'
 import ButtonCustom from '../../../components/ButtonCustom'
