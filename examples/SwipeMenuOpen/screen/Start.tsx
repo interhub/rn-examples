@@ -1,13 +1,22 @@
 import React from 'react'
 import {SafeAreaView, StyleSheet, Text} from 'react-native'
-import Animated, {Extrapolate, interpolate, interpolateColor, runOnJS, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring} from 'react-native-reanimated'
+import Animated, {
+  Extrapolate,
+  interpolate,
+  interpolateColor,
+  runOnJS,
+  useAnimatedGestureHandler,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated'
 import {PanGestureHandler, PanGestureHandlerGestureEvent} from 'react-native-gesture-handler'
 import {inRange} from 'lodash'
-import {integerColor} from 'react-native-svg/lib/typescript/lib/extract/extractColor'
 
 import SIZE from '../../../src/config/SIZE'
 
 const BOX_SIZE = 100
+const REACT_MIN_SPEED = 1000
 const HALF_SCREEN = SIZE.getVH(50)
 const downPosition = SIZE.height - 2 * BOX_SIZE
 
@@ -15,10 +24,12 @@ export default function () {
   const y = useSharedValue(0)
   const x = useSharedValue(0)
 
-  const setInRange = () => {
+  const setInRange = (speed: number = 0) => {
+    console.log(speed, 'speed')
     const isMoreHalf = !inRange(y.value, 0, HALF_SCREEN)
+    const isFast = Math.abs(speed) >= REACT_MIN_SPEED
     console.log(y.value, 'y.value', HALF_SCREEN, isMoreHalf)
-    y.value = isMoreHalf ? withSpring(downPosition) : withSpring(0)
+    y.value = isMoreHalf || isFast ? withSpring(downPosition) : withSpring(0)
   }
 
   const gestureHandler = useAnimatedGestureHandler<PanGestureHandlerGestureEvent, {startY: number; startX: number}>({
@@ -31,24 +42,24 @@ export default function () {
       x.value = event.translationX + ctx.startX
     },
     onEnd: (event) => {
-      console.log(y.value, 'y.value')
+      const speed = event.velocityY
       // y.value = withDecay({velocity: event.velocityY})
       // x.value = withDecay({velocity: event.velocityX})
-      runOnJS(setInRange)()
+      runOnJS(setInRange)(speed)
       x.value = withSpring(0)
     },
   })
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      // transform: [
-      //     {
-      //         translateX: x.value
-      //     },
-      //     {
-      //         translateY: y.value
-      //     },
-      // ],
+      transform: [
+        // {
+        //   translateX: x.value,
+        // },
+        {
+          translateY: y.value,
+        },
+      ],
       // opacity: interpolate(y.value, [0, downPosition], [0, 1], Extrapolate.CLAMP),
       backgroundColor: interpolateColor(y.value, [0, downPosition], ['#9a9999', '#41503d']),
     }
