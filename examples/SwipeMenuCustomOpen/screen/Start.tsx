@@ -1,16 +1,6 @@
 import React from 'react'
 import {SafeAreaView, StyleSheet, Text} from 'react-native'
-import Animated, {
-  Extrapolate,
-  interpolate,
-  interpolateColor,
-  runOnJS,
-  useAnimatedGestureHandler,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated'
+import Animated, {interpolateColor, runOnJS, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withTiming} from 'react-native-reanimated'
 import {PanGestureHandler, PanGestureHandlerGestureEvent} from 'react-native-gesture-handler'
 import {inRange} from 'lodash'
 

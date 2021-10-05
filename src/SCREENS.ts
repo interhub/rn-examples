@@ -21,7 +21,7 @@ import ColorNavPicker from '../examples/ColorNavPicker'
 import SpringScroll from '../examples/SpringScroll'
 import ClampHeader from '../examples/ClampHeader'
 import CodePushUpdates from '../examples/CodePushUpdates'
-import SwipeMenuOpen from '../examples/SwipeMenuOpen'
+import SwipeMenuCustomOpen from '../examples/SwipeMenuCustomOpen'
 import AccelerometerLib from '../examples/AccelerometerLib'
 import AnimateHeaderNav from '../examples/AnimateHeaderNav'
 import MediaPickerList from '../examples/MediaPickerList'
@@ -49,7 +49,7 @@ export const SCREENS = {
   ['SPRING_SCROLL🧹']: SpringScroll,
   ['CLAMP_HEADER🎃']: ClampHeader,
   ['CODE_PUSH_UPDATES☁']: CodePushUpdates,
-  ['SWIPE MENU OPEN🏃']: SwipeMenuOpen,
+  ['SWIPE MENU CUSTOM OPEN🏃']: SwipeMenuCustomOpen,
   ['ACCELEROMETER LIB🎇']: AccelerometerLib,
   ['ANIMATE SCREENS NAV💸']: AnimateHeaderNav,
   ['MEDIA PICKER LIST ☑️']: MediaPickerList,
