@@ -9,6 +9,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
+  withTiming,
 } from 'react-native-reanimated'
 import {PanGestureHandler, PanGestureHandlerGestureEvent} from 'react-native-gesture-handler'
 import {inRange} from 'lodash'
@@ -25,11 +26,13 @@ export default function () {
   const x = useSharedValue(0)
 
   const setInRange = (speed: number = 0) => {
-    console.log(speed, 'speed')
     const isMoreHalf = !inRange(y.value, 0, HALF_SCREEN)
     const isFast = Math.abs(speed) >= REACT_MIN_SPEED
-    console.log(y.value, 'y.value', HALF_SCREEN, isMoreHalf)
-    y.value = isMoreHalf || isFast ? withSpring(downPosition) : withSpring(0)
+    if (isFast) {
+      y.value = isMoreHalf ? withTiming(0) : withTiming(downPosition)
+    } else {
+      y.value = isMoreHalf ? withTiming(downPosition) : withTiming(0)
+    }
   }
 
   const gestureHandler = useAnimatedGestureHandler<PanGestureHandlerGestureEvent, {startY: number; startX: number}>({
@@ -46,7 +49,7 @@ export default function () {
       // y.value = withDecay({velocity: event.velocityY})
       // x.value = withDecay({velocity: event.velocityX})
       runOnJS(setInRange)(speed)
-      x.value = withSpring(0)
+      x.value = withTiming(0)
     },
   })
 
