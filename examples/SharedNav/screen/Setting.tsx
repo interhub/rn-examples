@@ -1,8 +1,7 @@
 import React from 'react'
-import {Image, StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 import {SharedElement} from 'react-navigation-shared-element'
-
-import Start from './Start'
+import FastImage from 'react-native-fast-image'
 
 import Header from '../components/Header'
 
@@ -12,7 +11,7 @@ const ItemDetail = () => {
       <Header />
       <View style={styles.imgBox}>
         <SharedElement id="image">
-          <Image style={styles.image} resizeMode="contain" source={require('../img/bg.jpg')} />
+          <FastImage style={styles.image} resizeMode="contain" source={require('../img/bg.jpg')} />
         </SharedElement>
       </View>
       <SharedElement id="text">

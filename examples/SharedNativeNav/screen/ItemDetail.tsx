@@ -5,6 +5,8 @@ import FastImage from 'react-native-fast-image'
 
 import Header from '../components/Header'
 
+const imageSource = require('../img/bg.jpg')
+
 const ItemDetail = () => {
   return (
     <View style={{flex: 1}}>
@@ -15,7 +17,7 @@ const ItemDetail = () => {
         </SharedElement>
         <View style={styles.imgBox}>
           <SharedElement id="image">
-            <FastImage style={styles.image} resizeMode="cover" source={require('../img/bg.jpg')} />
+            <FastImage style={styles.image} resizeMode="cover" source={imageSource} />
           </SharedElement>
         </View>
       </View>
@@ -28,7 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000',
+    backgroundColor: '#3d6d5c',
   },
   image: {
     width: '100%',

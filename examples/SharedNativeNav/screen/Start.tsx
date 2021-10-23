@@ -7,6 +7,9 @@ import FastImage from 'react-native-fast-image'
 
 import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
 
+const imageSource = require('../img/bg.jpg')
+console.log({imageSource})
+
 const Start = () => {
   const {navigate} = useNavigation()
   const goToDetail = () => {
@@ -15,14 +18,14 @@ const Start = () => {
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={{paddingBottom: 20}}>
         <SharedElement id="text">
-          <Text style={styles.text}>SHARED ELEMENT PAGE</Text>
+          <Text style={styles.text}>SHARED ELEMENT TEXT</Text>
         </SharedElement>
       </View>
       <TouchableScale friction={5} tension={0.5} activeScale={0.9} onPress={goToDetail} style={styles.imgBox}>
         <SharedElement style={{}} id="image">
-          <FastImage style={styles.image} resizeMode="cover" source={require('../img/bg.jpg')} />
+          <FastImage style={styles.image} resizeMode="cover" source={imageSource} />
         </SharedElement>
       </TouchableScale>
     </View>
@@ -34,7 +37,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000',
+    backgroundColor: '#3d6d5c',
   },
   text: {fontSize: 15, color: '#fff', fontWeight: 'bold'},
   imgBox: {

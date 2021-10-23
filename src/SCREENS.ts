@@ -28,6 +28,7 @@ import MediaPickerList from '../examples/MediaPickerList'
 import BottomSheet from '../examples/BottomSheet'
 import FlubberSvg from '../examples/FlubberSvg'
 import BlurViewLib from '../examples/BlurViewLib'
+import SharedNativeNav from '../examples/SharedNativeNav'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -57,4 +58,5 @@ export const SCREENS = {
   ['BOTTOM SHEET PANEL 🍭']: BottomSheet,
   ['FLUBBER SVG 🏃‍♀️']: FlubberSvg,
   ['BLUR VIEW LIB 💭']: BlurViewLib,
+  ['SHARED NATIVE NAV 🌭']: SharedNativeNav,
 }
