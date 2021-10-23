@@ -1,5 +1,5 @@
 import React from 'react'
-import {Image, StyleSheet, Text, View} from 'react-native'
+import {StyleSheet, Text, View} from 'react-native'
 import {SharedElement} from 'react-navigation-shared-element'
 import FastImage from 'react-native-fast-image'
 

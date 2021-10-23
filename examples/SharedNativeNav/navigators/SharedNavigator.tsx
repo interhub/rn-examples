@@ -8,7 +8,7 @@ import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/config/getScree
 import Setting from '../screen/Setting'
 
 const screenOptions: any = {
-  ...getScreenAnimation(SCREEN_ANIMATION.LEFT),
+  ...getScreenAnimation(SCREEN_ANIMATION.FADE),
 }
 
 const Stack = createStackNavigator()
