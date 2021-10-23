@@ -34,7 +34,6 @@ export const SCREENS = {
   ['MENU🏁']: Menu,
   ['NATIVE_GESTURE👈']: NativeGesture,
   ['REANIMATE_GESTURE🙌']: ReanimateGesture,
-  ['SHARED_NAV🦈']: SharedNav,
   ['SCROLL_ANIMATE📜']: ScrollAnimate,
   ['SCROLL_ANIMATE_HORIZONT📜']: ScrollAnimateHorizont,
   ['SORT_ANIMATE📆']: SortAnimate,
@@ -42,7 +41,6 @@ export const SCREENS = {
   ['PAN_ROTATE_CIRCLE🔘']: PanCircleRotate,
   ['SVG_START🫀']: SvgStart,
   ['MODAL_STACK_NAV⚙️']: ModalStackNav,
-  ['CUSTOM_SHARED🧵']: CustomShared,
   ['NAVIGATE_ANIMATION👑']: NavigateAnimation,
   ['TAB_NAVIGATOR☘️']: TabsNavigator,
   ['PHOTO_PICKER📸']: PhotoPicker,
@@ -58,5 +56,7 @@ export const SCREENS = {
   ['BOTTOM SHEET PANEL 🍭']: BottomSheet,
   ['FLUBBER SVG 🏃‍♀️']: FlubberSvg,
   ['BLUR VIEW LIB 💭']: BlurViewLib,
+  ['SHARED CUSTOM🧵']: CustomShared,
+  ['SHARED_NAV🦈']: SharedNav,
   ['SHARED NATIVE NAV 🌭']: SharedNativeNav,
 }

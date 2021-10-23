@@ -17,7 +17,7 @@ const ItemDetail = () => {
         </SharedElement>
       </View>
       <SharedElement id="text">
-        <Text style={styles.text}>SHARED ELEMENT PAGE</Text>
+        <Text style={styles.text}>SHARED ELEMENT TEXT</Text>
       </SharedElement>
     </View>
   )

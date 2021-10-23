@@ -13,7 +13,7 @@ const ItemDetail = () => {
       <Header />
       <View style={styles.container}>
         <SharedElement id="text">
-          <Text style={styles.text}>SHARED ELEMENT PAGE</Text>
+          <Text style={styles.text}>SHARED ELEMENT TEXT</Text>
         </SharedElement>
         <View style={styles.imgBox}>
           <SharedElement id="image">
