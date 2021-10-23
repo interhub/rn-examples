@@ -6,13 +6,12 @@ import {useNavigation} from '@react-navigation/native'
 
 import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
 
-const HEADER_HEIGHT = 100
+const HEADER_HEIGHT = 50
 const Header = () => {
-  const {top} = useSafeAreaInsets()
   const {navigate, goBack} = useNavigation()
   const goToSetting = () => navigate(SCREEN_NAME_SHARED.SETTING)
   return (
-    <View style={[styles.container, {paddingTop: top}]}>
+    <View style={[styles.container]}>
       <TouchableScale onPress={goBack}>
         <Text style={styles.text}>BACK</Text>
       </TouchableScale>
