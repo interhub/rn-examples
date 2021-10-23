@@ -7,11 +7,10 @@ import ItemDetail from '../screen/ItemDetail'
 import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/config/getScreenAnimation'
 import Setting from '../screen/Setting'
 
-const sharedElementsConfig: SharedElementsComponentConfig<SharedElementRoute<SCREEN_NAME_SHARED.START_LIST, {}>, SharedElementRoute<SCREEN_NAME_SHARED.ITEM_DETAIL, {}>> = (
-  route,
-  otherRoute,
-  showing,
-) => {
+const sharedElementsConfig: SharedElementsComponentConfig<
+  SharedElementRoute<SCREEN_NAME_SHARED.START_LIST, {}>,
+  SharedElementRoute<SCREEN_NAME_SHARED.ITEM_DETAIL, {}>
+> = (route, otherRoute, showing) => {
   return [
     {id: 'image', animation: 'move'},
     {id: 'text', animation: 'move'},
@@ -19,7 +18,7 @@ const sharedElementsConfig: SharedElementsComponentConfig<SharedElementRoute<SCR
 }
 
 const screenOptions: any = {
-  ...getScreenAnimation(SCREEN_ANIMATION.OPACITY),
+  ...getScreenAnimation(SCREEN_ANIMATION.LEFT),
 }
 
 const Stack = createSharedElementStackNavigator()
