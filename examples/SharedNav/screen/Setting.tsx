@@ -1,9 +1,10 @@
 import React from 'react'
-import {StyleSheet, Text, View} from 'react-native'
+import {ScrollView, StyleSheet, Text, View} from 'react-native'
 import {SharedElement} from 'react-navigation-shared-element'
 import FastImage from 'react-native-fast-image'
 
 import Header, {HEADER_HEIGHT} from '../components/Header'
+import SIZE from '../../../src/config/SIZE'
 
 const ItemDetail = () => {
   return (
@@ -12,14 +13,18 @@ const ItemDetail = () => {
       <SharedElement id={'card'} style={{...StyleSheet.absoluteFillObject, zIndex: -1, top: HEADER_HEIGHT}}>
         <View style={styles.cardFill} />
       </SharedElement>
-      <View style={styles.imgBox}>
-        <SharedElement id="image">
-          <FastImage style={styles.image} resizeMode="contain" source={require('../img/bg.jpg')} />
-        </SharedElement>
-      </View>
-      <SharedElement id="text">
-        <Text style={styles.text}>SHARED ELEMENT PAGE</Text>
-      </SharedElement>
+      <ScrollView>
+        <View style={{width: SIZE.width, minHeight: SIZE.height, alignItems: 'center'}}>
+          <View style={styles.imgBox}>
+            <SharedElement id="image">
+              <FastImage style={styles.image} resizeMode="contain" source={require('../img/bg.jpg')} />
+            </SharedElement>
+          </View>
+          <SharedElement id="text">
+            <Text style={styles.text}>SHARED ELEMENT PAGE</Text>
+          </SharedElement>
+        </View>
+      </ScrollView>
     </View>
   )
 }
