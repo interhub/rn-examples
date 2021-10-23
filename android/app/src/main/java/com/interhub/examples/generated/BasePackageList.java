@@ -20,7 +20,8 @@ public class BasePackageList {
         new expo.modules.sensors.SensorsPackage(),
         new expo.modules.splashscreen.SplashScreenPackage(),
         new expo.modules.updates.UpdatesPackage(),
-        new expo.modules.videothumbnails.VideoThumbnailsPackage()
+        new expo.modules.videothumbnails.VideoThumbnailsPackage(),
+        new expo.modules.webbrowser.WebBrowserPackage()
     );
   }
 }
