@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4",
+    "@react-native-community/blur": "^3.6.0",
     "@react-native-community/eslint-config": "^3.0.1",
     "@react-native-masked-view/masked-view": "0.2.4",
     "@react-navigation/bottom-tabs": "^5.11.10",
@@ -42,6 +43,7 @@
     "expo-status-bar": "~1.0.4",
     "expo-updates": "~0.8.1",
     "expo-video-thumbnails": "~5.2.1",
+    "expo-web-browser": "~9.2.0",
     "faker": "^5.5.3",
     "flubber": "^0.4.2",
     "lodash": "^4.17.21",

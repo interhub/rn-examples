@@ -27,6 +27,7 @@ import AnimateHeaderNav from '../examples/AnimateHeaderNav'
 import MediaPickerList from '../examples/MediaPickerList'
 import BottomSheet from '../examples/BottomSheet'
 import FlubberSvg from '../examples/FlubberSvg'
+import BlurViewLib from '../examples/BlurViewLib'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -55,4 +56,5 @@ export const SCREENS = {
   ['MEDIA PICKER LIST ☑️']: MediaPickerList,
   ['BOTTOM SHEET PANEL 🍭']: BottomSheet,
   ['FLUBBER SVG 🏃‍♀️']: FlubberSvg,
+  ['BLUR VIEW LIB 💭']: BlurViewLib,
 }

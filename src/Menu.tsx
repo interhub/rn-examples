@@ -12,13 +12,12 @@ import ButtonCustom from '../components/ButtonCustom'
 const Menu = () => {
   const {bottom} = useSafeAreaInsets()
   const SCREENS_NAMES = useMemo(() => Object.keys(SCREENS).reverse(), [])
-  const {deepUrl, removeLink} = useHandleDeepLink()
+  const {deepUrl} = useHandleDeepLink()
 
   useEffect(() => {
     if (deepUrl) {
       //usage action or navigate
       console.log(deepUrl, 'usage deep links ✅ ')
-      removeLink()
     }
   }, [deepUrl])
 

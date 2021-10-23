@@ -1,42 +1,52 @@
-import {useEffect, useLayoutEffect, useState} from 'react'
 import * as Linking from 'expo-linking'
+import {useEffect, useMemo, useState} from 'react'
+import {useLinkTo} from '@react-navigation/native'
+
+import openLink from '../config/openLink'
 
 /**
- * @hook use initial depp links hook
- * use into useEffect hook and handle open app screen in main app screen and
- * navigate somewhere or make custom action func
+ * use inside navigation wrapper to handle deep params
  */
 const useHandleDeepLink = () => {
-  const [deepUrl, setDeepUrl] = useState('')
-  const removeLink = () => {
-    setDeepUrl('')
+  const [isRemoved, setIsRemoved] = useState(false)
+  const deepUrl: string = Linking.useURL() || ''
+
+  const removeURL = () => {
+    setIsRemoved(true)
   }
-  const initDeepUrl = async () => {
-    const initialUrl = await Linking.getInitialURL()
-    if (!initialUrl) return
-    // console.log('[getInitialURL] url', initialUrl)
-    setDeepUrl(initialUrl)
-  }
-  useLayoutEffect(() => {
-    Linking.addEventListener('url', ({url = ''}) => {
-      // console.log('[addEventListener] url', url)
-      if (!url) return
-      setDeepUrl(url)
-    })
-    initDeepUrl()
-  }, [])
-  return {deepUrl, removeLink}
+  const params: DeepParamsTypes = useMemo(() => (deepUrl ? Linking.parse(deepUrl)?.queryParams : {}), [deepUrl])
+  const linkTo = useLinkTo()
+  useEffect(() => {
+    if (isRemoved || !deepUrl) {
+      return
+    }
+    try {
+      if (params?.link) {
+        setTimeout(() => {
+          linkTo(params?.link || '')
+        }, 200)
+        return
+      }
+      if (params?.browser) {
+        openLink(params?.browser)
+        return
+      }
+    } catch (e) {
+    } finally {
+      removeURL()
+    }
+  }, [deepUrl])
+  // console.log({deepUrl, params});
+  return {deepUrl, params}
 }
 
-// useEffect(() => {
-//     console.log(deepUrl, 'new deep url state')
-//     if (deepUrl) {
-//         /**
-//          * usage action or navigate
-//          */
-//         console.log(deepUrl, 'usage deep links ✅ ')
-//         removeLink()
-//     }
-// }, [deepUrl])
+type DeepParamsTypes = {
+  //stayfitt.app://?link=nontab/rubric/1
+  link?: string
+  //stayfitt.app://?browser=https://google.com
+  browser?: string
+  //custom actions
+  //action?: string
+}
 
 export default useHandleDeepLink
