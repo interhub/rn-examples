@@ -5,7 +5,6 @@ import {Video} from 'expo-av'
 import _ from 'lodash'
 import {Ionicons} from '@expo/vector-icons'
 import * as VideoThumbnails from 'expo-video-thumbnails'
-import FastImage from 'react-native-fast-image'
 
 import ButtonCustom from '../../../components/ButtonCustom'
 import Message from '../../../src/config/Message'
@@ -84,7 +83,7 @@ const ImageAssetListItem = ({asset}: {asset?: MediaLibrary.Asset}) => {
 
   return (
     <TouchableOpacity onPress={onPressImage}>
-      <FastImage source={{uri}} style={styles.media} />
+      <Image source={{uri}} style={styles.media} />
     </TouchableOpacity>
   )
 }
@@ -120,7 +119,7 @@ const VideoAssetListItem = ({asset}: {asset?: MediaLibrary.Asset}) => {
   return (
     <TouchableOpacity onPress={onPressImage}>
       <Ionicons name={'play'} size={15} color={'#8e8f90'} style={styles.camIcon} />
-      {!isPlay && isLoadedThumb && <FastImage source={{uri: thumbUri}} style={styles.media} />}
+      {!isPlay && isLoadedThumb && <Image source={{uri: thumbUri}} style={styles.media} />}
       {isPlay && (
         <Video
           ref={videoRef}
