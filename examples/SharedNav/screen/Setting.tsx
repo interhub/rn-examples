@@ -3,12 +3,15 @@ import {StyleSheet, Text, View} from 'react-native'
 import {SharedElement} from 'react-navigation-shared-element'
 import FastImage from 'react-native-fast-image'
 
-import Header from '../components/Header'
+import Header, {HEADER_HEIGHT} from '../components/Header'
 
 const ItemDetail = () => {
   return (
     <View style={styles.container}>
       <Header />
+      <SharedElement id={'card'} style={{...StyleSheet.absoluteFillObject, zIndex: -1, top: HEADER_HEIGHT}}>
+        <View style={styles.cardFill} />
+      </SharedElement>
       <View style={styles.imgBox}>
         <SharedElement id="image">
           <FastImage style={styles.image} resizeMode="contain" source={require('../img/bg.jpg')} />
@@ -37,6 +40,10 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     position: 'absolute',
     zIndex: -1,
+  },
+  cardFill: {
+    flex: 1,
+    backgroundColor: '#85acd3',
   },
 })
 

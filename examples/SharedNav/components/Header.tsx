@@ -5,7 +5,8 @@ import {useNavigation} from '@react-navigation/native'
 
 import {SCREEN_NAME_SHARED} from '../constants/SCREEN_NAME_SHARED'
 
-const HEADER_HEIGHT = 50
+export const HEADER_HEIGHT = 50
+
 const Header = () => {
   const {navigate, goBack} = useNavigation()
   const goToSetting = () => navigate(SCREEN_NAME_SHARED.SETTING)

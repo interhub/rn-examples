@@ -4,12 +4,16 @@ import {SharedElement} from 'react-navigation-shared-element'
 import FastImage from 'react-native-fast-image'
 
 import Header from '../components/Header'
+import SIZE from '../../../src/config/SIZE'
 
 const ItemDetail = () => {
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <Header />
-      <View style={styles.container}>
+      <View style={styles.card}>
+        <SharedElement id={'card'} style={{...StyleSheet.absoluteFillObject, zIndex: -1}}>
+          <View style={styles.cardFill} />
+        </SharedElement>
         <SharedElement id="text">
           <Text style={styles.text}>SHARED ELEMENT PAGE</Text>
         </SharedElement>
@@ -24,11 +28,14 @@ const ItemDetail = () => {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  card: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000',
+    marginHorizontal: 5,
+    marginVertical: 20,
+    borderRadius: 5,
+    overflow: 'hidden',
   },
   image: {
     width: '100%',
@@ -36,9 +43,17 @@ const styles = StyleSheet.create({
   },
   text: {fontSize: 30, color: '#FFF', fontWeight: 'bold'},
   imgBox: {
-    ...StyleSheet.absoluteFillObject,
+    width: '100%',
+    height: SIZE.height / 3,
+    top: 0,
     position: 'absolute',
     zIndex: -1,
+  },
+  container: {flex: 1, backgroundColor: '#000'},
+  cardFill: {
+    flex: 1,
+    backgroundColor: '#85acd3',
+    borderRadius: 5,
   },
 })
 

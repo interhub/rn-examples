@@ -12,13 +12,14 @@ const sharedElementsConfig: SharedElementsComponentConfig<
   SharedElementRoute<SCREEN_NAME_SHARED.ITEM_DETAIL, {}>
 > = (route, otherRoute, showing) => {
   return [
+    {id: 'card', animation: 'move'},
     {id: 'image', animation: 'move'},
     {id: 'text', animation: 'move'},
   ]
 }
 
 const screenOptions: any = {
-  ...getScreenAnimation(SCREEN_ANIMATION.LEFT),
+  ...getScreenAnimation(SCREEN_ANIMATION.OPACITY),
 }
 
 const Stack = createSharedElementStackNavigator()

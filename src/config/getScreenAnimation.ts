@@ -30,12 +30,6 @@ export enum SCREEN_ANIMATION {
   OPACITY = 'OPACITY',
 }
 
-const trans: TransitionPreset['transitionSpec']['open'] = TransitionSpecs.TransitionIOSSpec
-//@ts-ignore
-trans.config.mass = 6
-//@ts-ignore
-trans.config.stiffness = 800
-
 /**
  get some screen navigation animation config for navigation (by doc from https://reactnavigation.org/docs/stack-navigator/#animations )
  */
@@ -53,7 +47,6 @@ export default (animation: SCREEN_ANIMATION = SCREEN_ANIMATION.NONE, swipe = tru
     cardStyle: {
       backgroundColor: '#FFF',
     },
-    transitionSpec: {open: trans, close: trans},
   }
   if (config.gestureResponseDistance) {
     config.gestureResponseDistance[isVerticalSwipe ? 'vertical' : 'horizontal'] = gestureWorkDistance
