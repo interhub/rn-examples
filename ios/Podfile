@@ -21,3 +21,7 @@ target 'GoodExamples' do
      end
    end
 end
+
+target 'ImageNotification' do
+  pod 'Firebase/Messaging', '~> 8.9.1' # MUST HAVE TO SET MESSAGING vers (13.0.1)
+end

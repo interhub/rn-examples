@@ -14,12 +14,40 @@
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
 		96905EF65AED1B983A6B3ABC /* libPods-GoodExamples.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EEBF8E8E6FB1BC6CAF49B5 /* libPods-GoodExamples.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		EC9967CF524DD97C06E2BAC7 /* libPods-ImageNotification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68DEF212B526A19E2D2D8603 /* libPods-ImageNotification.a */; };
 		ED455C850E9F4EF4A46EE12D /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9ABDB9180F4D55A6FE4D19 /* noop-file.swift */; };
 		FA9D6D2A273524EA0022D600 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA9D6D29273524EA0022D600 /* GoogleService-Info.plist */; };
+		FA9D6D332735D5DF0022D600 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9D6D322735D5DF0022D600 /* NotificationService.m */; };
+		FA9D6D372735D5DF0022D600 /* ImageNotification.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FA9D6D2F2735D5DF0022D600 /* ImageNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA9D6D352735D5DF0022D600 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA9D6D2E2735D5DF0022D600;
+			remoteInfo = ImageNotification;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FA9D6D382735D5DF0022D600 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				FA9D6D372735D5DF0022D600 /* ImageNotification.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		013E54611ADFC5A2CB369EA2 /* Pods-ImageNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageNotification.release.xcconfig"; path = "Target Support Files/Pods-ImageNotification/Pods-ImageNotification.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = GoodExamples/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = GoodExamples/AppDelegate.m; sourceTree = "<group>"; };
@@ -28,15 +56,21 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = GoodExamples/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GoodExamples/main.m; sourceTree = "<group>"; };
 		58EEBF8E8E6FB1BC6CAF49B5 /* libPods-GoodExamples.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GoodExamples.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68DEF212B526A19E2D2D8603 /* libPods-ImageNotification.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ImageNotification.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C2E3173556A471DD304B334 /* Pods-GoodExamples.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodExamples.debug.xcconfig"; path = "Target Support Files/Pods-GoodExamples/Pods-GoodExamples.debug.xcconfig"; sourceTree = "<group>"; };
 		7A4D352CD337FB3A3BF06240 /* Pods-GoodExamples.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodExamples.release.xcconfig"; path = "Target Support Files/Pods-GoodExamples/Pods-GoodExamples.release.xcconfig"; sourceTree = "<group>"; };
 		9F42DA10390C42D6B8EA088A /* GoodExamples-Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.h; name = "GoodExamples-Bridging-Header.h"; path = "GoodExamples/GoodExamples-Bridging-Header.h"; sourceTree = "<group>"; };
+		A5A200AB2D3E4B74B276411D /* Pods-ImageNotification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageNotification.debug.xcconfig"; path = "Target Support Files/Pods-ImageNotification/Pods-ImageNotification.debug.xcconfig"; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = GoodExamples/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
 		CC9ABDB9180F4D55A6FE4D19 /* noop-file.swift */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.swift; name = "noop-file.swift"; path = "GoodExamples/noop-file.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FA9D6D29273524EA0022D600 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FA9D6D2F2735D5DF0022D600 /* ImageNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ImageNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA9D6D312735D5DF0022D600 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
+		FA9D6D322735D5DF0022D600 /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
+		FA9D6D342735D5DF0022D600 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +79,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				96905EF65AED1B983A6B3ABC /* libPods-GoodExamples.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA9D6D2C2735D5DF0022D600 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC9967CF524DD97C06E2BAC7 /* libPods-ImageNotification.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +117,7 @@
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				58EEBF8E8E6FB1BC6CAF49B5 /* libPods-GoodExamples.a */,
+				68DEF212B526A19E2D2D8603 /* libPods-ImageNotification.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -92,6 +135,7 @@
 				FA9D6D29273524EA0022D600 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* GoodExamples */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				FA9D6D302735D5DF0022D600 /* ImageNotification */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
@@ -105,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* examples.app */,
+				FA9D6D2F2735D5DF0022D600 /* ImageNotification.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,8 +168,20 @@
 			children = (
 				6C2E3173556A471DD304B334 /* Pods-GoodExamples.debug.xcconfig */,
 				7A4D352CD337FB3A3BF06240 /* Pods-GoodExamples.release.xcconfig */,
+				A5A200AB2D3E4B74B276411D /* Pods-ImageNotification.debug.xcconfig */,
+				013E54611ADFC5A2CB369EA2 /* Pods-ImageNotification.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FA9D6D302735D5DF0022D600 /* ImageNotification */ = {
+			isa = PBXGroup;
+			children = (
+				FA9D6D312735D5DF0022D600 /* NotificationService.h */,
+				FA9D6D322735D5DF0022D600 /* NotificationService.m */,
+				FA9D6D342735D5DF0022D600 /* Info.plist */,
+			);
+			path = ImageNotification;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,15 +201,35 @@
 				2353213118692735BD1EB04A /* [CP] Embed Pods Frameworks */,
 				1653996361C0C6F0D6F3CE9E /* [CP-User] [RNFB] Core Configuration */,
 				738D73C642EEF993294DD9EE /* [CP-User] [RNFB] Crashlytics Configuration */,
+				FA9D6D382735D5DF0022D600 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FA9D6D362735D5DF0022D600 /* PBXTargetDependency */,
 			);
 			name = GoodExamples;
 			productName = GoodExamples;
 			productReference = 13B07F961A680F5B00A75B9A /* examples.app */;
 			productType = "com.apple.product-type.application";
+		};
+		FA9D6D2E2735D5DF0022D600 /* ImageNotification */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA9D6D3B2735D5DF0022D600 /* Build configuration list for PBXNativeTarget "ImageNotification" */;
+			buildPhases = (
+				8A6F5BEE3AAFB9ADDA13BE39 /* [CP] Check Pods Manifest.lock */,
+				FA9D6D2B2735D5DF0022D600 /* Sources */,
+				FA9D6D2C2735D5DF0022D600 /* Frameworks */,
+				FA9D6D2D2735D5DF0022D600 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ImageNotification;
+			productName = ImageNotification;
+			productReference = FA9D6D2F2735D5DF0022D600 /* ImageNotification.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -165,6 +242,11 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = B6B89H6AL9;
 						LastSwiftMigration = 1120;
+						ProvisioningStyle = Automatic;
+					};
+					FA9D6D2E2735D5DF0022D600 = {
+						CreatedOnToolsVersion = 13.0;
+						DevelopmentTeam = B6B89H6AL9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -183,6 +265,7 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* GoodExamples */,
+				FA9D6D2E2735D5DF0022D600 /* ImageNotification */,
 			);
 		};
 /* End PBXProject section */
@@ -197,6 +280,13 @@
 				FA9D6D2A273524EA0022D600 /* GoogleService-Info.plist in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA9D6D2D2735D5DF0022D600 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +396,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GoodExamples/Pods-GoodExamples-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8A6F5BEE3AAFB9ADDA13BE39 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ImageNotification-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -338,7 +450,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA9D6D2B2735D5DF0022D600 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA9D6D332735D5DF0022D600 /* NotificationService.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FA9D6D362735D5DF0022D600 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA9D6D2E2735D5DF0022D600 /* ImageNotification */;
+			targetProxy = FA9D6D352735D5DF0022D600 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
@@ -524,6 +652,74 @@
 			};
 			name = Release;
 		};
+		FA9D6D392735D5DF0022D600 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A5A200AB2D3E4B74B276411D /* Pods-ImageNotification.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = B6B89H6AL9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ImageNotification/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ImageNotification;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.interhub.examples.ImageNotification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FA9D6D3A2735D5DF0022D600 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 013E54611ADFC5A2CB369EA2 /* Pods-ImageNotification.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = B6B89H6AL9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ImageNotification/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ImageNotification;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.interhub.examples.ImageNotification;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -541,6 +737,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA9D6D3B2735D5DF0022D600 /* Build configuration list for PBXNativeTarget "ImageNotification" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA9D6D392735D5DF0022D600 /* Debug */,
+				FA9D6D3A2735D5DF0022D600 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

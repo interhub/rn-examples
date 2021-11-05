@@ -593,6 +593,7 @@ DEPENDENCIES:
   - EXWebBrowser (from `../node_modules/expo-web-browser/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
+  - Firebase/Messaging (~> 8.9.1)
   - Flipper (= 0.75.1)
   - Flipper-DoubleConversion (= 1.1.7)
   - Flipper-Folly (= 2.5.3)
@@ -914,6 +915,6 @@ SPEC CHECKSUMS:
   Yoga: 4bd86afe9883422a7c4028c00e34790f560923d6
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 27397021268d42de4bd9db3a9ac798715a5f70bf
+PODFILE CHECKSUM: 450320dc2d1007403dbb3c5b3fe500455536c78c
 
 COCOAPODS: 1.11.2
