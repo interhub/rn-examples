@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "399714560427",
+    "project_id": "interhub-299eb",
+    "storage_bucket": "interhub-299eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399714560427:android:11d7afee7c31658e924aee",
+        "android_client_info": {
+          "package_name": "com.interhub.examples"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399714560427-vvr30d78aht46c2bqm3q3n83i8me6bd6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.interhub.examples",
+            "certificate_hash": "f38d6379da5b5e35be336fe18ee771e7148827aa"
+          }
+        },
+        {
+          "client_id": "399714560427-tqqfdi8tlqffd2m1kb53hogg26amlouu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLTBKiXiym8_S3TyG7s9qdAKeN-Qg8YKo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399714560427-tqqfdi8tlqffd2m1kb53hogg26amlouu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
