@@ -65,7 +65,6 @@ class NotificationConfigTool {
      get push token (return string token from Promise)
      */
   protected getPushToken = async (): Promise<string> => {
-    await messaging().registerDeviceForRemoteMessages()
     if (IS_IOS) {
       const success = await this.requestPermission()
       if (!success) {
@@ -84,8 +83,7 @@ class NotificationConfigTool {
   }
 
   protected async unsubscribe() {
-    await messaging().unregisterDeviceForRemoteMessages()
-    // await messaging().deleteToken()
+    await messaging().deleteToken()
   }
 }
 
