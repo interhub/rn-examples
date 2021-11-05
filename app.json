@@ -8,7 +8,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.interhub.examples",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "googleServicesFile": "./ios/GoogleService-Info.plist"
     },
     "android": {
       "package": "com.interhub.examples",
@@ -17,7 +17,7 @@
         "backgroundImage": "./assets/icon.png",
         "foregroundImage": "./assets/icon.png"
       },
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./android/app/google-services.json"
     },
     "androidNavigationBar": {
       "backgroundColor": "#ffd129",
@@ -31,11 +31,6 @@
     "scheme": "examples",
     "assetBundlePatterns": [
       "assets/*"
-    ],
-    "plugins": [
-      "@react-native-firebase/app",
-      "@react-native-firebase/perf",
-      "@react-native-firebase/crashlytics"
     ]
   }
 }

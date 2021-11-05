@@ -6,6 +6,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 import {SCREENS} from './SCREENS'
 import useHandleDeepLink from './hooks/useHandleDeepLink'
+import notificationTool from './config/notificationTool'
 
 import ButtonCustom from '../components/ButtonCustom'
 
@@ -13,6 +14,10 @@ const Menu = () => {
   const {bottom} = useSafeAreaInsets()
   const SCREENS_NAMES = useMemo(() => Object.keys(SCREENS).reverse(), [])
   const {deepUrl} = useHandleDeepLink()
+
+  useEffect(() => {
+    notificationTool.update()
+  }, [])
 
   useEffect(() => {
     if (deepUrl) {
