@@ -21,6 +21,9 @@ class NotificationConfigTool {
     if (!IS_IOS) {
       await this.setAndroidChannel()
     }
+    messaging().setBackgroundMessageHandler(async (data) => {
+      console.log(JSON.stringify(data, null, ' '), 'setBackgroundMessageHandler')
+    })
     messaging().onMessage((message) => {
       const body = message?.notification?.body || ''
       const title = message?.notification?.title || ''
@@ -108,6 +111,10 @@ class NotificationTool extends NotificationConfigTool {
   public remove = async () => {
     await this.unsubscribe()
     // return await API.changeUser({notifications_token: ''})
+  }
+
+  public async getInitital() {
+    return await messaging().getInitialNotification()
   }
 }
 

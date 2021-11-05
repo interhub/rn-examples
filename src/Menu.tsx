@@ -17,6 +17,9 @@ const Menu = () => {
 
   useEffect(() => {
     notificationTool.update()
+    notificationTool.getInitital().then((data) => {
+      if (data) console.log(data, 'initial')
+    })
   }, [])
 
   useEffect(() => {
