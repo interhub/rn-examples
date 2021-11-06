@@ -6,6 +6,7 @@ import 'react-native-gesture-handler'
 import {enableScreens} from 'react-native-screens'
 import codePush from 'react-native-code-push'
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet'
+import {StatusBar} from 'expo-status-bar'
 
 import {SCREENS} from './src/SCREENS'
 import CodePushWrapper from './src/wrappers/CodePushWrapper'
@@ -29,6 +30,7 @@ const App = () => {
     <CodePushWrapper>
       <BottomSheetModalProvider>
         <NavigationContainer>
+          <StatusBar translucent />
           <Stack.Navigator detachInactiveScreens={false} headerMode={'screen'}>
             {Object.entries(SCREENS).map(([screenName, screenComponent], index) => {
               return (

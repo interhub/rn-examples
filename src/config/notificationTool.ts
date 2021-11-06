@@ -1,8 +1,11 @@
 // import * as Notifications from 'expo-notifications'
 import {Platform} from 'react-native'
 import messaging from '@react-native-firebase/messaging'
+import notifee, {Notification} from '@notifee/react-native'
 
 import IS_IOS from './IS_IOS'
+
+const channelId = 'example'
 
 /**
  @class for set up notification and set up initial notification response from system mobile api
@@ -11,8 +14,6 @@ class NotificationConfigTool {
   constructor() {
     this.initialize()
   }
-
-  channel_id = 'example'
 
   /**
      set up initialize notification handler
@@ -27,8 +28,28 @@ class NotificationConfigTool {
     messaging().onMessage((message) => {
       const body = message?.notification?.body || ''
       const title = message?.notification?.title || ''
+      //@ts-ignore
+      const imgUrl = message?.data?.fcm_options?.image || message?.notification?.android?.imageUrl || ''
+      const badgeCount = Number(message?.notification?.ios?.badge || message?.notification?.android?.count || 0)
+
+      console.log({badgeCount})
       console.log(JSON.stringify(message, null, ' '), 'message new')
+
+      const notfeeObj: Notification = {
+        title,
+        body,
+        id: 'ids',
+        ios: {attachments: [], badgeCount},
+        android: {badgeCount, channelId},
+        remote: false,
+      }
+      if (imgUrl) {
+        notfeeObj.ios?.attachments?.push({url: imgUrl})
+        //@ts-ignore
+        notfeeObj.android.largeIcon = imgUrl
+      }
       // this.showNotification({body, title})
+      notifee.displayNotification(notfeeObj)
     })
     // await Notifications.setNotificationHandler({
     //   handleNotification: async () => ({
@@ -68,11 +89,9 @@ class NotificationConfigTool {
      get push token (return string token from Promise)
      */
   protected getPushToken = async (): Promise<string> => {
-    if (IS_IOS) {
-      const success = await this.requestPermission()
-      if (!success) {
-        return ''
-      }
+    const success = await this.requestPermission()
+    if (!success) {
+      return ''
     }
     return await messaging().getToken()
   }
