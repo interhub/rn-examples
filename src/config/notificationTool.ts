@@ -1,7 +1,7 @@
 // import * as Notifications from 'expo-notifications'
 import {Platform} from 'react-native'
 import messaging from '@react-native-firebase/messaging'
-import notifee, {Notification} from '@notifee/react-native'
+import notifee, {AndroidBadgeIconType, AndroidImportance, AndroidStyle, Notification} from '@notifee/react-native'
 
 import IS_IOS from './IS_IOS'
 
@@ -26,63 +26,60 @@ class NotificationConfigTool {
       console.log(JSON.stringify(data, null, ' '), 'setBackgroundMessageHandler')
     })
     messaging().onMessage((message) => {
-      const body = message?.notification?.body || ''
-      const title = message?.notification?.title || ''
-      //@ts-ignore
-      const imgUrl = message?.data?.fcm_options?.image || message?.notification?.android?.imageUrl || ''
-      const badgeCount = Number(message?.notification?.ios?.badge || message?.notification?.android?.count || 0)
-
-      console.log({badgeCount})
       console.log(JSON.stringify(message, null, ' '), 'message new')
-
-      const notfeeObj: Notification = {
-        title,
-        body,
-        id: 'ids',
-        ios: {attachments: [], badgeCount},
-        android: {badgeCount, channelId},
-        remote: false,
-      }
-      if (imgUrl) {
-        notfeeObj.ios?.attachments?.push({url: imgUrl})
-        //@ts-ignore
-        notfeeObj.android.largeIcon = imgUrl
-      }
-      // this.showNotification({body, title})
-      notifee.displayNotification(notfeeObj)
+      //JUST foreground
+      const body: string = message?.notification?.body || ''
+      const title: string = message?.notification?.title || ''
+      //@ts-ignore
+      const imgUrl: string | undefined = message?.data?.fcm_options?.image || message?.notification?.android?.imageUrl || undefined
+      const badgeCount: number | undefined = Number(message?.notification?.android?.count) || Number(message?.notification?.ios?.badge) || undefined
+      this.showNotification({imgUrl, badgeCount, title, body})
     })
-    // await Notifications.setNotificationHandler({
-    //   handleNotification: async () => ({
-    //     shouldShowAlert: true,
-    //     shouldPlaySound: true,
-    //     shouldSetBadge: true,
-    //   }),
-    // })
   }
 
   /**
      method for display notification from open application
      */
-  private showNotification = async () => {
-    //Notifications.NotificationContentInput
-    // console.log(data) //TODO CHECK
-    // await Notifications.scheduleNotificationAsync({
-    //   content: data,
-    //   trigger: {
-    //     seconds: 1,
-    //     channelId: this.channel_id,
-    //   },
-    // })
+  public showNotification = async ({title, body, imgUrl, badgeCount}: {title: string; body: string; imgUrl?: string; badgeCount?: number}) => {
+    const notfeeObj: Notification = {
+      title,
+      body,
+      ios: {attachments: [], badgeCount},
+      android: {
+        channelId,
+        badgeCount,
+        badgeIconType: AndroidBadgeIconType.LARGE,
+        smallIcon: 'notification_icon',
+        color: '#4649ad',
+      },
+      remote: false,
+    }
+    if (imgUrl) {
+      //@ts-ignore
+      notfeeObj.ios.attachments = [{url: imgUrl}]
+      //@ts-ignore
+      notfeeObj.android.largeIcon = imgUrl
+      //@ts-ignore
+      notfeeObj.android.style = {picture: imgUrl, type: AndroidStyle.BIGPICTURE}
+    }
+    if (badgeCount !== undefined) {
+      //@ts-ignore
+      notfeeObj.ios.badgeCount = badgeCount
+      //@ts-ignore
+      notfeeObj.android.badgeCount = badgeCount
+    }
+    await notifee.displayNotification(notfeeObj)
+  }
+
+  public async setBadgeCount(count: number) {
+    if (Number.isFinite(count)) await notifee.setBadgeCount(count)
   }
 
   /**
      set android channel
      */
   private setAndroidChannel = async () => {
-    // await Notifications.setNotificationChannelAsync(this.channel_id, {
-    //   name: this.channel_id,
-    //   importance: Notifications.AndroidImportance.HIGH,
-    // })
+    await notifee.createChannel({name: channelId, id: channelId, importance: AndroidImportance.HIGH})
   }
 
   /**
