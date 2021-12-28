@@ -6,6 +6,9 @@ import Animated, {Extrapolate, interpolate, useAnimatedStyle} from 'react-native
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 
 import {DividerHookReturnType, useScrollDividers} from '../lib/useListDividerAnimate'
+import {GestureDetector, NativeGesture, PanGestureHandler, ScrollView} from 'react-native-gesture-handler'
+
+const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 
 const image = require('../img/bg.jpg')
 
@@ -18,8 +21,9 @@ export default () => {
     const {bottom} = useSafeAreaInsets()
 
     return (
-        <Animated.ScrollView contentContainerStyle={{paddingBottom: bottom}} scrollEventThrottle={16}
-                             onScroll={onScroll}>
+
+        <AnimatedScrollView contentContainerStyle={{paddingBottom: bottom}} scrollEventThrottle={16}
+                    onScroll={onScroll}>
             <FastImage resizeMode={'cover'} style={styles.img} source={image}/>
             <Text style={styles.title}>{text}</Text>
             {/*DIVIDER 0*/}
@@ -31,7 +35,7 @@ export default () => {
             {/*DIVIDER 2*/}
             <AnimateItemDividerWrapper title={'hello world 2!'} color={'blue'} divider={dividers[2]} zIndex={1}/>
             <Text style={styles.title}>{text}</Text>
-        </Animated.ScrollView>
+        </AnimatedScrollView>
     )
 }
 

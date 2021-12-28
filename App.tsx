@@ -10,6 +10,7 @@ import {BottomSheetModalProvider} from '@gorhom/bottom-sheet'
 import {SCREENS} from './src/SCREENS'
 import CodePushWrapper from './src/wrappers/CodePushWrapper'
 import getScreenAnimation, {SCREEN_ANIMATION} from './src/config/getScreenAnimation'
+import {StatusBar} from 'expo-status-bar'
 
 enableScreens(false)
 const Stack = createStackNavigator()
@@ -27,13 +28,14 @@ const Stack = createStackNavigator()
 const App = () => {
   return (
     <CodePushWrapper>
+      <StatusBar translucent/>
       <BottomSheetModalProvider>
         <NavigationContainer>
           <Stack.Navigator detachInactiveScreens={false} headerMode={'screen'}>
             {Object.entries(SCREENS).map(([screenName, screenComponent], index) => {
               return (
                 <Stack.Screen
-                  options={{...getScreenAnimation(SCREEN_ANIMATION.TOP, false), headerShown: true}}
+                  options={{...getScreenAnimation(SCREEN_ANIMATION.TOP), headerShown: true}}
                   key={index}
                   name={screenName}
                   component={screenComponent}

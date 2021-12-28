@@ -6,7 +6,7 @@ import Animated, {
     useAnimatedStyle,
     useSharedValue
 } from 'react-native-reanimated'
-import {Dimensions, LayoutChangeEvent, StatusBar} from 'react-native'
+import {Dimensions, LayoutChangeEvent} from 'react-native'
 import {useHeaderHeight} from '@react-navigation/stack'
 import {useState} from 'react'
 
@@ -15,7 +15,7 @@ import IS_IOS from '../../../src/config/IS_IOS'
 
 const screenHeight = Dimensions.get('screen').height
 const windowHeight = Dimensions.get('window').height
-export const NAV_HEIGHT = screenHeight - windowHeight + (StatusBar?.currentHeight || 0)
+export const NAV_HEIGHT = screenHeight - windowHeight //add status bar height if it translucent
 
 type DividerConfigType = {
     dividerCustomHeight?: number
