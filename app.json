@@ -5,7 +5,13 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "ios": {
+      "bundleIdentifier": "com.interhub.examples"
+    },
+    "android": {
+      "package": "com.interhub.examples"
+    }
   },
   "name": "examples"
 }

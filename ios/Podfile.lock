@@ -1,8 +1,17 @@
 PODS:
+  - Base64 (1.1.2)
   - boost-for-react-native (1.63.0)
+  - CodePush (7.0.4):
+    - Base64 (~> 1.1)
+    - JWT (~> 3.0.0-beta.12)
+    - React-Core
+    - SSZipArchive (~> 2.2.2)
   - DoubleConversion (1.1.6)
   - EXApplication (4.0.1):
     - ExpoModulesCore
+  - EXAV (10.2.0):
+    - ExpoModulesCore
+    - ReactCommon/turbomodule/core
   - EXConstants (13.0.0):
     - ExpoModulesCore
   - EXErrorRecovery (3.0.4):
@@ -13,14 +22,23 @@ PODS:
     - ExpoModulesCore
   - EXKeepAwake (10.0.1):
     - ExpoModulesCore
+  - EXMediaLibrary (14.0.0):
+    - ExpoModulesCore
+    - React-Core
   - Expo (44.0.2):
     - ExpoModulesCore
   - ExpoModulesCore (0.6.3):
     - React-Core
     - ReactCommon/turbomodule/core
+  - EXSensors (11.1.0):
+    - ExpoModulesCore
   - EXSplashScreen (0.14.1):
     - ExpoModulesCore
     - React-Core
+  - EXVideoThumbnails (6.1.0):
+    - ExpoModulesCore
+  - EXWebBrowser (10.1.0):
+    - ExpoModulesCore
   - FBLazyVector (0.64.3)
   - FBReactNativeSpec (0.64.3):
     - RCT-Folly (= 2020.01.13.00)
@@ -30,6 +48,17 @@ PODS:
     - React-jsi (= 0.64.3)
     - ReactCommon/turbomodule/core (= 0.64.3)
   - glog (0.3.5)
+  - JWT (3.0.0-beta.14):
+    - Base64 (~> 1.1.2)
+  - libwebp (1.2.1):
+    - libwebp/demux (= 1.2.1)
+    - libwebp/mux (= 1.2.1)
+    - libwebp/webp (= 1.2.1)
+  - libwebp/demux (1.2.1):
+    - libwebp/webp
+  - libwebp/mux (1.2.1):
+    - libwebp/demux
+  - libwebp/webp (1.2.1)
   - RCT-Folly (2020.01.13.00):
     - boost-for-react-native
     - DoubleConversion
@@ -223,6 +252,10 @@ PODS:
     - React-jsi (= 0.64.3)
     - React-perflogger (= 0.64.3)
   - React-jsinspector (0.64.3)
+  - react-native-blur (0.8.0):
+    - React
+  - react-native-safe-area-context (3.3.2):
+    - React-Core
   - React-perflogger (0.64.3)
   - React-RCTActionSheet (0.64.3):
     - React-Core/RCTActionSheetHeaders (= 0.64.3)
@@ -287,19 +320,85 @@ PODS:
     - React-cxxreact (= 0.64.3)
     - React-jsi (= 0.64.3)
     - React-perflogger (= 0.64.3)
+  - RNCMaskedView (0.2.6):
+    - React-Core
+  - RNFastImage (8.5.11):
+    - React-Core
+    - SDWebImage (~> 5.11.1)
+    - SDWebImageWebPCoder (~> 0.8.4)
+  - RNGestureHandler (2.1.0):
+    - React-Core
+  - RNImageCropPicker (0.36.4):
+    - React-Core
+    - React-RCTImage
+    - RNImageCropPicker/QBImagePickerController (= 0.36.4)
+    - TOCropViewController
+  - RNImageCropPicker/QBImagePickerController (0.36.4):
+    - React-Core
+    - React-RCTImage
+    - TOCropViewController
+  - RNReanimated (2.3.1):
+    - DoubleConversion
+    - FBLazyVector
+    - FBReactNativeSpec
+    - glog
+    - RCT-Folly
+    - RCTRequired
+    - RCTTypeSafety
+    - React
+    - React-callinvoker
+    - React-Core
+    - React-Core/DevSupport
+    - React-Core/RCTWebSocket
+    - React-CoreModules
+    - React-cxxreact
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-RCTActionSheet
+    - React-RCTAnimation
+    - React-RCTBlob
+    - React-RCTImage
+    - React-RCTLinking
+    - React-RCTNetwork
+    - React-RCTSettings
+    - React-RCTText
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - RNScreens (3.10.1):
+    - React-Core
+    - React-RCTImage
+  - RNSharedElement (0.8.3):
+    - React-Core
+  - RNSVG (12.1.1):
+    - React
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
+  - SDWebImageWebPCoder (0.8.4):
+    - libwebp (~> 1.0)
+    - SDWebImage/Core (~> 5.10)
+  - SSZipArchive (2.2.3)
+  - TOCropViewController (2.6.0)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
+  - CodePush (from `../node_modules/react-native-code-push`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EXApplication (from `../node_modules/expo-application/ios`)
+  - EXAV (from `../node_modules/expo-av/ios`)
   - EXConstants (from `../node_modules/expo-constants/ios`)
   - EXErrorRecovery (from `../node_modules/expo-error-recovery/ios`)
   - EXFileSystem (from `../node_modules/expo-file-system/ios`)
   - EXFont (from `../node_modules/expo-font/ios`)
   - EXKeepAwake (from `../node_modules/expo-keep-awake/ios`)
+  - EXMediaLibrary (from `../node_modules/expo-media-library/ios`)
   - Expo (from `../node_modules/expo/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core/ios`)
+  - EXSensors (from `../node_modules/expo-sensors/ios`)
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
+  - EXVideoThumbnails (from `../node_modules/expo-video-thumbnails/ios`)
+  - EXWebBrowser (from `../node_modules/expo-web-browser/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
@@ -316,6 +415,8 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
+  - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -328,17 +429,36 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
+  - RNFastImage (from `../node_modules/react-native-fast-image`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSharedElement (from `../node_modules/react-native-shared-element`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   trunk:
+    - Base64
     - boost-for-react-native
+    - JWT
+    - libwebp
+    - SDWebImage
+    - SDWebImageWebPCoder
+    - SSZipArchive
+    - TOCropViewController
 
 EXTERNAL SOURCES:
+  CodePush:
+    :path: "../node_modules/react-native-code-push"
   DoubleConversion:
     :podspec: "../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec"
   EXApplication:
     :path: "../node_modules/expo-application/ios"
+  EXAV:
+    :path: "../node_modules/expo-av/ios"
   EXConstants:
     :path: "../node_modules/expo-constants/ios"
   EXErrorRecovery:
@@ -349,12 +469,20 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-font/ios"
   EXKeepAwake:
     :path: "../node_modules/expo-keep-awake/ios"
+  EXMediaLibrary:
+    :path: "../node_modules/expo-media-library/ios"
   Expo:
     :path: "../node_modules/expo/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core/ios"
+  EXSensors:
+    :path: "../node_modules/expo-sensors/ios"
   EXSplashScreen:
     :path: "../node_modules/expo-splash-screen/ios"
+  EXVideoThumbnails:
+    :path: "../node_modules/expo-video-thumbnails/ios"
+  EXWebBrowser:
+    :path: "../node_modules/expo-web-browser/ios"
   FBLazyVector:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   FBReactNativeSpec:
@@ -383,6 +511,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-blur:
+    :path: "../node_modules/@react-native-community/blur"
+  react-native-safe-area-context:
+    :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -407,24 +539,49 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCMaskedView:
+    :path: "../node_modules/@react-native-masked-view/masked-view"
+  RNFastImage:
+    :path: "../node_modules/react-native-fast-image"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNImageCropPicker:
+    :path: "../node_modules/react-native-image-crop-picker"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
+  RNScreens:
+    :path: "../node_modules/react-native-screens"
+  RNSharedElement:
+    :path: "../node_modules/react-native-shared-element"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  Base64: cecfb41a004124895a7bcee567a89bae5a89d49b
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  CodePush: b51b7ac64c07d4eacfc8cc5750a1dd28adbf2528
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   EXApplication: bdc8dc27713235565da1029a34385229f31b8e08
+  EXAV: e501565d5aff495b7b5e9249d489f5ef94db03b2
   EXConstants: 5d18484e38e8eacef7695a82214b6ac90133dedf
   EXErrorRecovery: deea88a01d38f8b1c1181b4e1d179b0ba0e4bb5b
   EXFileSystem: 7d1309ba6b38b82ef7fc9e80174de3f9184ac8b4
   EXFont: 1fb13af43dc517c01c0ff21a6e32f9f9bf2ea602
   EXKeepAwake: b571c2ad8323b2fced6e907766e2549f75119471
+  EXMediaLibrary: 6acf919299bccc64a59e6e89a3b792276e309302
   Expo: f0d5e0f58ca4176bf46a7801359f0838d126c189
   ExpoModulesCore: d04e519b3e8e21523b195bb21a40144e30f1e163
+  EXSensors: 7cb3fc7b9dd8458787ff8b5b849f318fc357393f
   EXSplashScreen: 7872675b95bb07c25f922b3d3dfae70c76fb5a00
+  EXVideoThumbnails: 6c08e978ed7a5542c5dca04a1757363fd29cb2a1
+  EXWebBrowser: 37388663fa51cbfc883de2244931a5182d948e5f
   FBLazyVector: c71c5917ec0ad2de41d5d06a5855f6d5eda06971
   FBReactNativeSpec: f0ccabab8dcbc40d96f402a1419ed92918e59be2
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
+  JWT: ef71dfb03e1f842081e64dc42eef0e164f35d251
+  libwebp: 98a37e597e40bfdb4c911fc98f2c53d0b12d05fc
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: d34bf57e17cb6e3b2681f4809b13843c021feb6c
   RCTTypeSafety: 8dab4933124ed39bb0c1d88d74d61b1eb950f28f
@@ -436,6 +593,8 @@ SPEC CHECKSUMS:
   React-jsi: a8b09c29521c798f1783348b37b511ba7b3dbeb3
   React-jsiexecutor: df6abc9fafbecb8e5b7a5fbc5e6d4bd017d594d5
   React-jsinspector: 34e23860273a23695342f58eed3ffd3ba10c31e0
+  react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
+  react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-perflogger: cc76a4254d19640f1d8ad1c66fdee800414b805c
   React-RCTActionSheet: 7448f049318d8d7e8a9a1ebb742ada721757eea8
   React-RCTAnimation: fb9b3fa1a4a9f5e6ab01b3368693ce69860ba76a
@@ -448,6 +607,18 @@ SPEC CHECKSUMS:
   React-RCTVibration: c7f845861e79eae13dc1e8217a3cf47a3945b504
   React-runtimeexecutor: 493d9abb8b23c3f84e19ae221eeba92cadcb70dc
   ReactCommon: 8fea6422328e2fc093e25c9fac67adbcf0f04fb4
+  RNCMaskedView: c298b644a10c0c142055b3ae24d83879ecb13ccd
+  RNFastImage: 1f2cab428712a4baaf78d6169eaec7f622556dd7
+  RNGestureHandler: e5c7cab5f214503dcefd6b2b0cefb050e1f51c4a
+  RNImageCropPicker: 73891a709e6fd8a47d32104d942757971f220aee
+  RNReanimated: 7f143675d94978c3555345d5bfa8ed6ae800c5d3
+  RNScreens: 522705f2e5c9d27efb17f24aceb2bf8335bc7b8e
+  RNSharedElement: 381b5e33366513cc3f449f2dc3a42c5df0f54021
+  RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SDWebImageWebPCoder: f93010f3f6c031e2f8fb3081ca4ee6966c539815
+  SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
+  TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
   Yoga: e6ecf3fa25af9d4c87e94ad7d5d292eedef49749
 
 PODFILE CHECKSUM: 0352a762c0a6c2da71682ed35a88691b45f7c99d
