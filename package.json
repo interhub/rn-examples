@@ -4,11 +4,13 @@
   "main": "index.js",
   "scripts": {
     "start": "expo start --dev-client",
-    "android": "sudo expo run:android",
+    "android": "expo run:android",
     "ios": "expo run:ios",
     "prebuild": "expo prebuild",
     "pod:install": "npx pod-install",
     "xcode:open": "xed ./ios",
+    "run-release-ios": "expo run:ios --configuration Release",
+    "run-release-android": "cd android && chmod a+rwx gradlew && cd .. && expo run:android --variant release",
     "android_studio:open": "open -a Android\\ Studio \"android\"",
     "codepush:prod:android": "appcenter codepush release-react -a interhub/examples-android -d Production",
     "codepush:prod:ios": "appcenter codepush release-react -a interhub/examples-ios --plist-file ios/examples/Info.plist -d Production",
@@ -17,7 +19,8 @@
     "codepush:stag": "npm run codepush:stag:android && npm run codepush:stag:ios",
     "codepush:prod": "npm run codepush:prod:android && npm run codepush:prod:ios",
     "codepush:all": "npm run codepush:stag && npm run codepush:prod",
-    "lint": "npx eslint . --fix ; npx prettier --write ./src"
+    "lint": "npx eslint . --fix ; npx prettier --write ./src",
+    "codepush:debug": "code-push debug android"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4",
