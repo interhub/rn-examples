@@ -6,11 +6,19 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover"
+    },
     "ios": {
       "bundleIdentifier": "com.interhub.examples"
     },
     "android": {
       "package": "com.interhub.examples"
+    },
+    "androidStatusBar": {
+      "translucent": true
     }
   },
   "name": "examples"

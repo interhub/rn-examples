@@ -6,6 +6,7 @@
     "start": "expo start --dev-client",
     "android": "sudo expo run:android",
     "ios": "expo run:ios",
+    "prebuild": "expo prebuild",
     "pod:install": "npx pod-install",
     "xcode:open": "xed ./ios",
     "android_studio:open": "open -a Android\\ Studio \"android\"",
