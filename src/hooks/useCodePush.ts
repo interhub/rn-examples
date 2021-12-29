@@ -16,7 +16,7 @@ enum CODE_PUSH_KEYS_IOS {
 }
 
 enum CODE_PUSH_KEYS_ANDROID {
-    STAGING = '_Lrxh_pnDHqPrvl1CvjD45CCVv7Yfi8cUYTAc-8',
+    STAGING = '_Lrxh_pnDHqPrvl1CvjD45CCVv7Yfi8cUYTAc',
     PRODUCTION = '8y5XGRB7QRHIL4pRKtjryZnGnrzLiFw7Pcnse-Vupwhfq5pF2Ukb',
 }
 

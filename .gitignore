@@ -114,3 +114,6 @@ web-build/
 dist/
 
 # @end expo-cli
+/android/app/release/app-release.apk
+/android/app/release/output-metadata.json
+/Staging
