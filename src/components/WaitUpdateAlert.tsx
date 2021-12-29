@@ -4,7 +4,7 @@ import {ActivityIndicator, StyleSheet, Text, View} from 'react-native'
 const WaitUpdateAlert = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Проверка обновлений</Text>
+      <Text style={styles.title}>Установка обновлений</Text>
       <ActivityIndicator style={{marginTop: 20}} color={'green'} />
     </View>
   )

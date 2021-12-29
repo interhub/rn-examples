@@ -1,6 +1,9 @@
 import codePush from 'react-native-code-push'
-import {useLayoutEffect, useState} from 'react'
+import {useState} from 'react'
 import IS_IOS from '../config/IS_IOS'
+import {CodePushContextType} from '../wrappers/CodePushWrapper'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import {Platform} from 'react-native'
 
 /**
  TIME BEFORE RESET APP START (AFTER UPDATE) for sync code push
@@ -17,13 +20,13 @@ enum CODE_PUSH_KEYS_IOS {
 
 enum CODE_PUSH_KEYS_ANDROID {
     STAGING = '_Lrxh_pnDHqPrvl1CvjD45CCVv7Yfi8cUYTAc',
-    PRODUCTION = '8y5XGRB7QRHIL4pRKtjryZnGnrzLiFw7Pcnse-Vupwhfq5pF2Ukb',
+    PRODUCTION = '8y5XGRB7QRHIL4pRKtjryZnGnrzLiFw7Pcnse',
 }
 
 /**
  @hook for code push reload and update
  */
-const useCodePush = () => {
+const useCodePush = (): CodePushContextType => {
     const [isUpdating, setIsUpdating] = useState(false)
     const stopUpdating = () => {
         setIsUpdating(false)
@@ -33,13 +36,17 @@ const useCodePush = () => {
         setIsUpdating(true)
     }
 
-    const syncCodePush = async (isProduction: boolean): Promise<any> => {
+    const syncCodePush = async (): Promise<any> => {
         if (__DEV__) {
             return stopUpdating()
         }
+
         const update = !!(await codePush.checkForUpdate())
         if (!update) return stopUpdating()
+
         startUpdating()
+
+        const isProduction = await isProductionTool.checkIsProd()
 
         return new Promise((ok) => {
 
@@ -69,6 +76,25 @@ const useCodePush = () => {
         })
     }
 
-    return {syncCodePush, isUpdating}
+    const switchProd = async (isProdTo: boolean) => {
+        const isProdAlready = await isProductionTool.checkIsProd()
+        if (isProdAlready === isProdTo) return
+        await isProductionTool.setIsProd(isProdTo)
+        await syncCodePush()
+    }
+
+    return {syncCodePush, isUpdating, switchProd}
 }
+
+
+export const isProductionTool = {
+    checkIsProd: async () => {
+        const isProdStorage = await AsyncStorage.getItem('is_prod')
+        return (isProdStorage === null) || (JSON.parse(isProdStorage) === true)
+    },
+    setIsProd: async (isProd: boolean) => {
+        await AsyncStorage.setItem('is_prod', JSON.stringify(isProd))
+    },
+}
+
 export default useCodePush

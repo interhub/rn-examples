@@ -49,7 +49,11 @@ public class MainApplication extends Application implements ReactApplication {
     //CODE PUSH METHOD
     @Override
     protected @Nullable String getJSBundleFile() {
+      if (BuildConfig.DEBUG) {
+        return super.getJSBundleFile();
+      } else {
         return CodePush.getJSBundleFile();
+      }
     }
   });
 

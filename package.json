@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4",
+    "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/blur": "^3.6.0",
     "@react-native-community/eslint-config": "^3.0.1",
     "@react-native-masked-view/masked-view": "0.2.6",
