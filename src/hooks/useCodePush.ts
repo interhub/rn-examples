@@ -3,7 +3,6 @@ import {useState} from 'react'
 import IS_IOS from '../config/IS_IOS'
 import {CodePushContextType} from '../wrappers/CodePushWrapper'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import {Platform} from 'react-native'
 
 /**
  TIME BEFORE RESET APP START (AFTER UPDATE) for sync code push
@@ -27,6 +26,7 @@ enum CODE_PUSH_KEYS_ANDROID {
  @hook for code push reload and update
  */
 const useCodePush = (): CodePushContextType => {
+    //Set default false if should show loading screen for initial (or add additional state for other loading)
     const [isUpdating, setIsUpdating] = useState(false)
     const stopUpdating = () => {
         setIsUpdating(false)
@@ -36,13 +36,14 @@ const useCodePush = (): CodePushContextType => {
         setIsUpdating(true)
     }
 
+    const checkIsUpdate = async () => {
+        return !!(await codePush.checkForUpdate())
+    }
+
     const syncCodePush = async (): Promise<any> => {
         if (__DEV__) {
             return stopUpdating()
         }
-
-        const update = !!(await codePush.checkForUpdate())
-        if (!update) return stopUpdating()
 
         startUpdating()
 
@@ -83,7 +84,7 @@ const useCodePush = (): CodePushContextType => {
         await syncCodePush()
     }
 
-    return {syncCodePush, isUpdating, switchProd}
+    return {syncCodePush, isUpdating, switchProd, checkIsUpdate}
 }
 
 
