@@ -23,7 +23,7 @@ const Menu = () => {
 
     return (
         <FlatList
-            contentContainerStyle={{paddingBottom: bottom + 10, backgroundColor: 'blue'}}
+            contentContainerStyle={{paddingBottom: bottom + 10}}
             style={{flex: 1}}
             data={SCREENS_NAMES}
             initialNumToRender={14}
