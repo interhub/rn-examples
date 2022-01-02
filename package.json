@@ -20,7 +20,8 @@
     "codepush:prod": "npm run codepush:prod:android && npm run codepush:prod:ios",
     "codepush:all": "npm run codepush:stag && npm run codepush:prod",
     "lint": "npx eslint . --fix ; npx prettier --write ./src",
-    "codepush:debug": "code-push debug android"
+    "codepush:debug": "code-push debug android",
+    "test": "jest"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4",
@@ -33,7 +34,9 @@
     "@react-navigation/native": "^5.0.9",
     "@react-navigation/stack": "^5.1.1",
     "@types/clamp": "^1.0.0",
+    "@types/enzyme": "^3.10.11",
     "@types/faker": "^5.5.8",
+    "@types/jest": "^27.4.0",
     "@types/lodash": "^4.14.171",
     "axios": "^0.21.1",
     "clamp": "^1.0.1",
@@ -73,6 +76,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@testing-library/jest-native": "^4.0.4",
+    "@testing-library/react-native": "^9.0.0",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
     "babel-jest": "~25.2.6",
@@ -84,6 +89,15 @@
     "jest-expo": "^42.0.0",
     "react-test-renderer": "~16.13.1",
     "typescript": "~4.0.0"
+  },
+  "jest": {
+    "preset": "react-native",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ],
+    "setupFiles": [
+      "./__mock__/mock_setup"
+    ]
   },
   "private": true
 }
