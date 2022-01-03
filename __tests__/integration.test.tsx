@@ -1,5 +1,5 @@
 import React from 'react'
-import {cleanup, render, fireEvent, waitFor} from '@testing-library/react-native'
+import {cleanup, render, fireEvent, waitFor, waitForElementToBeRemoved} from '@testing-library/react-native'
 import TextLine from '../components/TextLine'
 import TesterModuleComponent from '../TesterModuleComponent'
 
@@ -97,9 +97,26 @@ describe('example integration testing of multiple components module', () => {
         pressCountTimes(IncBtnComponent, 3)
 
         //check the element appear with await (3 possible ways to pass test)
+
         await waitFor(() => getByText('value is 3'))
         expect(CustomComponent.props.value).toBe(3)
         expect(CustomDisplay.props.children.join('')).toBe('value is 3')
+    })
+
+    test('unmount testing', async () => {
+        const {getByText, getByTestId} = render(
+            <TesterModuleComponent/>
+        )
+        //wait for unmount should check all inside one scope and find so
+        await waitForElementToBeRemoved(() => {
+            const IncBtnComponent = getByTestId('inc')
+            //1. find element
+            const el = getByText('count is zero')
+            //2. change dom set state
+            pressCountTimes(IncBtnComponent, 3)
+            //3. return already unmounted element
+            return el
+        })
     })
 
 })

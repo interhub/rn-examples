@@ -3,8 +3,7 @@ import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 
 const TesterModuleComponent = () => {
     const [count, setCount] = useState(0)
-    const increment = async () => {
-        // await new Promise((ok) => setTimeout(ok, 300))
+    const increment = () => {
         setCount(count + 1)
     }
     const decrement = () => {
@@ -24,6 +23,7 @@ const TesterModuleComponent = () => {
 
 const CustomDisplay = ({value}: { value: number }) => {
     return <View>
+        {!value && <Text>count is zero</Text>}
         <Text>value is {value}</Text>
     </View>
 }
