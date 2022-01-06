@@ -2,6 +2,7 @@ import React, {useEffect, useLayoutEffect, useMemo, useRef, useState} from 'reac
 import {ScrollView, StyleSheet, Text, View} from 'react-native'
 import Animated, {useAnimatedProps, useSharedValue, withTiming} from 'react-native-reanimated'
 import Svg, {Circle, Rect} from 'react-native-svg'
+import {clamp} from 'lodash'
 
 //TODO using https://codepen.io/JMChristensen/pen/Ablch !!
 
@@ -12,12 +13,13 @@ export default function () {
     const FILL_COLOR = '#d19d60'
     const SIZE_C = 300
     const BORDER_WIDTH = 30
-    const progressPercent = 92
-    const initialProgress = 40
+    const progressPercent = 89
+    const safeProgressResult = clamp(progressPercent || 0, 0 , 100)
+    const initialProgress = 5
     const R = (SIZE_C / 2) - (BORDER_WIDTH/2)
     const LEN = Math.PI * (R * 2)
     const initAnimateValue = ((100 - initialProgress) / 100) * LEN
-    const SDO = ((100 - progressPercent) / 100) * LEN
+    const SDO = ((100 - safeProgressResult) / 100) * LEN
     const animValue = useSharedValue(initAnimateValue)
 
     useEffect(() => {
@@ -48,7 +50,7 @@ export default function () {
             <View style={styles.centerChild}>
                 {/*PLACE TO APPLY CHILD INSTEAD*/}
                 <View>
-                    <Text style={{fontSize: 24, color: '#1a1a1a'}}>Progress is {progressPercent}%</Text>
+                    <Text style={{fontSize: 24, color: '#1a1a1a'}}>Progress is {safeProgressResult}%</Text>
                 </View>
             </View>
         </View>
