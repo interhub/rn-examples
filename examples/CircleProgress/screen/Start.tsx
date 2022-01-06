@@ -11,16 +11,17 @@ export default function () {
     const BORDER_COLOR = '#4649ad'
     const FILL_COLOR = '#d19d60'
     const SIZE_C = 300
-    const BORDER_WIDTH = 20
-    const animValue = useSharedValue(0)
-    const progressPercent = 20
-    const R = (SIZE_C / 2) - BORDER_WIDTH
+    const BORDER_WIDTH = 30
+    const progressPercent = 92
+    const initialProgress = 40
+    const R = (SIZE_C / 2) - (BORDER_WIDTH/2)
     const LEN = Math.PI * (R * 2)
+    const initAnimateValue = ((100 - initialProgress) / 100) * LEN
     const SDO = ((100 - progressPercent) / 100) * LEN
+    const animValue = useSharedValue(initAnimateValue)
+
     useEffect(() => {
-        setTimeout(() => {
-            animValue.value = withTiming(SDO)
-        }, 500)
+            animValue.value = withTiming(SDO,{duration: 1000})
     }, [SDO])
 
     const AProps = useAnimatedProps(() => ({
@@ -34,7 +35,7 @@ export default function () {
                 <CircleAnimate
                     cx={SIZE_C / 2}
                     cy={SIZE_C / 2}
-                    r={(SIZE_C / 2) - BORDER_WIDTH}
+                    r={R}
                     stroke={BORDER_COLOR}
                     strokeWidth={BORDER_WIDTH}
                     fill={FILL_COLOR}
