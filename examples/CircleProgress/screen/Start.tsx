@@ -33,7 +33,7 @@ export default function () {
                                 duration={5000}
                                 loop
                                 easing={Easing.linear}
-                                repeatSpacer={100}
+                                repeatSpacer={5}
                             >
                                 Progress is {progressValue}% Progress is {progressValue}% Progress is {progressValue}%
                             </TextTicker>
