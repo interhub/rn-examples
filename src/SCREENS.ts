@@ -28,7 +28,7 @@ import MediaPickerList from '../examples/MediaPickerList'
 import BottomSheet from '../examples/BottomSheet'
 import FlubberSvg from '../examples/FlubberSvg'
 import BlurViewLib from '../examples/BlurViewLib'
-import SharedNativeNav from '../examples/SharedNativeNav'
+import SharedImageNav from '../examples/SharedImageNav'
 import ListDividerInterpolate from '../examples/ListDividerInterpolate'
 import CircleProgress from '../examples/CircleProgress'
 
@@ -60,7 +60,7 @@ export const SCREENS = {
   ['BLUR VIEW LIB 💭']: BlurViewLib,
   ['SHARED CUSTOM🧵']: CustomShared,
   ['SHARED_NAV🦈']: SharedNav,
-  ['SHARED NATIVE NAV 🌭']: SharedNativeNav,
   ['LIST DIVIDERS INTERPOLATE 🦀']: ListDividerInterpolate,
   ['CIRCLE PROGRESS ⭕️']: CircleProgress,
+  ['SHARED IMAGES NAV 🌠']: SharedImageNav,
 }

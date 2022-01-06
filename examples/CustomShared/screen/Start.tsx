@@ -201,10 +201,6 @@ const ViewMove = ({nodeRef, children, oneStyle}: {nodeRef: MutableRefObject<any>
   )
 }
 
-// const Title = () => {
-//     return <Text>hello world!</Text>
-// }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

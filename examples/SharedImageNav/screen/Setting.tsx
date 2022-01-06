@@ -1,9 +1,9 @@
 import React from 'react'
 import {StyleSheet, Text, View} from 'react-native'
-import {SharedElement} from 'react-navigation-shared-element'
 import FastImage from 'react-native-fast-image'
 
 import Header from '../components/Header'
+import IMG_URI from '../img/IMG_URI'
 
 const imageSource = require('../img/bg.jpg')
 
@@ -12,13 +12,13 @@ const ItemDetail = () => {
     <View style={styles.container}>
       <Header />
       <View style={styles.imgBox}>
-        <SharedElement id="image">
-          <FastImage style={styles.image} resizeMode="contain" source={imageSource} />
-        </SharedElement>
+        {/*<SharedElement id="image">*/}
+          <FastImage style={styles.image} resizeMode="contain" source={{uri: IMG_URI}} />
+        {/*</SharedElement>*/}
       </View>
-      <SharedElement id="text">
+      {/*<SharedElement id="text">*/}
         <Text style={styles.text}>SHARED ELEMENT TEXT</Text>
-      </SharedElement>
+      {/*</SharedElement>*/}
     </View>
   )
 }

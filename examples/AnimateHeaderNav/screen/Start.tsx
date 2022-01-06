@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react'
+import React from 'react'
 import {Animated, ScrollView, StyleSheet, Text, View} from 'react-native'
 
 import useNavigationAnimateValue from '../../../src/hooks/useNavigationAnimateValue'
