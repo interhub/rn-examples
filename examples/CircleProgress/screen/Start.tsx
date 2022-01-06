@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
-import {ScrollView, StyleSheet, Text, View} from 'react-native'
+import {Easing, ScrollView, StyleSheet, Text, View} from 'react-native'
 import CircleProgressBar from '../components/CircleProgressBar'
 import ButtonCustom from '../../../components/ButtonCustom'
+import TextTicker from 'react-native-text-ticker'
 
 export default function () {
     //possible to props params
@@ -25,8 +26,17 @@ export default function () {
                     fillColor={FILL_COLOR}
                     initialProgressPercent={initialProgress}
                     center={
-                        <View>
-                            <Text style={{fontSize: 24, color: '#1a1a1a'}}>Progress is {progressValue}%</Text>
+                        <View style={{marginHorizontal: BORDER_WIDTH}}>
+                            <TextTicker
+                                selectable
+                                style={{fontSize: 24}}
+                                duration={5000}
+                                loop
+                                easing={Easing.linear}
+                                repeatSpacer={100}
+                            >
+                                Progress is {progressValue}% Progress is {progressValue}% Progress is {progressValue}%
+                            </TextTicker>
                         </View>
                     }/>
             </View>
