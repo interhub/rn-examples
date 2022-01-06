@@ -30,6 +30,7 @@ import FlubberSvg from '../examples/FlubberSvg'
 import BlurViewLib from '../examples/BlurViewLib'
 import SharedNativeNav from '../examples/SharedNativeNav'
 import ListDividerInterpolate from '../examples/ListDividerInterpolate'
+import CircleProgress from '../examples/CircleProgress'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -61,4 +62,5 @@ export const SCREENS = {
   ['SHARED_NAV🦈']: SharedNav,
   ['SHARED NATIVE NAV 🌭']: SharedNativeNav,
   ['LIST DIVIDERS INTERPOLATE 🦀']: ListDividerInterpolate,
+  ['CIRCLE PROGRESS ⭕️']: CircleProgress,
 }
