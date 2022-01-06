@@ -1,12 +1,6 @@
-import React, {useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react'
-import {ScrollView, StyleSheet, Text, View} from 'react-native'
-import Animated, {useAnimatedProps, useSharedValue, withTiming} from 'react-native-reanimated'
-import Svg, {Circle, Rect} from 'react-native-svg'
-import {clamp} from 'lodash'
-
-//TODO using https://codepen.io/JMChristensen/pen/Ablch !!
-
-const CircleAnimate = Animated.createAnimatedComponent(Circle)
+import React from 'react'
+import {StyleSheet, Text, View} from 'react-native'
+import CircleProgressBar from '../components/CircleProgressBar'
 
 export default function () {
     //possible to props params
@@ -15,52 +9,22 @@ export default function () {
     const SIZE_C = 300
     const BORDER_WIDTH = 30
     const progressPercent = 89
-
-    const safeProgressResult = clamp(progressPercent || 0, 0, 100)
     const initialProgress = 5
-    const R = (SIZE_C / 2) - (BORDER_WIDTH / 2)
-    const LEN = Math.PI * (R * 2)
-    const initAnimateValue = ((100 - initialProgress) / 100) * LEN
-    const SDO = ((100 - safeProgressResult) / 100) * LEN
-    const animValue = useSharedValue(initAnimateValue)
-
-    useEffect(() => {
-        animValue.value = withTiming(SDO, {duration: 1000})
-    }, [SDO])
-
-    const AProps = useAnimatedProps(() => ({
-        strokeDashoffset: animValue.value
-    }))
-
-    /**
-     * TODO - если процент прогресса больше 100, то необходимо найти остаток от деления (X) на 100 и увеличить прогресс на 100*X
-     * и добавить дополнительную одну окружность с тенями поверх первой окружности.
-     * - тогда при любом сколько угодном большем проценте прогресса будет удобное отображение поверх.
-     * Важно на экране отображаь теоретическое значение прогресса, а в расчетах использовать безопасное значение прогресса до 100
-     */
 
     return (
         <View style={styles.container}>
-            <Svg height={SIZE_C} width={SIZE_C} viewBox={`0 0 ${SIZE_C} ${SIZE_C}`}>
-                <CircleAnimate
-                    cx={SIZE_C / 2}
-                    cy={SIZE_C / 2}
-                    r={R}
-                    stroke={BORDER_COLOR}
-                    strokeWidth={BORDER_WIDTH}
-                    fill={FILL_COLOR}
-                    strokeLinecap={'round'}
-                    strokeDasharray={LEN}
-                    animatedProps={AProps}
-                />
-            </Svg>
-            {/*CENTER CHILD CONTAINER*/}
-            <View style={styles.centerChild}>
-                {/*PLACE TO APPLY CHILD INSTEAD*/}
-                <View>
-                    <Text style={{fontSize: 24, color: '#1a1a1a'}}>Progress is {safeProgressResult}%</Text>
-                </View>
-            </View>
+            <CircleProgressBar
+                progressPercent={progressPercent}
+                size={SIZE_C}
+                borderWidth={BORDER_WIDTH}
+                borderColor={BORDER_COLOR}
+                fillColor={FILL_COLOR}
+                initialProgressPercent={initialProgress}
+                center={
+                    <View>
+                        <Text style={{fontSize: 24, color: '#1a1a1a'}}>Progress is {progressPercent}%</Text>
+                    </View>
+                }/>
         </View>
     )
 }
@@ -71,10 +35,4 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffa83c',
         alignItems: 'center'
     },
-    centerChild: {
-        ...StyleSheet.absoluteFillObject,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-
 })
