@@ -9,11 +9,13 @@ import {clamp} from 'lodash'
 const CircleAnimate = Animated.createAnimatedComponent(Circle)
 
 export default function () {
+    //possible to props params
     const BORDER_COLOR = '#4649ad'
     const FILL_COLOR = '#d19d60'
     const SIZE_C = 300
     const BORDER_WIDTH = 30
     const progressPercent = 89
+
     const safeProgressResult = clamp(progressPercent || 0, 0 , 100)
     const initialProgress = 5
     const R = (SIZE_C / 2) - (BORDER_WIDTH/2)
