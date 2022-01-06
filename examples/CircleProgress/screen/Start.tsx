@@ -16,22 +16,28 @@ export default function () {
     const BORDER_WIDTH = 30
     const progressPercent = 89
 
-    const safeProgressResult = clamp(progressPercent || 0, 0 , 100)
+    const safeProgressResult = clamp(progressPercent || 0, 0, 100)
     const initialProgress = 5
-    const R = (SIZE_C / 2) - (BORDER_WIDTH/2)
+    const R = (SIZE_C / 2) - (BORDER_WIDTH / 2)
     const LEN = Math.PI * (R * 2)
     const initAnimateValue = ((100 - initialProgress) / 100) * LEN
     const SDO = ((100 - safeProgressResult) / 100) * LEN
     const animValue = useSharedValue(initAnimateValue)
 
     useEffect(() => {
-            animValue.value = withTiming(SDO,{duration: 1000})
+        animValue.value = withTiming(SDO, {duration: 1000})
     }, [SDO])
 
     const AProps = useAnimatedProps(() => ({
         strokeDashoffset: animValue.value
     }))
 
+    /**
+     * TODO - если процент прогресса больше 100, то необходимо найти остаток от деления (X) на 100 и увеличить прогресс на 100*X
+     * и добавить дополнительную одну окружность с тенями поверх первой окружности.
+     * - тогда при любом сколько угодном большем проценте прогресса будет удобное отображение поверх.
+     * Важно на экране отображаь теоретическое значение прогресса, а в расчетах использовать безопасное значение прогресса до 100
+     */
 
     return (
         <View style={styles.container}>
