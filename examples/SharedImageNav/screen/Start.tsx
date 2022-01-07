@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 300,
     },
-    image: {width: '100%', height: '100%', borderRadius: 15},
+    image: {width: '100%', height: '100%', borderRadius: 0},
 })
 
 export default Start

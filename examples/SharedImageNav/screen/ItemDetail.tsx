@@ -14,6 +14,7 @@ const ItemDetail = () => {
     return (
         <View style={{flex: 1}}>
             <Header/>
+            {/*<View style={{height: 100, backgroundColor: 'red'}}/>*/}
             <View style={styles.container}>
                 <Text style={styles.text}>SHARED ELEMENT TEXT</Text>
                 <View style={styles.imgBox}>
