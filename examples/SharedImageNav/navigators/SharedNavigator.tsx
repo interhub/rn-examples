@@ -151,14 +151,12 @@ export const SharedImageProvider = ({children}: { children: React.ReactNode }) =
     </SharedImageContext.Provider>
 }
 export const useSharedImageTo = (ref: React.MutableRefObject<any>, uri: string) => {
-    console.log(uri, 'set to uri')
     // const animateNavValue = useNavigationAnimateValue({startOpen: 0, endOpen: 100, extra: 'clamp'})
     const {addListener} = useNavigation()
     const {setImageRefTo, reverseStart} = useContext(SharedImageContext)
     useEffect(() => {
         setImageRefTo(ref, uri)
         return addListener('blur',()=>{
-            console.log('call blur')
             reverseStart()
         })
     }, [])
