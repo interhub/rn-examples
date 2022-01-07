@@ -8,6 +8,11 @@ require 'json'
 podfile_properties = JSON.parse(File.read('./Podfile.properties.json')) rescue {}
 
 target 'examples' do
+
+  #a couple of permissions lib lines
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+
   use_expo_modules!
   config = use_native_modules!
 
