@@ -2,6 +2,8 @@ import React from 'react'
 import {View} from 'react-native'
 import {ExpoWebGLRenderingContext, GLView} from 'expo-gl'
 
+//TODO expo 44 is not support expo-three library and do crash on render call - I should await release a new library three expo version
+
 export default function App() {
     return (
         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
