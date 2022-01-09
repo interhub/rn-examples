@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {Image, ScrollView, StyleSheet, TextInput} from 'react-native'
+import {Image, ScrollView, StyleSheet} from 'react-native'
 import ButtonCustom from '../../../components/ButtonCustom'
 import TextLine from '../../../components/TextLine'
 import DividerCustom from '../../../components/DividerCustom'
