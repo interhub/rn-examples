@@ -31,6 +31,7 @@ import BlurViewLib from '../examples/BlurViewLib'
 import SharedImageNav from '../examples/SharedImageNav'
 import ListDividerInterpolate from '../examples/ListDividerInterpolate'
 import CircleProgress from '../examples/CircleProgress'
+import Models3d from '../examples/Models3d'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -63,4 +64,5 @@ export const SCREENS = {
   ['LIST DIVIDERS INTERPOLATE 🦀']: ListDividerInterpolate,
   ['CIRCLE PROGRESS ⭕️']: CircleProgress,
   ['SHARED IMAGES NAV 🌠']: SharedImageNav,
+  ['MODELS 3D 📦']: Models3d,
 }
