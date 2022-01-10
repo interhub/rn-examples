@@ -32,6 +32,7 @@ import SharedImageNav from '../examples/SharedImageNav'
 import ListDividerInterpolate from '../examples/ListDividerInterpolate'
 import CircleProgress from '../examples/CircleProgress'
 import SharingData from '../examples/SharingData'
+import FaceId from '../examples/FaceId'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -65,4 +66,5 @@ export const SCREENS = {
   ['SHARED IMAGES NAV 🌠']: SharedImageNav,
   ['PHOTO_PICKER📸']: PhotoPicker,
   ['SHARING DATA 📲']: SharingData,
+  ['FACE ID 🐾']: FaceId,
 }
