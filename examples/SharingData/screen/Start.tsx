@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
-import {Image, ScrollView, StyleSheet} from 'react-native'
+import {Image, ScrollView, StyleSheet, View} from 'react-native'
 import ButtonCustom from '../../../components/ButtonCustom'
 import TextLine from '../../../components/TextLine'
 import DividerCustom from '../../../components/DividerCustom'
 import SharingTool from '../tools/SharingTool'
+import Message from '../../../src/config/Message'
 
 export default function () {
 
@@ -17,6 +18,7 @@ export default function () {
         const text = await SharingTool.readClipboardText()
         setPasteText(text)
     }
+    const [progressValue, setProgressValue] = useState(0)
 
     return (
         <ScrollView style={styles.container} contentContainerStyle={{paddingBottom: 200}}>
@@ -41,12 +43,20 @@ export default function () {
             <ButtonCustom onPress={() => SharingTool.shareFileRemote(imageToShare)}>
                 Share Image By Remote Link
             </ButtonCustom>
+            <View style={{margin: 5}}/>
+            <ButtonCustom
+                onPress={() => SharingTool.downloadFile(imageToShare).then(() => Message('Успешно загружено'))}>
+                Download Image By Remote Link
+            </ButtonCustom>
             {/*VIDEO BLOCK*/}
             <DividerCustom margin={10}/>
             <TextLine selectable color={'#7df3ff'} style={{marginBottom: 10}}>
                 Видео: {videoLinkToShare}
             </TextLine>
-            <ButtonCustom onPress={() => SharingTool.shareFileRemote(videoLinkToShare)}>
+            <TextLine color={'#8c8c8c'} style={{marginBottom: 10}}>
+                Прогресс загрузки: {progressValue.toFixed()}%
+            </TextLine>
+            <ButtonCustom onPress={() => SharingTool.shareFileRemote(videoLinkToShare, setProgressValue)}>
                 Share Video By Remote Link
             </ButtonCustom>
             {/*COPY BLOCK*/}

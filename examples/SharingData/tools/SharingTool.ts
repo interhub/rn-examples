@@ -1,7 +1,7 @@
 import moment from 'moment'
 import * as FileSystem from 'expo-file-system'
 import {Share} from 'react-native'
-import * as Clipboard from 'expo-clipboard';
+import * as Clipboard from 'expo-clipboard'
 
 type ProgressUpdateCallbackType = (progress: number) => void
 
@@ -14,7 +14,7 @@ class SharingTool {
             console.log('start download file', {fullFileName})
             const localPath = FileSystem.documentDirectory + fullFileName
             const FSR = FileSystem.createDownloadResumable(link, localPath, {}, (progressObj) => {
-                const progress = progressObj.totalBytesWritten / progressObj.totalBytesExpectedToWrite
+                const progress = (progressObj.totalBytesWritten / progressObj.totalBytesExpectedToWrite) * 100
                 if (onProgress) onProgress(progress)
             })
             const res = await FSR.downloadAsync()
@@ -54,11 +54,11 @@ class SharingTool {
         })
     }
 
-    writeClipboardText = async (text: string) =>{
-        Clipboard.setString(text);
+    writeClipboardText = async (text: string) => {
+        Clipboard.setString(text)
     }
 
-    readClipboardText = async () =>{
+    readClipboardText = async () => {
         return await Clipboard.getStringAsync() || ''
     }
 
