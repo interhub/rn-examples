@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import {Image, ScrollView} from 'react-native'
-import * as MediaLibrary from 'expo-media-library'
 import ButtonCustom from '../../components/ButtonCustom'
 import TextLine from '../../components/TextLine'
 import Message from '../../src/config/Message'
@@ -57,12 +56,12 @@ export default function Start() {
                 Select Multiple Photo 🌇 🌇 🌇
             </ButtonCustom>
             <ButtonCustom m={10} onPress={() => takeOnePhoto()}>
-                Take One Photo
+                Take One Photo 📸
             </ButtonCustom>
             <ButtonCustom
                 disabled={!localPaths[0]} m={10}
                 onPress={() => ImagePickerTool.saveImageToMedia(localPaths[0]).then((isSuccess) => Message(isSuccess ? 'Успешно сохранено' : 'Не успешно'))}>
-                Save first Photo To Media
+                Save First Photo To Media ⬇️
             </ButtonCustom>
             {/*DISPLAY STATE*/}
             <TextLine style={{marginVertical: 10}}>

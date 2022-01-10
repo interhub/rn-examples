@@ -58,16 +58,6 @@ class ImagePickerTool {
         }
     }
 
-    saveImageToMedia = async (localPath: string): Promise<boolean> => {
-        try {
-            if (!localPath) return false
-            const asset = await MediaLibrary.createAssetAsync(localPath)
-            return !!asset
-        } catch (e) {
-            return false
-        }
-    }
-
     takeOnePhoto = async (): Promise<ImageReturnType & SuccessStatusType> => {
         const noneImage: ImageReturnType = {base64: '', mime: '', localPath: ''}
         try {
@@ -80,6 +70,16 @@ class ImagePickerTool {
             const isCanceled = e.code === 'E_PICKER_CANCELLED'
             console.log('selectOnePhoto', e.code)
             return {isSuccess: false, isCanceled, ...noneImage}
+        }
+    }
+
+    saveImageToMedia = async (localPath: string): Promise<boolean> => {
+        try {
+            if (!localPath) return false
+            const asset = await MediaLibrary.createAssetAsync(localPath)
+            return !!asset
+        } catch (e) {
+            return false
         }
     }
 }
@@ -108,5 +108,7 @@ const options: Options = {
     cropperStatusBarColor: '#2b2b3b',
     includeExif: true,
 }
+
+//E_PICKER_CANNOT_RUN_CAMERA_ON_SIMULATOR
 
 export default new ImagePickerTool()
