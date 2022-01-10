@@ -12,7 +12,7 @@ class SharingTool {
             const timestamp = moment().valueOf()
             const fullFileName = `file_${timestamp}.${ext}`
             console.log('start download file', {fullFileName})
-            const localPath = FileSystem.documentDirectory + fullFileName
+            const localPath = FileSystem.cacheDirectory + fullFileName
             const FSR = FileSystem.createDownloadResumable(link, localPath, {}, (progressObj) => {
                 const progress = (progressObj.totalBytesWritten / progressObj.totalBytesExpectedToWrite) * 100
                 if (onProgress) onProgress(progress)

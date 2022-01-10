@@ -68,13 +68,13 @@ export default function () {
                 Copy Text
             </ButtonCustom>
             {/*PASTE BLOCK*/}
-            <DividerCustom margin={10}/>
-            <TextLine selectable color={'#8c8c8c'} style={{marginBottom: 10}}>
+            <TextLine selectable color={'#8c8c8c'} style={{marginVertical: 10}}>
                 {pasteText}
             </TextLine>
             <ButtonCustom onPress={() => startPasteState()}>
                 Paste Text
             </ButtonCustom>
+            <DividerCustom margin={10}/>
 
         </ScrollView>
     )

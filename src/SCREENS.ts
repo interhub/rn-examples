@@ -46,7 +46,6 @@ export const SCREENS = {
   ['MODAL_STACK_NAV⚙️']: ModalStackNav,
   ['NAVIGATE_ANIMATION👑']: NavigateAnimation,
   ['TAB_NAVIGATOR☘️']: TabsNavigator,
-  ['PHOTO_PICKER📸']: PhotoPicker,
   ['MASK_VIEW🎭']: MaskView,
   ['COLOR_NAV_PICKER🌈']: ColorNavPicker,
   ['SPRING_SCROLL🧹']: SpringScroll,
@@ -64,5 +63,6 @@ export const SCREENS = {
   ['LIST DIVIDERS INTERPOLATE 🦀']: ListDividerInterpolate,
   ['CIRCLE PROGRESS ⭕️']: CircleProgress,
   ['SHARED IMAGES NAV 🌠']: SharedImageNav,
+  ['PHOTO_PICKER📸']: PhotoPicker,
   ['SHARING DATA 📲']: SharingData,
 }

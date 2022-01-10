@@ -23,7 +23,7 @@ const ButtonCustom = ({children = '', bold = true, labaelColor = '#FFF', onPress
       <TouchableOpacity
         delayPressIn={30}
         onPress={onPress}
-        disabled={false}
+        disabled={props.disabled}
         style={[
           {
             width: '100%',
@@ -31,6 +31,7 @@ const ButtonCustom = ({children = '', bold = true, labaelColor = '#FFF', onPress
             borderRadius: 10,
             backgroundColor: color,
             justifyContent: 'center',
+            opacity: props.disabled ? 0.8 : 1
           },
           style,
         ]}

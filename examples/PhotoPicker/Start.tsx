@@ -1,7 +1,11 @@
 import React, {useState} from 'react'
-import {Button, Image, SafeAreaView} from 'react-native'
-import ImagePicker, {Options} from 'react-native-image-crop-picker'
+import {Image, ScrollView} from 'react-native'
 import * as MediaLibrary from 'expo-media-library'
+import ButtonCustom from '../../components/ButtonCustom'
+import TextLine from '../../components/TextLine'
+import Message from '../../src/config/Message'
+import ImagePickerTool from './tools/ImagePickerTool'
+import {map} from 'lodash'
 
 /**
  better picker example
@@ -12,66 +16,58 @@ import * as MediaLibrary from 'expo-media-library'
  3) copy paste it module and usage
  */
 export default function Start() {
-  const [imageUri, setImageUri] = useState('')
+    const [imagesUri, setImagesUri] = useState<string[]>([])
+    const [localPaths, setLocalPaths] = useState<string[]>([])
 
-  const IMAGE_SIZE = 500
+    const selectOnePhoto = async () => {
+        const {isSuccess, isCanceled, localPath, base64} = await ImagePickerTool.selectOnePhoto()
+        if (isCanceled) return Message('Отменено')
+        if (!isSuccess) return Message('Не удалось выброать изображение')
+        setImagesUri([base64])
+        setLocalPaths([localPath])
+    }
 
-  const reqPermissions = async () => {
-    const {granted} = await MediaLibrary.requestPermissionsAsync()
-    return granted
-  }
+    const selectMultiplePhoto = async () => {
+        const {isSuccess, isCanceled, images} = await ImagePickerTool.selectMultiplePhoto(4, 2)
+        if (isCanceled) return Message('Отменено')
+        if (!isSuccess) return Message('Не удалось выбрать изображение')
+        setImagesUri(map(images, 'base64'))
+        setLocalPaths(map(images, 'localPath'))
+    }
 
-  const PRIMARY_COLOR = '#4649ad'
+    const takeOnePhoto = async () => {
+        const {isSuccess, isCanceled, localPath, base64} = await ImagePickerTool.takeOnePhoto()
+        if (isCanceled) return Message('Отменено')
+        if (!isSuccess) return Message('Не удалось сделать изображение')
+        setImagesUri([base64])
+        setLocalPaths([localPath])
+    }
 
-  const options: Options = {
-    multiple: false,
-    cropping: true,
-    height: IMAGE_SIZE,
-    width: IMAGE_SIZE,
-    includeBase64: true,
-    mediaType: 'photo',
-    useFrontCamera: false,
-    waitAnimationEnd: true,
-    maxFiles: 1,
-    minFiles: 1,
-    cropperToolbarTitle: 'Изменить',
-    cropperChooseText: 'Выбрать',
-    cropperCancelText: 'Отменить',
-    loadingLabelText: 'Загрузка...',
-    cropperToolbarWidgetColor: PRIMARY_COLOR,
-    cropperToolbarColor: '#2b2b3b',
-    cropperActiveWidgetColor: PRIMARY_COLOR,
-    cropperStatusBarColor: '#2b2b3b',
-    includeExif: true,
-  }
+    const imagesExist = !!imagesUri.length
 
-  const base64ToUri = (base: any = ''): string => {
-    if (!base) return base
-    return 'data:image/jpg;base64,' + base
-  }
-
-  const selectPhoto = async () => {
-    const access = await reqPermissions()
-    if (!access) return
-    ImagePicker.openPicker(options).then((image) => {
-      setImageUri(base64ToUri(image.data))
-    })
-  }
-  const takePhoto = async () => {
-    const access = await reqPermissions()
-    if (!access) return
-    ImagePicker.openCamera(options).then((image) => {
-      setImageUri(base64ToUri(image.data))
-    })
-  }
-
-  const imageExist = !!imageUri
-
-  return (
-    <SafeAreaView style={{flex: 1}}>
-      {imageExist && <Image style={{height: 300, width: 300, alignSelf: 'center'}} source={{uri: imageUri}} />}
-      <Button title="Select Photo" onPress={() => selectPhoto()} />
-      <Button title="Take Photo" onPress={() => takePhoto()} />
-    </SafeAreaView>
-  )
+    return (
+        <ScrollView>
+            {imagesExist && imagesUri.map((uri, key) => {
+                return <Image style={{height: 200, width: 200, alignSelf: 'center'}} source={{uri}} key={key}/>
+            })}
+            <ButtonCustom m={10} onPress={() => selectOnePhoto()}>
+                Select One Photo 🌇
+            </ButtonCustom>
+            <ButtonCustom m={10} onPress={() => selectMultiplePhoto()}>
+                Select Multiple Photo 🌇 🌇 🌇
+            </ButtonCustom>
+            <ButtonCustom m={10} onPress={() => takeOnePhoto()}>
+                Take One Photo
+            </ButtonCustom>
+            <ButtonCustom
+                disabled={!localPaths[0]} m={10}
+                onPress={() => ImagePickerTool.saveImageToMedia(localPaths[0]).then((isSuccess) => Message(isSuccess ? 'Успешно сохранено' : 'Не успешно'))}>
+                Save first Photo To Media
+            </ButtonCustom>
+            {/*DISPLAY STATE*/}
+            <TextLine style={{marginVertical: 10}}>
+                {localPaths.join('\n_________\n\n')}
+            </TextLine>
+        </ScrollView>
+    )
 }
