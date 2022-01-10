@@ -6,6 +6,34 @@ import {map} from 'lodash'
 type ImageReturnType = { mime: string, base64: string, localPath: string }
 type SuccessStatusType = { isSuccess: boolean, isCanceled: boolean }
 
+const IMAGE_SIZE = 500
+const PRIMARY_COLOR = '#4649ad' //branding color
+
+/**
+* default custom options for "react-native-image-crop-picker"
+*/
+const options: Options = {
+    multiple: false,
+    cropping: true,
+    height: IMAGE_SIZE,
+    width: IMAGE_SIZE,
+    includeBase64: true,
+    mediaType: 'photo',
+    useFrontCamera: false,
+    waitAnimationEnd: true,
+    maxFiles: 1,
+    minFiles: 1,
+    cropperToolbarTitle: 'Изменить', //make lang
+    cropperChooseText: 'Выбрать',
+    cropperCancelText: 'Отменить',
+    loadingLabelText: 'Загрузка...',
+    cropperToolbarWidgetColor: PRIMARY_COLOR,
+    cropperToolbarColor: '#2b2b3b',
+    cropperActiveWidgetColor: PRIMARY_COLOR,
+    cropperStatusBarColor: '#2b2b3b',
+    includeExif: true,
+}
+
 class ImagePickerTool {
     // constructor() {
     //     /**
@@ -95,32 +123,5 @@ class ImagePickerTool {
     cleanAllCache = async () => await ImagePicker.clean()
     cleanItemCache = async (path: string) => await ImagePicker.cleanSingle(path)
 }
-
-const IMAGE_SIZE = 500
-const PRIMARY_COLOR = '#4649ad'
-
-const options: Options = {
-    multiple: false,
-    cropping: true,
-    height: IMAGE_SIZE,
-    width: IMAGE_SIZE,
-    includeBase64: true,
-    mediaType: 'photo',
-    useFrontCamera: false,
-    waitAnimationEnd: true,
-    maxFiles: 1,
-    minFiles: 1,
-    cropperToolbarTitle: 'Изменить', //make lang
-    cropperChooseText: 'Выбрать',
-    cropperCancelText: 'Отменить',
-    loadingLabelText: 'Загрузка...',
-    cropperToolbarWidgetColor: PRIMARY_COLOR,
-    cropperToolbarColor: '#2b2b3b',
-    cropperActiveWidgetColor: PRIMARY_COLOR,
-    cropperStatusBarColor: '#2b2b3b',
-    includeExif: true,
-}
-
-//E_PICKER_CANNOT_RUN_CAMERA_ON_SIMULATOR
 
 export default new ImagePickerTool()
