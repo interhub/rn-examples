@@ -7,12 +7,12 @@ type ImageReturnType = { mime: string, base64: string, localPath: string }
 type SuccessStatusType = { isSuccess: boolean, isCanceled: boolean }
 
 class ImagePickerTool {
-    constructor() {
-        /**
-         * clean cache on app open
-         */
-        this.cleanAllCache()
-    }
+    // constructor() {
+    //     /**
+    //      * clean cache on app open
+    //      */
+    //     this.cleanAllCache()
+    // }
 
     reqPermissions = async () => {
         const {granted} = await MediaLibrary.requestPermissionsAsync()
