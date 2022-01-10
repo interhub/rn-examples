@@ -15,14 +15,14 @@ import {map} from 'lodash'
  3) copy paste it module and usage
  */
 export default function Start() {
-    const [imagesUri, setImagesUri] = useState<string[]>([])
+    const [images64Uri, setImages64Uri] = useState<string[]>([])
     const [localPaths, setLocalPaths] = useState<string[]>([])
 
     const selectOnePhoto = async () => {
         const {isSuccess, isCanceled, localPath, base64} = await ImagePickerTool.selectOnePhoto()
         if (isCanceled) return Message('Отменено')
         if (!isSuccess) return Message('Не удалось выброать изображение')
-        setImagesUri([base64])
+        setImages64Uri([base64])
         setLocalPaths([localPath])
     }
 
@@ -30,7 +30,7 @@ export default function Start() {
         const {isSuccess, isCanceled, images} = await ImagePickerTool.selectMultiplePhoto(4, 2)
         if (isCanceled) return Message('Отменено')
         if (!isSuccess) return Message('Не удалось выбрать изображение')
-        setImagesUri(map(images, 'base64'))
+        setImages64Uri(map(images, 'base64'))
         setLocalPaths(map(images, 'localPath'))
     }
 
@@ -38,15 +38,15 @@ export default function Start() {
         const {isSuccess, isCanceled, localPath, base64} = await ImagePickerTool.takeOnePhoto()
         if (isCanceled) return Message('Отменено')
         if (!isSuccess) return Message('Не удалось сделать изображение')
-        setImagesUri([base64])
+        setImages64Uri([base64])
         setLocalPaths([localPath])
     }
 
-    const imagesExist = !!imagesUri.length
+    const imagesExist = !!images64Uri.length
 
     return (
         <ScrollView>
-            {imagesExist && imagesUri.map((uri, key) => {
+            {imagesExist && images64Uri.map((uri, key) => {
                 return <Image style={{height: 200, width: 200, alignSelf: 'center'}} source={{uri}} key={key}/>
             })}
             <ButtonCustom m={10} onPress={() => selectOnePhoto()}>
