@@ -7,6 +7,12 @@ type ImageReturnType = { mime: string, base64: string, localPath: string }
 type SuccessStatusType = { isSuccess: boolean, isCanceled: boolean }
 
 class ImagePickerTool {
+    constructor() {
+        /**
+         * clean cache on app open
+         */
+        this.cleanAllCache()
+    }
 
     reqPermissions = async () => {
         const {granted} = await MediaLibrary.requestPermissionsAsync()
@@ -82,6 +88,12 @@ class ImagePickerTool {
             return false
         }
     }
+
+    /**
+     * clean tmp files (after you cant save image by local link)
+     */
+    cleanAllCache = async () => await ImagePicker.clean()
+    cleanItemCache = async (path: string) => await ImagePicker.cleanSingle(path)
 }
 
 const IMAGE_SIZE = 500
