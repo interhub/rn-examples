@@ -42,17 +42,17 @@ class ImagePickerTool {
     //     this.cleanAllCache()
     // }
 
-    reqPermissions = async () => {
+    private reqPermissions = async () => {
         const {granted} = await MediaLibrary.requestPermissionsAsync()
         return granted
     }
 
-    base64ToUri = (base: any = ''): string => {
+    private base64ToUri = (base: any = ''): string => {
         if (!base) return base
         return 'data:image/jpg;base64,' + base
     }
 
-    convertPickerResponseToMeta = (image: ImageOrVideo): ImageReturnType => {
+    private convertPickerResponseToMeta = (image: ImageOrVideo): ImageReturnType => {
         const mime = image.mime
         const localPath = image.path
         //@ts-ignore
