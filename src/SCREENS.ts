@@ -34,6 +34,7 @@ import CircleProgress from '../examples/CircleProgress'
 import SharingData from '../examples/SharingData'
 import FaceId from '../examples/FaceId'
 import SearchLine from '../examples/SearchLine'
+import StoriesSlider from '../examples/StoriesSlider'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -69,4 +70,5 @@ export const SCREENS = {
   ['SHARING DATA 📲']: SharingData,
   ['FACE ID 🐾']: FaceId,
   ['SEARCH LINE 🔎']: SearchLine,
+  ['STORIES SLIDER 📀']: StoriesSlider,
 }

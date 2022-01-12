@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {useState} from 'react'
 import {ActivityIndicator, Animated, Keyboard, StyleSheet, TextInput, TouchableOpacity, View,} from 'react-native'
-import useAnimateShowScale from '../hooks/useAnimateShowScale'
+import useAnimateShowScale from '../../../src/hooks/useAnimateShowScale'
 import {impactAsync, ImpactFeedbackStyle,} from 'expo-haptics'
 import SIZE from '../../../src/config/SIZE'
 import {AntDesign, FontAwesome} from '@expo/vector-icons'

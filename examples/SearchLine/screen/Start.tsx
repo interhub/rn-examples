@@ -3,15 +3,16 @@ import {FlatList, StyleSheet, View} from 'react-native'
 import SearchTextInput from '../components/SearchTextInput'
 import * as faker from 'faker'
 import TextLine from '../../../components/TextLine'
-import useDebounceState from '../hooks/useDebounceState'
 import {filter} from 'lodash'
 import layoutAnimation from '../../../src/config/layoutAnimation'
+import useNotFirstEffect from '../../../src/hooks/useNotFirstEffect'
+import useDebounceState from '../../../src/hooks/useDebounceState'
 
 type MusicItemType = {
     name: string
     id: string
 }
-const MUSICS:MusicItemType[] = new Array(200).fill(1).map((_, key) => ({name: faker.music.genre(), id: String(key)}))
+const MUSICS: MusicItemType[] = new Array(200).fill(1).map((_, key) => ({name: faker.music.genre(), id: String(key)}))
 
 export default function () {
     const [listMusics, setListMusics] = useState<MusicItemType[]>(MUSICS)
@@ -25,12 +26,9 @@ export default function () {
     }, [value])
 
     //layout animation hook
-    useEffect(() => {
-        return ()=>{
-            layoutAnimation()
-        }
+    useNotFirstEffect(() => {
+        layoutAnimation()
     }, [value])
-
 
     return (
         <View style={styles.container}>
@@ -41,7 +39,7 @@ export default function () {
                 keyboardDismissMode={'on-drag'}
                 initialNumToRender={35}
                 data={listMusics}
-                keyExtractor={(item:MusicItemType) => String(item.id)}
+                keyExtractor={(item: MusicItemType) => String(item.id)}
                 renderItem={({item: {name}, index}) => {
                     return <View>
                         <TextLine>
@@ -53,6 +51,7 @@ export default function () {
         </View>
     )
 }
+
 
 const styles = StyleSheet.create({
     container: {
