@@ -33,6 +33,7 @@ import ListDividerInterpolate from '../examples/ListDividerInterpolate'
 import CircleProgress from '../examples/CircleProgress'
 import SharingData from '../examples/SharingData'
 import FaceId from '../examples/FaceId'
+import SearchLine from '../examples/SearchLine'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -67,4 +68,5 @@ export const SCREENS = {
   ['PHOTO_PICKER📸']: PhotoPicker,
   ['SHARING DATA 📲']: SharingData,
   ['FACE ID 🐾']: FaceId,
+  ['SEARCH LINE 🔎']: SearchLine,
 }

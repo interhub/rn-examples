@@ -31,6 +31,8 @@ PODS:
     - React-Core
   - Expo (44.0.2):
     - ExpoModulesCore
+  - ExpoHaptics (11.1.0):
+    - ExpoModulesCore
   - ExpoModulesCore (0.6.3):
     - React-Core
     - ReactCommon/turbomodule/core
@@ -404,6 +406,7 @@ DEPENDENCIES:
   - EXLocalAuthentication (from `../node_modules/expo-local-authentication/ios`)
   - EXMediaLibrary (from `../node_modules/expo-media-library/ios`)
   - Expo (from `../node_modules/expo/ios`)
+  - ExpoHaptics (from `../node_modules/expo-haptics/ios`)
   - ExpoModulesCore (from `../node_modules/expo-modules-core/ios`)
   - EXSensors (from `../node_modules/expo-sensors/ios`)
   - EXSharing (from `../node_modules/expo-sharing/ios`)
@@ -489,6 +492,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-media-library/ios"
   Expo:
     :path: "../node_modules/expo/ios"
+  ExpoHaptics:
+    :path: "../node_modules/expo-haptics/ios"
   ExpoModulesCore:
     :path: "../node_modules/expo-modules-core/ios"
   EXSensors:
@@ -594,6 +599,7 @@ SPEC CHECKSUMS:
   EXLocalAuthentication: 4c7166ed3133d2c75586093833936652e7d2c7fc
   EXMediaLibrary: 6acf919299bccc64a59e6e89a3b792276e309302
   Expo: f0d5e0f58ca4176bf46a7801359f0838d126c189
+  ExpoHaptics: c62a5fc7bba0184d0165d559fc2b0fc46168ef40
   ExpoModulesCore: d04e519b3e8e21523b195bb21a40144e30f1e163
   EXSensors: 7cb3fc7b9dd8458787ff8b5b849f318fc357393f
   EXSharing: 2e26cf64fb2a89484b4f6ff8da12d6d752f83962
