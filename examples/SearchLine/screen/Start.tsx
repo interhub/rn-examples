@@ -17,7 +17,7 @@ export default function () {
             setListMusics(MUSICS)
             return
         }
-        const filteredMusics = filter(listMusics, (name) => name.includes(value))
+        const filteredMusics = filter(listMusics, (name) => name.toLowerCase().includes(value.toLowerCase()))
         setListMusics(filteredMusics)
     }, [value])
 
@@ -28,6 +28,7 @@ export default function () {
                 <SearchTextInput showSendBtn onInput={setValue}/>
             </View>
             <FlatList
+                keyboardDismissMode={'on-drag'}
                 initialNumToRender={35}
                 data={listMusics}
                 keyExtractor={(item, index) => String(index)}
