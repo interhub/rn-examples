@@ -45,7 +45,6 @@ const SearchTextInput = (
             setLoading(false)
             if (onSubmit)
                 onSubmit(value)
-            setValue('')
         }, 1000)
         //after success send query
         Keyboard.dismiss()
@@ -66,7 +65,7 @@ const SearchTextInput = (
                     if (onInput)
                         onInput(text)
                 }}
-                placeholder={('Оставить комментарий')}
+                placeholder={('Поиск')}
                 style={styles.textInput}
                 placeholderTextColor={'gray'}
                 maxLength={1000}
