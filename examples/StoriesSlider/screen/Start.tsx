@@ -12,7 +12,8 @@ const images = [
     'https://w-dog.ru/wallpapers/10/2/548658425817633/ozero-derevya-gory.jpg',
     'https://cdn1.ozone.ru/s3/multimedia-0/6054403776.jpg',
     'https://content-20.foto.my.mail.ru/mail/madoroff/_cover/b-3.jpg',
-    'https://i.pinimg.com/originals/f3/df/4a/f3df4a82b4782c0be372e673c7ca3df4.jpg'
+    'https://i.pinimg.com/originals/f3/df/4a/f3df4a82b4782c0be372e673c7ca3df4.jpg',
+    'https://w-dog.ru/wallpapers/10/2/548658425817633/ozero-derevya-gory.jpg',
 ]
 
 export default function () {
@@ -42,10 +43,10 @@ export default function () {
                 nextStory={() => setScrollToIndex(index + 1)} prevStory={() => setScrollToIndex(index - 1)}>
                 <FlatList
                     onScrollBeginDrag={() => setIsStop(true)}
-                    onScrollEndDrag={() => setIsStop(false)}
                     onMomentumScrollEnd={({nativeEvent: {contentOffset: {x}}}) => {
                         const index = Math.ceil(x / SIZE.width)
                         setScrollToIndex(index)
+                        setIsStop(false)
                     }}
                     decelerationRate={'fast'}
                     snapToInterval={SIZE.width}
