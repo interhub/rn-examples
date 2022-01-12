@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native'
+import {FlatList, StyleSheet, View} from 'react-native'
 import SearchTextInput from '../components/SearchTextInput'
 import * as faker from 'faker'
 import TextLine from '../../../components/TextLine'
 import useDebounceState from '../hooks/useDebounceState'
 import {filter} from 'lodash'
 
-const MUSICS = new Array(100).fill(1).map(() => faker.music.genre())
+const MUSICS = new Array(200).fill(1).map(() => faker.music.genre())
 
 export default function () {
     const [listMusics, setListMusics] = useState<string[]>(MUSICS)
