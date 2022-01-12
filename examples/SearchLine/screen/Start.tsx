@@ -13,11 +13,7 @@ export default function () {
 
     const [value, setValue] = useDebounceState('', 300)
     useEffect(() => {
-        if (!value) {
-            setListMusics(MUSICS)
-            return
-        }
-        const filteredMusics = filter(listMusics, (name) => name.toLowerCase().includes(value.toLowerCase()))
+        const filteredMusics = filter(MUSICS, (name) => name.toLowerCase().includes(value.toLowerCase()))
         setListMusics(filteredMusics)
     }, [value])
 
@@ -39,7 +35,7 @@ export default function () {
                         </TextLine>
                     </View>
                 }}
-                style={styles.container}/>
+                contentContainerStyle={{paddingBottom: 50}}/>
         </View>
     )
 }
