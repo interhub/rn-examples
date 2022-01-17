@@ -21,7 +21,6 @@ export default () => {
     const {bottom} = useSafeAreaInsets()
 
     return (
-
         <AnimatedScrollView contentContainerStyle={{paddingBottom: bottom}} scrollEventThrottle={16}
                     onScroll={onScroll}>
             <FastImage resizeMode={'cover'} style={styles.img} source={image}/>
