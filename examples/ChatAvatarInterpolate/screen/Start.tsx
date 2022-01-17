@@ -18,7 +18,7 @@ const MESSAGE_BETWEEN_MARGIN = 8
 const ChatAvatarInterpolate = () => {
     const {bottom: bottomInsert} = useSafeAreaInsets()
     const scrollY = useRef(new Animated.Value(0)).current
-    console.log({bottomInsert})
+
     useEffect(() => {
 
     }, [])
