@@ -86,9 +86,8 @@ const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value 
     const animateStyleAvatar = {
         transform: [{
             translateY: scrollAnimateValue.interpolate({
-                // zero | startMovePosition | startMovePosition+1 | endTopPosition | endTopPosition+1 //
-                inputRange: [-1, 0, startBottomPosition, endTopPosition],//startBottomPosition, startBottomPosition + 1, endTopPosition, endTopPosition + 1],// endTopPosition, endTopPosition + 1],
-                outputRange: [-1, 0, 0, -itemHeight,],//startBottomPosition, -startBottomPosition - 1, -endTopPosition, endTopPosition + 1],// -endTopPosition, -endTopPosition - 1],
+                inputRange: [-1, 0, startBottomPosition, endTopPosition],
+                outputRange: [-1, 0, 0, -itemHeight],
                 extrapolate: 'clamp'
             })
         }]
