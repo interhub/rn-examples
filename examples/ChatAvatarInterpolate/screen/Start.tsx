@@ -1,9 +1,8 @@
 import React, {useEffect, useLayoutEffect, useRef, useState} from 'react'
-import {Animated, Dimensions, FlatList, StyleSheet, Text, View, VirtualizedList} from 'react-native'
+import {Animated, StyleSheet, Text, View} from 'react-native'
 import * as faker from 'faker'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
-import {useIsFocused, useNavigation} from '@react-navigation/native'
-import {useHeaderHeight} from '@react-navigation/stack'
+import {useNavigation} from '@react-navigation/native'
 import SIZE from '../../../src/config/SIZE'
 
 type MessageType = { username: string, text: string, avatar: string }
@@ -25,14 +24,8 @@ const ChatAvatarInterpolate = () => {
     return (
         <View style={styles.container}>
             <Animated.FlatList<MessageType>
-                // ref={listRef}
-                // onScrollToIndexFailed={onScrollToIndexFailed}
                 contentContainerStyle={{paddingTop: bottomInsert}}
                 initialNumToRender={messages.length}
-                // getItemLayout={(item, index) => {
-                //     const H = 280
-                //     return {index, length: H, offset: index * H}
-                // }}
                 keyExtractor={(item, index) => String(index)}
                 data={messages}
                 inverted
@@ -118,7 +111,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#111a32',
         paddingHorizontal: MESSAGE_BETWEEN_MARGIN,
-        // transform:[{rotateX : 2*Math.PI}]
     },
     messageBlock: {
         flexDirection: 'row',
