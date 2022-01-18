@@ -63,7 +63,7 @@ const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value 
             const startBottomPosition = Math.round(SIZE.height - (pY + h) - bottomInsert) // pY - (SIZE.height - headerHeight)
             const endTopPosition = Math.round((startBottomPosition + h) - (AVATAR_ICON_SIZE)) // pY - (SIZE.height - headerHeight)
             setInterPositions({endTopPosition, startBottomPosition})
-            console.log({pY, startBottomPosition, endTopPosition, h, username, heightScreen: SIZE.height, bottomInsert})
+            // console.log({pY, startBottomPosition, endTopPosition, h, username, heightScreen: SIZE.height, bottomInsert})
         })
     }, [isEndAnim])
 
