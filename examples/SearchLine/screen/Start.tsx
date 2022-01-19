@@ -7,6 +7,8 @@ import {filter} from 'lodash'
 import layoutAnimation from '../../../src/config/layoutAnimation'
 import useNotFirstEffect from '../../../src/hooks/useNotFirstEffect'
 import useDebounceState from '../../../src/hooks/useDebounceState'
+import DividerCustom from '../../../components/DividerCustom'
+import {Foundation} from '@expo/vector-icons'
 
 type MusicItemType = {
     name: string
@@ -27,7 +29,7 @@ export default function () {
 
     //layout animation hook
     useNotFirstEffect(() => {
-        layoutAnimation()
+        layoutAnimation.listMove()
     }, [value])
 
     return (
@@ -40,12 +42,13 @@ export default function () {
                 initialNumToRender={35}
                 data={listMusics}
                 keyExtractor={(item: MusicItemType) => String(item.id)}
-                renderItem={({item: {name}, index}) => {
-                    return <View>
-                        <TextLine>
-                            {index + 1}. {name}
-                        </TextLine>
-                    </View>
+                renderItem={({item: {name, id}, index}) => {
+                    return                      <View style={styles.itemBox}>
+                            <TextLine>
+                                {id}. {name}
+                            </TextLine>
+                            <Foundation name="music" size={24} color="black"/>
+                        </View>
                 }}
                 contentContainerStyle={{paddingBottom: 50}}/>
         </View>
@@ -70,4 +73,11 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 20,
     },
+    itemBox: {
+        flexDirection: 'row', justifyContent: 'space-between',
+        padding: 10,
+        borderWidth: 0.5,
+        borderColor: '#d8d8d8'
+    }
+
 })

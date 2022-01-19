@@ -11,6 +11,8 @@ import {SCREENS} from './src/SCREENS'
 import CodePushWrapper from './src/wrappers/CodePushWrapper'
 import getScreenAnimation, {SCREEN_ANIMATION} from './src/config/getScreenAnimation'
 import {StatusBar} from 'expo-status-bar'
+import {UIManager} from 'react-native'
+import IS_IOS from './src/config/IS_IOS'
 
 enableScreens(false)
 const Stack = createStackNavigator()
@@ -24,6 +26,12 @@ const Stack = createStackNavigator()
  * 4) usage webrtc video connect module
  * 5) interpolate scroll bottom position post line with move to scroll position and stop on the end post  point
  * */
+
+if (!IS_IOS) {
+    if (UIManager.setLayoutAnimationEnabledExperimental) {
+        UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+}
 
 const App = () => {
   return (
