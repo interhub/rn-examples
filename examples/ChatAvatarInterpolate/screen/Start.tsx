@@ -4,6 +4,7 @@ import * as faker from 'faker'
 import {useNavigation} from '@react-navigation/native'
 import useAnimatedLatestValueRef from '../hook/useAnimatedLatestValueRef'
 import {map, random} from 'lodash'
+import FastImage from 'react-native-fast-image'
 
 type MessageType = { username: string, text: string, avatar: string }
 const messages: MessageType[] = new Array(30).fill(1).map((_, i) => {
@@ -59,6 +60,8 @@ const useViewableListCallback = () => {
     return {onViewableItemsChanged, viewabilityConfig}
 }
 
+const AnimateFastImage = Animated.createAnimatedComponent(FastImage)
+
 const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value }) => {
     const {
         avatar,
@@ -78,7 +81,7 @@ const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value 
         collapsable={false}
         style={styles.messageBlock}>
         <View style={styles.avatarBox}>
-            <Animated.Image style={[styles.avatar, animateStyleAvatar]} source={{uri: avatar}}/>
+            <AnimateFastImage style={[styles.avatar, animateStyleAvatar]} source={{uri: avatar}}/>
         </View>
         <View style={styles.textBox}>
             <Text selectable style={{color: '#fff', fontWeight: 'bold', paddingBottom: 5}}>{username}</Text>
