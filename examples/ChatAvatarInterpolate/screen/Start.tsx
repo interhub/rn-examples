@@ -5,7 +5,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useNavigation} from '@react-navigation/native'
 import SIZE from '../../../src/config/SIZE'
 import useAnimatedLatestValueRef from '../hook/useAnimatedLatestValueRef'
-import {head} from 'lodash'
+import {head, map} from 'lodash'
 
 type MessageType = { username: string, text: string, avatar: string }
 const messages: MessageType[] = new Array(30).fill(1).map((_, i) => {
@@ -43,10 +43,11 @@ const ChatAvatarInterpolate = () => {
     )
 }
 
-const useViewableListCallback=()=>{
+const useViewableListCallback = () => {
     const onViewableItemsChanged = useRef((info: { viewableItems: ViewToken[], changed: ViewToken[] }) => {
-        const currentItem = head(info?.viewableItems)
-        //TODO USING for make read to server side event
+        const visibleItemsNames = map(info?.viewableItems, 'item.username')
+        // console.log({visibleItemsNames})
+        //TODO USING for make read to server side event (for id)
         // console.log('Visible items are', currentItem)
     }).current
 
