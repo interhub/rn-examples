@@ -1,10 +1,11 @@
-import React, {useEffect, useLayoutEffect, useRef, useState} from 'react'
-import {Animated, StyleSheet, Text, View} from 'react-native'
+import React, {useCallback, useEffect, useLayoutEffect, useRef, useState} from 'react'
+import {Animated, StyleSheet, Text, View, ViewToken} from 'react-native'
 import * as faker from 'faker'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useNavigation} from '@react-navigation/native'
 import SIZE from '../../../src/config/SIZE'
 import useAnimatedLatestValueRef from '../hook/useAnimatedLatestValueRef'
+import {head} from 'lodash'
 
 type MessageType = { username: string, text: string, avatar: string }
 const messages: MessageType[] = new Array(30).fill(1).map((_, i) => {
@@ -22,9 +23,12 @@ const ChatAvatarInterpolate = () => {
     const {bottom: bottomInsert} = useSafeAreaInsets()
     const scrollY = useRef(new Animated.Value(0)).current
 
+    const viewableProps = useViewableListCallback()
+
     return (
         <View style={styles.container}>
             <Animated.FlatList<MessageType>
+                {...viewableProps}
                 contentContainerStyle={{paddingTop: bottomInsert}}
                 initialNumToRender={messages.length}
                 keyExtractor={(item, index) => String(index)}
@@ -37,6 +41,20 @@ const ChatAvatarInterpolate = () => {
             />
         </View>
     )
+}
+
+const useViewableListCallback=()=>{
+    const onViewableItemsChanged = useRef((info: { viewableItems: ViewToken[], changed: ViewToken[] }) => {
+        const currentItem = head(info?.viewableItems)
+        //TODO USING for make read to server side event
+        // console.log('Visible items are', currentItem)
+    }).current
+
+    const viewabilityConfig = useRef({
+        itemVisiblePercentThreshold: 50
+    }).current
+
+    return {onViewableItemsChanged, viewabilityConfig}
 }
 
 const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value }) => {
