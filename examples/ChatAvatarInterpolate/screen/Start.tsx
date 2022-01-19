@@ -1,26 +1,25 @@
-import React, {useCallback, useEffect, useLayoutEffect, useRef, useState} from 'react'
-import {Animated, StyleSheet, Text, View, ViewToken} from 'react-native'
+import React, {useLayoutEffect, useRef, useState} from 'react'
+import {Animated, Dimensions, StyleSheet, Text, View, ViewToken} from 'react-native'
 import * as faker from 'faker'
-import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useNavigation} from '@react-navigation/native'
-import SIZE from '../../../src/config/SIZE'
 import useAnimatedLatestValueRef from '../hook/useAnimatedLatestValueRef'
-import {head, map} from 'lodash'
+import {map, random} from 'lodash'
 
 type MessageType = { username: string, text: string, avatar: string }
 const messages: MessageType[] = new Array(30).fill(1).map((_, i) => {
     return {
         avatar: faker.random.image(),
-        text: faker.lorem.paragraphs(2),
+        text: faker.lorem.words(random(5, 100)),
         username: faker.name.firstName() + ' ' + faker.name.lastName()
     }
 })
 
 const AVATAR_ICON_SIZE = 35
 const MESSAGE_BETWEEN_MARGIN = 8
+const BOTTOM_FOOTER_H = 100
+const LIST_BOTTOM_PADDING = 15
 
 const ChatAvatarInterpolate = () => {
-    const {bottom: bottomInsert} = useSafeAreaInsets()
     const scrollY = useRef(new Animated.Value(0)).current
 
     const viewableProps = useViewableListCallback()
@@ -29,7 +28,8 @@ const ChatAvatarInterpolate = () => {
         <View style={styles.container}>
             <Animated.FlatList<MessageType>
                 {...viewableProps}
-                contentContainerStyle={{paddingTop: bottomInsert}}
+                removeClippedSubviews={false}
+                contentContainerStyle={{paddingHorizontal: MESSAGE_BETWEEN_MARGIN, paddingTop: LIST_BOTTOM_PADDING}}
                 initialNumToRender={messages.length}
                 keyExtractor={(item, index) => String(index)}
                 data={messages}
@@ -39,6 +39,7 @@ const ChatAvatarInterpolate = () => {
                 }}
                 onScroll={Animated.event([{nativeEvent: {contentOffset: {y: scrollY}}}], {useNativeDriver: true})}
             />
+            <View style={styles.footerBox}/>
         </View>
     )
 }
@@ -73,6 +74,8 @@ const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value 
 
     return <View
         ref={messageBoxRef}
+        renderToHardwareTextureAndroid={true}
+        collapsable={false}
         style={styles.messageBlock}>
         <View style={styles.avatarBox}>
             <Animated.Image style={[styles.avatar, animateStyleAvatar]} source={{uri: avatar}}/>
@@ -86,7 +89,7 @@ const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value 
 
 const useAnimateMessageAvatar = (boxRef: React.RefObject<View>, scrollAnimateValue: Animated.Value) => {
     const navigation = useNavigation()
-    const {bottom: bottomInsert} = useSafeAreaInsets()
+    const windowH = Dimensions.get('window').height
 
     const [interPosition, setInterPositions] = useState({
         startBottomPosition: 0,
@@ -96,27 +99,26 @@ const useAnimateMessageAvatar = (boxRef: React.RefObject<View>, scrollAnimateVal
     //hot reload fix to except crash after hot update
     const [animValRef] = useAnimatedLatestValueRef(scrollAnimateValue, 0)
 
-    const [isEndAnim, setIsEndAnim] = useState(false)
-    useEffect(() => {
-        if (!isEndAnim) return
-        return boxRef?.current?.measure((x, y, w, h, pX, pY) => {
+    const setUpMeasure = () => {
+        if (!navigation.isFocused()) return
+        boxRef?.current?.measure((x, y, w, h, pX, pY) => {
             const scrollPosition = animValRef.current
-            //Top avatar screen position depends on pY scroll and h (to first item should be 0)
-            const startBottomPosition = Math.round((SIZE.height - (pY + h) - bottomInsert) + scrollPosition) // pY - (SIZE.height - headerHeight)
-            const endTopPosition = Math.round((startBottomPosition + h) - (AVATAR_ICON_SIZE)) // pY - (SIZE.height - headerHeight)
+            //Top avatar screen position depends on pY scroll and h (to first item should be 0) //TODO here can be added additional variable like "bottomInsert" to move all items upper
+            const startBottomPosition = Math.round((windowH - (pY + h) - (BOTTOM_FOOTER_H + LIST_BOTTOM_PADDING)) + scrollPosition)
+            const endTopPosition = Math.round((startBottomPosition + h) - (AVATAR_ICON_SIZE))
             setInterPositions({endTopPosition, startBottomPosition})
-            // console.log({pY, startBottomPosition, endTopPosition, h, username, heightScreen: SIZE.height, bottomInsert})
+            // console.log({pY, startBottomPosition, endTopPosition, h, heightScreen: SIZE.height, bottomInsert})
         })
-    }, [isEndAnim])
+    }
 
     useLayoutEffect(() => {
         //crutch to elements with do not rendered on over list positions (if nav event did not react)
         setTimeout(() => {
-            setIsEndAnim(true)
+            setUpMeasure()
         }, 1000)
         //@ts-ignore //to skip navigation animation and use measure method just after to exclude lie result
         return navigation.addListener('transitionEnd', (e) => {
-            setIsEndAnim(true)
+            setUpMeasure()
         })
     }, [])
 
@@ -125,9 +127,8 @@ const useAnimateMessageAvatar = (boxRef: React.RefObject<View>, scrollAnimateVal
     const animateStyleAvatar = {
         transform: [{
             translateY: scrollAnimateValue.interpolate({
-                inputRange: [-1, 0, startBottomPosition, endTopPosition],
-                outputRange: [-1, 0, 0, -itemHeight],
-                extrapolate: 'clamp'
+                inputRange: [-1, 0, startBottomPosition, endTopPosition, endTopPosition + 1],
+                outputRange: [0, 0, 0, -itemHeight, -itemHeight],
             })
         }]
     }
@@ -139,9 +140,7 @@ const useAnimateMessageAvatar = (boxRef: React.RefObject<View>, scrollAnimateVal
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#111a32',
-        paddingHorizontal: MESSAGE_BETWEEN_MARGIN,
-
+        backgroundColor: '#0e1527',
     },
     messageBlock: {
         flexDirection: 'row',
@@ -162,6 +161,11 @@ const styles = StyleSheet.create({
     },
     avatarBox: {
         justifyContent: 'flex-end'
+    },
+    footerBox: {
+        backgroundColor: '#222f36',
+        height: BOTTOM_FOOTER_H,
+        width: '100%',
     }
 })
 

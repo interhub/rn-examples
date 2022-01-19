@@ -36,7 +36,7 @@ export type DividerHookReturnType = {
 export const useScrollDivider = (config?: DividerConfigType): DividerHookReturnType => {
     const scrollValue = config?.otherScrollValue || useSharedValue(0)
     const headerHeight = useHeaderHeight()
-    const FROM_TOP_SCROLL_TO_BOTTOM_SCREEN = SIZE.height - headerHeight
+    const FROM_TOP_SCROLL_TO_BOTTOM_SCREEN = SIZE.height - headerHeight //TODO replace to Size window
     const [positionY, setPositionY] = useState(0)
     const [heightY, setHeightY] = useState(1)
     const PLATFORM_CORE_MOVE = IS_IOS ? 0 : NAV_HEIGHT

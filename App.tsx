@@ -11,8 +11,6 @@ import {SCREENS} from './src/SCREENS'
 import CodePushWrapper from './src/wrappers/CodePushWrapper'
 import getScreenAnimation, {SCREEN_ANIMATION} from './src/config/getScreenAnimation'
 import {StatusBar} from 'expo-status-bar'
-import {UIManager} from 'react-native'
-import IS_IOS from './src/config/IS_IOS'
 
 enableScreens(false)
 const Stack = createStackNavigator()
@@ -37,7 +35,7 @@ const App = () => {
             {Object.entries(SCREENS).map(([screenName, screenComponent], index) => {
               return (
                 <Stack.Screen
-                  options={{...getScreenAnimation(SCREEN_ANIMATION.TOP), headerShown: true}}
+                  options={{...getScreenAnimation(SCREEN_ANIMATION.LEFT), headerShown: true}}
                   key={index}
                   name={screenName}
                   component={screenComponent}
