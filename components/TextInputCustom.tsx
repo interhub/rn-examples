@@ -1,24 +1,27 @@
 import * as React from 'react'
 import {useState} from 'react'
 import {ActivityIndicator, Animated, Keyboard, StyleSheet, TextInput, TouchableOpacity, View,} from 'react-native'
-import useAnimateShowScale from '../../../src/hooks/useAnimateShowScale'
+import useAnimateShowScale from '../src/hooks/useAnimateShowScale'
 import {impactAsync, ImpactFeedbackStyle,} from 'expo-haptics'
-import SIZE from '../../../src/config/SIZE'
-import {AntDesign, FontAwesome} from '@expo/vector-icons'
+import SIZE from '../src/config/SIZE'
+import {FontAwesome} from '@expo/vector-icons'
 
 const MIN_HEIGHT = 45
-const iconColor = '#4649ad'
-const brandColor = 'orange'
+const iconColor = '#ffffff'
+const brandColor = 'rgba(12,77,119,0.73)'
 
 type SearchInputProps = {
     multiline?: boolean
     // autoFocus?: boolean;
     onSubmit?: (value?: string) => void;
     showSendBtn?: boolean
+    leftIcon?: React.ReactNode
     onInput?: (value: string) => void
+    placeholder?: string
+    value?: string
 }
 
-const SearchTextInput = (
+const TextInputCustom = (
     props: SearchInputProps,
 ) => {
     const {
@@ -26,10 +29,11 @@ const SearchTextInput = (
         onSubmit,
         multiline = false,
         showSendBtn = false,
-        onInput
+        onInput,
+        leftIcon,
+        value
     } = props
 
-    const [value, setValue] = useState('')
     const [loading, setLoading] = useState(false)
 
     const isExistText = !!value?.replace(/\n/g, '').trim()
@@ -50,10 +54,12 @@ const SearchTextInput = (
         Keyboard.dismiss()
     }
 
+    const paddingLeft = !!leftIcon ? MIN_HEIGHT / 3 : 0
+
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {paddingLeft}]}>
             {/*COMMENT ICON LEFT*/}
-            <FontAwesome name="search" size={MIN_HEIGHT / 2} color={iconColor}/>
+            {!!leftIcon && leftIcon}
             {/*TEXT INPUT CENTER*/}
             <TextInput
                 value={value}
@@ -61,16 +67,14 @@ const SearchTextInput = (
                 multiline={multiline}
                 editable={!loading}
                 onChangeText={(text) => {
-                    setValue(text)
                     if (onInput)
                         onInput(text)
                 }}
-                placeholder={('Поиск')}
+                placeholder={props.placeholder || 'Поиск'}
                 style={styles.textInput}
                 placeholderTextColor={'gray'}
                 maxLength={1000}
                 returnKeyType={showSendBtn ? 'next' : 'search'}
-                // autoFocus={autoFocus}
                 onSubmitEditing={showSendBtn ? () => {
                 } : onPressSendComment}
             />
@@ -82,7 +86,7 @@ const SearchTextInput = (
                     onPress={onPressSendComment}
                     style={styles.sendButtonTouchBox}>
                     {!loading && (
-                        <AntDesign name={'arrowup'} size={24} color={iconColor}/>
+                        <FontAwesome name="send" size={15} color={iconColor}/>
                     )}
                     {loading && <ActivityIndicator color={iconColor} size={'small'}/>}
                 </TouchableOpacity>
@@ -98,16 +102,16 @@ const styles = StyleSheet.create({
         maxHeight: SIZE.height / 4,
         borderRadius: MIN_HEIGHT / 2,
         // backgroundColor: theme.isDark ? theme.brandLight : theme.brandSemiLight,
-        backgroundColor: '#bcbcbc',
+        backgroundColor: '#10162c',
         flexDirection: 'row',
         alignItems: 'center',
-        paddingLeft: MIN_HEIGHT / 3,
         paddingRight: MIN_HEIGHT,
     },
     textInput: {
         minHeight: MIN_HEIGHT / 1.5,
         flex: 1,
         marginLeft: 10,
+        color: '#fff'
         // color: theme.textColor,
         // fontSize: theme.DefaultFontSize,
         // fontFamily: theme.fontFamily,
@@ -132,4 +136,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default SearchTextInput
+export default TextInputCustom

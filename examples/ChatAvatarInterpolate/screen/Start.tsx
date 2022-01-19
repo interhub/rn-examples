@@ -5,13 +5,17 @@ import {useNavigation} from '@react-navigation/native'
 import useAnimatedLatestValueRef from '../hook/useAnimatedLatestValueRef'
 import {map, random} from 'lodash'
 import FastImage from 'react-native-fast-image'
+import TextInputCustom from '../../../components/TextInputCustom'
+import layoutAnimation from '../../../src/config/layoutAnimation'
+import useNotFirstEffect from '../../../src/hooks/useNotFirstEffect'
 
-type MessageType = { username: string, text: string, avatar: string }
+type MessageType = { username: string, text: string, avatar: string, id: string }
 const messages: MessageType[] = new Array(30).fill(1).map((_, i) => {
     return {
         avatar: faker.random.image(),
         text: faker.lorem.words(random(5, 100)),
-        username: faker.name.firstName() + ' ' + faker.name.lastName()
+        username: faker.name.firstName() + ' ' + faker.name.lastName(),
+        id: String(i)
     }
 })
 
@@ -21,29 +25,56 @@ const BOTTOM_FOOTER_H = 100
 const LIST_BOTTOM_PADDING = 15
 
 const ChatAvatarInterpolate = () => {
+    const [messagesState, setMessagesState] = useState(messages)
     const scrollY = useRef(new Animated.Value(0)).current
-
     const viewableProps = useViewableListCallback()
-
+    const inputProps = useMessagesSend(setMessagesState)
+    const messagesOrder = map(messagesState, 'id').join('')
     return (
         <View style={styles.container}>
             <Animated.FlatList<MessageType>
                 {...viewableProps}
+                //need to using measure method before scroll to elements
                 removeClippedSubviews={false}
                 contentContainerStyle={{paddingHorizontal: MESSAGE_BETWEEN_MARGIN, paddingTop: LIST_BOTTOM_PADDING}}
-                initialNumToRender={messages.length}
-                keyExtractor={(item, index) => String(index)}
-                data={messages}
+                initialNumToRender={messagesState.length}
+                keyExtractor={(item, index) => String(item.id)}
+                data={messagesState}
                 inverted
                 renderItem={({item, index}) => {
-                    return <MessageBlock {...item} scrollAnimateValue={scrollY}/>
+                    return <MessageBlock {...item} scrollAnimateValue={scrollY} messagesOrder={messagesOrder}/>
                 }}
                 onScroll={Animated.event([{nativeEvent: {contentOffset: {y: scrollY}}}], {useNativeDriver: true})}
             />
-            <View style={styles.footerBox}/>
+            <View style={styles.footerBox}>
+                <TextInputCustom
+                    {...inputProps}
+                    placeholder={'Сообщение'}
+                    showSendBtn/>
+            </View>
         </View>
     )
 }
+
+const useMessagesSend = (setMessages: React.Dispatch<React.SetStateAction<MessageType[]>>) => {
+    const [value, setValue] = useState('')
+    const onInput = setValue
+    const onSubmit = async () => {
+        //todo request
+        const newMessage: MessageType = {
+            username: 'Stepan Turchenko',
+            text: value,
+            avatar: 'https://mobimg.b-cdn.net/v3/fetch/c4/c493aac67877288476b0fc52d55f55cf.jpeg',
+            id: new Date().valueOf().toString()
+        }
+        setMessages((messages) => [newMessage].concat(messages))
+        layoutAnimation.itemMove()
+        setValue('')
+    }
+
+    return {value, onInput, onSubmit}
+}
+
 
 const useViewableListCallback = () => {
     const onViewableItemsChanged = useRef((info: { viewableItems: ViewToken[], changed: ViewToken[] }) => {
@@ -62,21 +93,23 @@ const useViewableListCallback = () => {
 
 const AnimateFastImage = Animated.createAnimatedComponent(FastImage)
 
-const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value }) => {
+const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value, messagesOrder?: string }) => {
     const {
         avatar,
         username,
         text,
-        scrollAnimateValue
+        scrollAnimateValue,
+        messagesOrder
     } = props
     const messageBoxRef = useRef<View>(null)
 
-    const {animateStyleAvatar} = useAnimateMessageAvatar(messageBoxRef, scrollAnimateValue)
+    const {animateStyleAvatar} = useAnimateMessageAvatar(messageBoxRef, scrollAnimateValue, messagesOrder)
 
     if (!text || !username) return null
 
     return <View
         ref={messageBoxRef}
+        //params renderToHardwareTextureAndroid and collapsable need to render item on over list position before scroll to them
         renderToHardwareTextureAndroid={true}
         collapsable={false}
         style={styles.messageBlock}>
@@ -90,7 +123,7 @@ const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value 
     </View>
 }
 
-const useAnimateMessageAvatar = (boxRef: React.RefObject<View>, scrollAnimateValue: Animated.Value) => {
+const useAnimateMessageAvatar = (boxRef: React.RefObject<View>, scrollAnimateValue: Animated.Value, messagesOrder?: string) => {
     const navigation = useNavigation()
     const windowH = Dimensions.get('window').height
 
@@ -114,6 +147,12 @@ const useAnimateMessageAvatar = (boxRef: React.RefObject<View>, scrollAnimateVal
         })
     }
 
+    useNotFirstEffect(() => {
+        //after change order animation (todo handle callback)
+        setTimeout(() => {
+            setUpMeasure()
+        }, 1000)
+    }, [messagesOrder])
     useLayoutEffect(() => {
         //crutch to elements with do not rendered on over list positions (if nav event did not react)
         setTimeout(() => {
@@ -166,6 +205,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end'
     },
     footerBox: {
+        padding: 10,
         backgroundColor: '#222f36',
         height: BOTTOM_FOOTER_H,
         width: '100%',
