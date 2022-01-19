@@ -4,6 +4,7 @@ import * as faker from 'faker'
 import {useSafeAreaInsets} from 'react-native-safe-area-context'
 import {useNavigation} from '@react-navigation/native'
 import SIZE from '../../../src/config/SIZE'
+import useAnimatedLatestValueRef from '../hook/useAnimatedLatestValueRef'
 
 type MessageType = { username: string, text: string, avatar: string }
 const messages: MessageType[] = new Array(30).fill(1).map((_, i) => {
@@ -46,6 +47,25 @@ const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value 
         scrollAnimateValue
     } = props
     const messageBoxRef = useRef<View>(null)
+
+    const {animateStyleAvatar} = useAnimateMessageAvatar(messageBoxRef, scrollAnimateValue)
+
+    if (!text || !username) return null
+
+    return <View
+        ref={messageBoxRef}
+        style={styles.messageBlock}>
+        <View style={styles.avatarBox}>
+            <Animated.Image style={[styles.avatar, animateStyleAvatar]} source={{uri: avatar}}/>
+        </View>
+        <View style={styles.textBox}>
+            <Text selectable style={{color: '#fff', fontWeight: 'bold', paddingBottom: 5}}>{username}</Text>
+            <Text selectable style={{color: '#fff'}}>{text}</Text>
+        </View>
+    </View>
+}
+
+const useAnimateMessageAvatar = (boxRef: React.RefObject<View>, scrollAnimateValue: Animated.Value) => {
     const navigation = useNavigation()
     const {bottom: bottomInsert} = useSafeAreaInsets()
 
@@ -60,7 +80,7 @@ const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value 
     const [isEndAnim, setIsEndAnim] = useState(false)
     useEffect(() => {
         if (!isEndAnim) return
-        return messageBoxRef?.current?.measure((x, y, w, h, pX, pY) => {
+        return boxRef?.current?.measure((x, y, w, h, pX, pY) => {
             const scrollPosition = animValRef.current
             //Top avatar screen position depends on pY scroll and h (to first item should be 0)
             const startBottomPosition = Math.round((SIZE.height - (pY + h) - bottomInsert) + scrollPosition) // pY - (SIZE.height - headerHeight)
@@ -93,52 +113,7 @@ const MessageBlock = (props: MessageType & { scrollAnimateValue: Animated.Value 
         }]
     }
 
-    if (!text || !username) return null
-
-    return <View
-        ref={messageBoxRef}
-        style={styles.messageBlock}>
-        <View style={styles.avatarBox}>
-            <Animated.Image style={[styles.avatar, animateStyleAvatar]} source={{uri: avatar}}/>
-        </View>
-        <View style={styles.textBox}>
-            <Text selectable style={{color: '#fff', fontWeight: 'bold', paddingBottom: 5}}>{username}</Text>
-            <Text selectable style={{color: '#fff'}}>{text}</Text>
-        </View>
-    </View>
-}
-
-/**
- * Since there's no (official) way to read an Animated.Value synchronously this is the best solution I could come up with
- * to have access to an up-to-date copy of the latest value without sacrificing performance.
- *
- * @param animatedValue the Animated.Value to track
- * @param initial Optional initial value if you know it to initialize the latest value ref before the animated value listener fires for the first time
- *
- * returns a ref with the latest value of the Animated.Value and a boolean ref indicating if a value has been received yet
- */
-const useAnimatedLatestValueRef = (animatedValue: Animated.Value, initial?: number) => {
-    //If we're given an initial value then we can pretend we've received a value from the listener already
-    const latestValueRef = useRef(initial ?? 0)
-    const initialized = useRef(typeof initial == 'number')
-
-    useLayoutEffect(() => {
-        const id = animatedValue.addListener((v) => {
-            //Store the latest animated value
-            latestValueRef.current = v.value
-            //Indicate that we've recieved a value
-            initialized.current = true
-        })
-
-        //Return a deregister function to clean up
-        return () => animatedValue.removeListener(id)
-
-        //Note that the behavior here isn't 100% correct if the animatedValue changes -- the returned ref
-        //may refer to the previous animatedValue's latest value until the new listener returns a value
-    }, [animatedValue])
-
-
-    return [latestValueRef, initialized] as const
+    return {animateStyleAvatar}
 }
 
 
