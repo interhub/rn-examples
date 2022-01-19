@@ -43,12 +43,12 @@ export default function () {
                 data={listMusics}
                 keyExtractor={(item: MusicItemType) => String(item.id)}
                 renderItem={({item: {name, id}, index}) => {
-                    return                      <View style={styles.itemBox}>
-                            <TextLine>
-                                {id}. {name}
-                            </TextLine>
-                            <Foundation name="music" size={24} color="black"/>
-                        </View>
+                    return <View style={styles.itemBox}>
+                        <TextLine>
+                            {id}. {name}
+                        </TextLine>
+                        <Foundation name="music" size={24} color="black"/>
+                    </View>
                 }}
                 contentContainerStyle={{paddingBottom: 50}}/>
         </View>

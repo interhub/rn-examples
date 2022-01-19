@@ -27,12 +27,6 @@ const Stack = createStackNavigator()
  * 5) interpolate scroll bottom position post line with move to scroll position and stop on the end post  point
  * */
 
-if (!IS_IOS) {
-    if (UIManager.setLayoutAnimationEnabledExperimental) {
-        UIManager.setLayoutAnimationEnabledExperimental(true);
-    }
-}
-
 const App = () => {
   return (
     <CodePushWrapper>
