@@ -11,6 +11,7 @@ import {SCREENS} from './src/SCREENS'
 import CodePushWrapper from './src/wrappers/CodePushWrapper'
 import getScreenAnimation, {SCREEN_ANIMATION} from './src/config/getScreenAnimation'
 import {StatusBar} from 'expo-status-bar'
+import KeyboardWrapper from './components/KeyboardWrapper'
 
 enableScreens(false)
 const Stack = createStackNavigator()
@@ -26,32 +27,34 @@ const Stack = createStackNavigator()
  * */
 
 const App = () => {
-  return (
-    <CodePushWrapper>
-      <StatusBar translucent/>
-      <BottomSheetModalProvider>
-        <NavigationContainer>
-          <Stack.Navigator detachInactiveScreens={false} headerMode={'screen'}>
-            {Object.entries(SCREENS).map(([screenName, screenComponent], index) => {
-              return (
-                <Stack.Screen
-                  options={{...getScreenAnimation(SCREEN_ANIMATION.LEFT), headerShown: true}}
-                  key={index}
-                  name={screenName}
-                  component={screenComponent}
-                />
-              )
-            })}
-          </Stack.Navigator>
-        </NavigationContainer>
-      </BottomSheetModalProvider>
-    </CodePushWrapper>
-  )
+    return (
+        <CodePushWrapper>
+            <StatusBar translucent/>
+            <BottomSheetModalProvider>
+                <KeyboardWrapper>
+                    <NavigationContainer>
+                        <Stack.Navigator detachInactiveScreens={false} headerMode={'screen'}>
+                            {Object.entries(SCREENS).map(([screenName, screenComponent], index) => {
+                                return (
+                                    <Stack.Screen
+                                        options={{...getScreenAnimation(SCREEN_ANIMATION.LEFT), headerShown: true}}
+                                        key={index}
+                                        name={screenName}
+                                        component={screenComponent}
+                                    />
+                                )
+                            })}
+                        </Stack.Navigator>
+                    </NavigationContainer>
+                </KeyboardWrapper>
+            </BottomSheetModalProvider>
+        </CodePushWrapper>
+    )
 }
 
 const codePushOptions = {
-  checkFrequency: codePush.CheckFrequency.MANUAL,
-  installMode: codePush.InstallMode.IMMEDIATE,
+    checkFrequency: codePush.CheckFrequency.MANUAL,
+    installMode: codePush.InstallMode.IMMEDIATE,
 }
 codePush.notifyAppReady()
 export default __DEV__ ? App : codePush(codePushOptions)(App)

@@ -1,5 +1,5 @@
 import React, {useLayoutEffect, useRef, useState} from 'react'
-import {Animated, Dimensions, StyleSheet, Text, View, ViewToken} from 'react-native'
+import {Animated, Dimensions, FlatList, StyleSheet, Text, View, ViewToken} from 'react-native'
 import * as faker from 'faker'
 import {useNavigation} from '@react-navigation/native'
 import useAnimatedLatestValueRef from '../hook/useAnimatedLatestValueRef'
@@ -30,12 +30,15 @@ const ChatAvatarInterpolate = () => {
     const viewableProps = useViewableListCallback()
     const inputProps = useMessagesSend(setMessagesState)
     const messagesOrder = map(messagesState, 'id').join('')
+    const {listRef} = useScrollToEndUpdate(messagesOrder)
+
     return (
         <View style={styles.container}>
             <Animated.FlatList<MessageType>
                 {...viewableProps}
                 //need to using measure method before scroll to elements
                 removeClippedSubviews={false}
+                ref={listRef}
                 contentContainerStyle={{paddingHorizontal: MESSAGE_BETWEEN_MARGIN, paddingTop: LIST_BOTTOM_PADDING}}
                 initialNumToRender={messagesState.length}
                 keyExtractor={(item, index) => String(item.id)}
@@ -75,6 +78,13 @@ const useMessagesSend = (setMessages: React.Dispatch<React.SetStateAction<Messag
     return {value, onInput, onSubmit}
 }
 
+const useScrollToEndUpdate = (messagesOrder: string) => {
+    const listRef = useRef<FlatList>(null)
+    useNotFirstEffect(() => {
+        listRef?.current?.scrollToIndex({index: 0, animated: true})
+    }, [messagesOrder])
+    return {listRef}
+}
 
 const useViewableListCallback = () => {
     const onViewableItemsChanged = useRef((info: { viewableItems: ViewToken[], changed: ViewToken[] }) => {
