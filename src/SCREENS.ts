@@ -72,5 +72,5 @@ export const SCREENS = {
   ['SEARCH LINE 🔎']: SearchLine,
   ['CHAT AVATAR INTERPOLATE 🍀']: ChatAvatarInterpolate,
   ['STORIES SLIDER 📽']: StoriesSlider,
-  ['Drawer 📦']: Drawer,
+  ['DRAWER 📦']: Drawer,
 }
