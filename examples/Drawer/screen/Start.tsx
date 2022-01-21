@@ -1,12 +1,15 @@
 import * as React from 'react'
 import {ScrollView, View} from 'react-native'
-import {createDrawerNavigator, DrawerNavigationProp} from '@react-navigation/drawer'
+import {createDrawerNavigator, DrawerContentOptions, DrawerNavigationProp} from '@react-navigation/drawer'
 import ButtonCustom from '../../../components/ButtonCustom'
 import {useNavigation} from '@react-navigation/native'
 import TextLine from '../../../components/TextLine'
 import {createStackNavigator} from '@react-navigation/stack'
 import DividerCustom from '../../../components/DividerCustom'
 import getScreenAnimation, {SCREEN_ANIMATION} from '../../../src/config/getScreenAnimation'
+import {useAnimatedStyle} from 'react-native-reanimated'
+import Animated from 'react-native-reanimated'
+import SIZE from '../../../src/config/SIZE'
 
 function HomeScreen() {
     const navigation = useNavigation<DrawerNavigationProp<any>>()
@@ -36,8 +39,9 @@ const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator()
 
 const DrawerInnerNavigator = () => {
+
     return <Stack.Navigator
-        screenOptions={{headerShown: false, ...getScreenAnimation(SCREEN_ANIMATION.OPACITY)}}>
+        screenOptions={{headerShown: false, ...getScreenAnimation(SCREEN_ANIMATION.OPACITY, false)}}>
         <Stack.Screen
             name="Home"
             component={HomeScreen}/>
@@ -47,10 +51,17 @@ const DrawerInnerNavigator = () => {
     </Stack.Navigator>
 }
 
-function CustomDrawerContent() {
+function CustomDrawerContent(props: any) {
     const navigation = useNavigation<DrawerNavigationProp<any>>()
+    const translateY = Animated.interpolateNode(props.progress, {
+        inputRange: [0, 1],
+        outputRange: [-100, 0],
+    })
+
     return (
-        <ScrollView contentContainerStyle={{paddingTop: 0}} style={{backgroundColor: '#e0d1f5'}}>
+        <Animated.ScrollView
+            contentContainerStyle={{paddingTop: 0}}
+            style={[{backgroundColor: '#e0d1f5'}, {transform: [{translateY}]}]}>
             <TextLine>Hello world!</TextLine>
             <DividerCustom/>
             <TextLine>Custom View</TextLine>
@@ -58,15 +69,16 @@ function CustomDrawerContent() {
             <ButtonCustom m={10} onPress={() => navigation.navigate('Setting')}>Go To Setting</ButtonCustom>
             <DividerCustom/>
             <ButtonCustom m={10} onPress={() => navigation.navigate('Home')}>Go To Home</ButtonCustom>
-        </ScrollView>
+        </Animated.ScrollView>
     )
 }
 
 export default function App() {
     return (
         <Drawer.Navigator
+            edgeWidth={SIZE.width}
             drawerType={'slide'}
-            drawerContent={() => <CustomDrawerContent/>}
+            drawerContent={(props) => <CustomDrawerContent {...props}/>}
             initialRouteName="Home">
             <Drawer.Screen name={'drawer'} component={DrawerInnerNavigator}/>
         </Drawer.Navigator>
