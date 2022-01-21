@@ -1,5 +1,3 @@
-//['SCREEN_NAME']:ScreenComponent/
-
 import Menu from './Menu'
 
 import NativeGesture from '../examples/NativeGesture'
@@ -35,6 +33,7 @@ import SharingData from '../examples/SharingData'
 import FaceId from '../examples/FaceId'
 import SearchLine from '../examples/SearchLine'
 import StoriesSlider from '../examples/StoriesSlider'
+import Drawer from '../examples/Drawer'
 import ChatAvatarInterpolate from '../examples/ChatAvatarInterpolate'
 
 export const SCREENS = {
@@ -72,4 +71,6 @@ export const SCREENS = {
   ['FACE ID 🐾']: FaceId,
   ['SEARCH LINE 🔎']: SearchLine,
   ['CHAT AVATAR INTERPOLATE 🍀']: ChatAvatarInterpolate,
+  ['STORIES SLIDER 📽']: StoriesSlider,
+  ['Drawer 📦']: Drawer,
 }

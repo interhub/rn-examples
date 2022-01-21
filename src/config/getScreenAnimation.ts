@@ -4,6 +4,7 @@ import {Easing} from 'react-native'
 
 import SIZE from './SIZE'
 import IS_IOS from './IS_IOS'
+import {DrawerNavigationOptions} from '@react-navigation/drawer'
 
 /**
  animation types for react-navigation from https://reactnavigation.org/docs/stack-navigator/#transitionpresets
@@ -33,11 +34,11 @@ export enum SCREEN_ANIMATION {
 /**
  get some screen navigation animation config for navigation (by doc from https://reactnavigation.org/docs/stack-navigator/#animations )
  */
-export default (animation: SCREEN_ANIMATION = SCREEN_ANIMATION.NONE, swipe = true): StackNavigationOptions => {
+export default (animation: SCREEN_ANIMATION = SCREEN_ANIMATION.NONE, swipe = true): StackNavigationOptions & DrawerNavigationOptions => {
   const isVerticalSwipe = animation === SCREEN_ANIMATION.TOP
   const gestureWorkPercent = IS_IOS ? 15 : 15 //%
   const gestureWorkDistance = (isVerticalSwipe ? SIZE.height : SIZE.width) * (gestureWorkPercent / 100)
-  const config: StackNavigationOptions = {
+  const config: StackNavigationOptions & DrawerNavigationOptions = {
     headerShown: false,
     cardStyleInterpolator: ANIMATION[animation],
     gestureEnabled: swipe,

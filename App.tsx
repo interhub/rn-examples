@@ -37,7 +37,7 @@ const App = () => {
                             {Object.entries(SCREENS).map(([screenName, screenComponent], index) => {
                                 return (
                                     <Stack.Screen
-                                        options={{...getScreenAnimation(SCREEN_ANIMATION.LEFT), headerShown: true}}
+                                        options={{...getScreenAnimation(SCREEN_ANIMATION.LEFT, false), headerShown: true}}
                                         key={index}
                                         name={screenName}
                                         component={screenComponent}
