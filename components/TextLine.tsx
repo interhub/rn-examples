@@ -19,6 +19,7 @@ const TextLine = ({children, tint, color = '#000', size = 18, bold = false, cent
                     color,
                     fontSize: size,
                     textAlign: center ? 'center' : 'left',
+                    fontWeight: bold ? 'bold' : undefined
                 },
                 props.style,
             ]}>
