@@ -234,6 +234,13 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    //MAP VIEW CONFIGURATION
+    implementation project(':react-native-maps')
+    implementation 'com.google.android.gms:play-services-base:17.2.1'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+    //END MAP VIEW CONFIGURING
+
 }
 
 // Run this once to be able to run the application with BUCK

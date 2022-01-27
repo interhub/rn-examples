@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) requires your location to using map for show better services</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>$(PRODUCT_NAME) requires face ID to login to app and get access to recognze devise holder</string>
 	<key>NSCameraUsageDescription</key>

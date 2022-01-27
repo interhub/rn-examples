@@ -26,6 +26,9 @@ PODS:
     - ExpoModulesCore
   - EXLocalAuthentication (12.1.0):
     - ExpoModulesCore
+  - EXLocation (14.0.1):
+    - ExpoModulesCore
+    - UMTaskManagerInterface
   - EXMediaLibrary (14.0.0):
     - ExpoModulesCore
     - React-Core
@@ -262,6 +265,8 @@ PODS:
   - React-jsinspector (0.64.3)
   - react-native-blur (0.8.0):
     - React
+  - react-native-maps (0.30.1):
+    - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
   - React-perflogger (0.64.3)
@@ -390,6 +395,8 @@ PODS:
     - SDWebImage/Core (~> 5.10)
   - SSZipArchive (2.2.3)
   - TOCropViewController (2.6.0)
+  - UMTaskManagerInterface (7.1.0):
+    - ExpoModulesCore
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -404,6 +411,7 @@ DEPENDENCIES:
   - EXFont (from `../node_modules/expo-font/ios`)
   - EXKeepAwake (from `../node_modules/expo-keep-awake/ios`)
   - EXLocalAuthentication (from `../node_modules/expo-local-authentication/ios`)
+  - EXLocation (from `../node_modules/expo-location/ios`)
   - EXMediaLibrary (from `../node_modules/expo-media-library/ios`)
   - Expo (from `../node_modules/expo/ios`)
   - ExpoHaptics (from `../node_modules/expo-haptics/ios`)
@@ -430,6 +438,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
+  - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -452,6 +461,7 @@ DEPENDENCIES:
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSharedElement (from `../node_modules/react-native-shared-element`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - UMTaskManagerInterface (from `../node_modules/unimodules-task-manager-interface/ios`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -488,6 +498,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/expo-keep-awake/ios"
   EXLocalAuthentication:
     :path: "../node_modules/expo-local-authentication/ios"
+  EXLocation:
+    :path: "../node_modules/expo-location/ios"
   EXMediaLibrary:
     :path: "../node_modules/expo-media-library/ios"
   Expo:
@@ -536,6 +548,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-blur:
     :path: "../node_modules/@react-native-community/blur"
+  react-native-maps:
+    :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-perflogger:
@@ -580,6 +594,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-shared-element"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  UMTaskManagerInterface:
+    :path: "../node_modules/unimodules-task-manager-interface/ios"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -597,6 +613,7 @@ SPEC CHECKSUMS:
   EXFont: 1fb13af43dc517c01c0ff21a6e32f9f9bf2ea602
   EXKeepAwake: b571c2ad8323b2fced6e907766e2549f75119471
   EXLocalAuthentication: 4c7166ed3133d2c75586093833936652e7d2c7fc
+  EXLocation: 4bc1ea8086bc296aaba63d16bd194b0995c61cd4
   EXMediaLibrary: 6acf919299bccc64a59e6e89a3b792276e309302
   Expo: f0d5e0f58ca4176bf46a7801359f0838d126c189
   ExpoHaptics: c62a5fc7bba0184d0165d559fc2b0fc46168ef40
@@ -623,6 +640,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: df6abc9fafbecb8e5b7a5fbc5e6d4bd017d594d5
   React-jsinspector: 34e23860273a23695342f58eed3ffd3ba10c31e0
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
+  react-native-maps: d752b0dd0e1951d815b1336332835aab6b4a836f
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   React-perflogger: cc76a4254d19640f1d8ad1c66fdee800414b805c
   React-RCTActionSheet: 7448f049318d8d7e8a9a1ebb742ada721757eea8
@@ -649,6 +667,7 @@ SPEC CHECKSUMS:
   SDWebImageWebPCoder: f93010f3f6c031e2f8fb3081ca4ee6966c539815
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
+  UMTaskManagerInterface: 6f7150f9ec9bc6f2760eeae532a70de71ff951c1
   Yoga: e6ecf3fa25af9d4c87e94ad7d5d292eedef49749
 
 PODFILE CHECKSUM: 0352a762c0a6c2da71682ed35a88691b45f7c99d

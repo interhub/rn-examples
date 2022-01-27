@@ -35,6 +35,7 @@ import SearchLine from '../examples/SearchLine'
 import StoriesSlider from '../examples/StoriesSlider'
 import Drawer from '../examples/Drawer'
 import ChatAvatarInterpolate from '../examples/ChatAvatarInterpolate'
+import MapPage from '../examples/MapPage'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -73,4 +74,5 @@ export const SCREENS = {
   ['CHAT AVATAR INTERPOLATE 🍀']: ChatAvatarInterpolate,
   ['STORIES SLIDER 📽']: StoriesSlider,
   ['DRAWER 📦']: Drawer,
+  ['MAP PAGE 🌆']: MapPage,
 }
