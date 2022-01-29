@@ -11,15 +11,6 @@ export default function () {
     outputRange: [0, -1],
   })
 
-  useEffect(() => {
-    scrollY.addListener(({value}) => {
-      console.log(value, 'val', headerTranslate)
-    })
-    return () => {
-      scrollY.removeAllListeners()
-    }
-  }, [])
-
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.header, {transform: [{translateY: headerTranslate}]}]}>
@@ -29,7 +20,7 @@ export default function () {
         bounces={false}
         contentContainerStyle={{paddingTop: HEADER_SIZE}}
         scrollEventThrottle={16}
-        onScroll={Animated.event([{nativeEvent: {contentOffset: {y: scrollY}}}], {useNativeDriver: false})}>
+        onScroll={Animated.event([{nativeEvent: {contentOffset: {y: scrollY}}}], {useNativeDriver: true})}>
         {new Array(300).fill(1).map((_, key) => {
           return <Text key={key}>{key + ' hello'}</Text>
         })}
