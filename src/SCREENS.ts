@@ -36,6 +36,7 @@ import StoriesSlider from '../examples/StoriesSlider'
 import Drawer from '../examples/Drawer'
 import ChatAvatarInterpolate from '../examples/ChatAvatarInterpolate'
 import MapPage from '../examples/MapPage'
+import NativeModule from '../examples/NativeModule'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -75,4 +76,5 @@ export const SCREENS = {
   ['STORIES SLIDER 📽']: StoriesSlider,
   ['DRAWER 📦']: Drawer,
   ['MAP PAGE 🌆']: MapPage,
+  ['NATIVE MODULES ☠️']: NativeModule,
 }
