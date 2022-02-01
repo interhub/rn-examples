@@ -4536,7 +4536,7 @@ expo-asset@~8.4.5:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-av@^10.2.0:
+expo-av@~10.2.0:
   version "10.2.0"
   resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-10.2.0.tgz#4bc4b1f409f3ad2e247586f22e4fb9e1aa666b0a"
   integrity sha512-jo7Nv3IgJPAiOerKRwlL4guKkULZfvE5KIRZmgLurgPvJFHHAye4pFe2IlqQftKd66NHo1vq2zIGF3B3fsTPmw==
@@ -4664,7 +4664,7 @@ expo-status-bar@~1.2.0:
   resolved "https://registry.yarnpkg.com/expo-status-bar/-/expo-status-bar-1.2.0.tgz#16e73205da563f9536f562e439081e30e318a82e"
   integrity sha512-pVZZ/kDCXFK79E4dCtRecs3XLC8aiwlciutSd/fFmUPJSQZ1Txia6hlKajPt0GAYft8/YnT0V3URXzWZOBniYQ==
 
-expo-video-thumbnails@^6.1.0:
+expo-video-thumbnails@~6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/expo-video-thumbnails/-/expo-video-thumbnails-6.1.0.tgz#377c3569a5a584d95c88b7d6c475a260d063ef41"
   integrity sha512-qRMsgL6JY6um3UKq//0VO6J4NurqMOLuAv+Mu01Z4pweuoR83j7HOKNr0PKszIyBv/9tNeLzzrUYQuQPzXmKHA==

@@ -38,6 +38,7 @@ import ChatAvatarInterpolate from '../examples/ChatAvatarInterpolate'
 import MapPage from '../examples/MapPage'
 import NativeModule from '../examples/NativeModule'
 import NetInfo from '../examples/NetInfo'
+import AV from '../examples/AV'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -79,4 +80,5 @@ export const SCREENS = {
   ['MAP PAGE 🌆']: MapPage,
   ['NATIVE MODULES ☠️']: NativeModule,
   ['NET INFO 🪐']: NetInfo,
+  ['AV 📀']: AV,
 }
