@@ -7,14 +7,17 @@ const NetInfoExample = () => {
     const {isConnected, isWork, ip, type} = useNetInfo()
     return (
         <View style={styles.container}>
-            <TextLine>{`isConnected : ${isConnected}`}</TextLine>
-            <TextLine>{`isWork : ${isWork}`}</TextLine>
-            <TextLine>{`ip : ${ip}`}</TextLine>
-            <TextLine>{`type : ${type}`}</TextLine>
+            <TextRow keyName={'isConnected'} value={isConnected}/>
+            <TextRow keyName={'isWork'} value={isWork}/>
+            <TextRow keyName={'ip'} value={ip}/>
+            <TextRow keyName={'type'} value={type}/>
         </View>
     )
 }
 
+const TextRow = ({keyName, value}: { keyName: string, value: string | boolean }) => {
+    return <TextLine>{keyName} :<TextLine bold>{`${value}`}</TextLine></TextLine>
+}
 
 
 const styles = StyleSheet.create({
@@ -23,7 +26,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#ffe028',
-    },
+    }
+
+
 })
 
 export default NetInfoExample
