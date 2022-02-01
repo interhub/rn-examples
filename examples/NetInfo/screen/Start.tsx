@@ -3,6 +3,8 @@ import {StyleSheet, View} from 'react-native'
 import TextLine from '../../../components/TextLine'
 import {useNetInfo} from '@react-native-community/netinfo'
 
+//doc install and mock https://github.com/react-native-netinfo/react-native-netinfo#usenetinfo
+
 const NetInfoExample = () => {
     const {isConnected, type, isInternetReachable, details} = useNetInfo()
     const color = isInternetReachable ? '#81e757' : '#ffce56'
