@@ -37,6 +37,7 @@ import Drawer from '../examples/Drawer'
 import ChatAvatarInterpolate from '../examples/ChatAvatarInterpolate'
 import MapPage from '../examples/MapPage'
 import NativeModule from '../examples/NativeModule'
+import NetInfo from '../examples/NetInfo'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -77,4 +78,5 @@ export const SCREENS = {
   ['DRAWER 📦']: Drawer,
   ['MAP PAGE 🌆']: MapPage,
   ['NATIVE MODULES ☠️']: NativeModule,
+  ['NET INFO 🪐']: NetInfo,
 }
