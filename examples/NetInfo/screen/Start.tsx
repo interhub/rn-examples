@@ -5,8 +5,9 @@ import {useNetInfo} from '@react-native-community/netinfo'
 
 const NetInfoExample = () => {
     const {isConnected, type, isInternetReachable, details} = useNetInfo()
+    const color = isInternetReachable ? '#81e757' : '#ffce56'
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {backgroundColor: color}]}>
             <TextRow keyName={'isConnected'} value={isConnected}/>
             <TextRow keyName={'isInternetReachable'} value={isInternetReachable}/>
             <TextRow keyName={'ip'} value={(details as any)?.ipAddress}/>
@@ -25,7 +26,6 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#ffe028',
     }
 
 
