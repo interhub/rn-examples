@@ -1,21 +1,21 @@
 import React from 'react'
 import {StyleSheet, View} from 'react-native'
 import TextLine from '../../../components/TextLine'
-import useNetInfo from '../hook/useNetInfo'
+import {useNetInfo} from '@react-native-community/netinfo'
 
 const NetInfoExample = () => {
-    const {isConnected, isWork, ip, type} = useNetInfo()
+    const {isConnected, type, isInternetReachable, details} = useNetInfo()
     return (
         <View style={styles.container}>
             <TextRow keyName={'isConnected'} value={isConnected}/>
-            <TextRow keyName={'isWork'} value={isWork}/>
-            <TextRow keyName={'ip'} value={ip}/>
+            <TextRow keyName={'isInternetReachable'} value={isInternetReachable}/>
+            <TextRow keyName={'ip'} value={(details as any)?.ipAddress}/>
             <TextRow keyName={'type'} value={type}/>
         </View>
     )
 }
 
-const TextRow = ({keyName, value}: { keyName: string, value: string | boolean }) => {
+const TextRow = ({keyName, value}: { keyName: string, value: any }) => {
     return <TextLine>{keyName} :<TextLine bold>{`${value}`}</TextLine></TextLine>
 }
 
