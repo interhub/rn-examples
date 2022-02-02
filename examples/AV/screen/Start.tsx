@@ -8,6 +8,7 @@ import FastImage, {ImageStyle} from 'react-native-fast-image'
 import useLoadingHandler from '../../../src/hooks/useLoadHandler'
 import SIZE from '../../../src/config/SIZE'
 import {head, last} from 'lodash'
+import IS_IOS from '../../../src/config/IS_IOS'
 
 //TODO
 // create video player native
@@ -95,7 +96,7 @@ const HighLevelVideoItem = ({setPlayedRef}: { setPlayedRef: (r: React.RefObject<
                 isLooping
                 onPlaybackStatusUpdate={(status: any) => setIsStarted(status.isPlaying || false)}
             >
-                {!isLoaded &&
+                {!isLoaded && IS_IOS &&
                 <View style={[{justifyContent: 'center', alignSelf: 'center'}, StyleSheet.absoluteFillObject]}>
                     <ActivityIndicator color={'#000000'}/>
                 </View>}
@@ -147,7 +148,7 @@ const VideoPlayList = () => {
         removeClippedSubviews={false}
         snapToInterval={SIZE.width * 0.9}
         decelerationRate={'fast'}
-        data={new Array(30).fill(1)}
+        data={new Array(10).fill(1)}
         keyExtractor={(item, index) => String(index)}
         renderItem={() => {
             return <HighLevelVideoItem setPlayedRef={(r) => {
