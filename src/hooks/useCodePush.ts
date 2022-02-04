@@ -91,6 +91,7 @@ const useCodePush = (): CodePushContextType => {
 export const isProductionTool = {
     checkIsProd: async () => {
         const isProdStorage = await AsyncStorage.getItem('is_prod')
+        //true by default
         return (isProdStorage === null) || (JSON.parse(isProdStorage) === true)
     },
     setIsProd: async (isProd: boolean) => {
