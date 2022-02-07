@@ -9,41 +9,41 @@ import IMG_URI from '../img/IMG_URI'
 const imageSource = require('../img/bg.jpg')
 
 const ItemDetail = () => {
-    const ref = useRef(null)
-    useSharedImageTo(ref, IMG_URI)
-    return (
-        <View style={{flex: 1}}>
-            <Header/>
-            {/*<View style={{height: 100, backgroundColor: 'red'}}/>*/}
-            <View style={styles.container}>
-                <Text style={styles.text}>SHARED ELEMENT TEXT</Text>
-                <View style={styles.imgBox}>
-                    <View ref={ref}>
-                        <FastImage style={styles.image} resizeMode="cover" source={{uri: IMG_URI}}/>
-                    </View>
-                </View>
-            </View>
+  const ref = useRef(null)
+  useSharedImageTo(ref, IMG_URI)
+  return (
+    <View style={{flex: 1}}>
+      <Header />
+      {/*<View style={{height: 100, backgroundColor: 'red'}}/>*/}
+      <View style={styles.container}>
+        <Text style={styles.text}>SHARED ELEMENT TEXT</Text>
+        <View style={styles.imgBox}>
+          <View ref={ref}>
+            <FastImage style={styles.image} resizeMode="cover" source={{uri: IMG_URI}} />
+          </View>
         </View>
-    )
+      </View>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#3d6d5c',
-    },
-    image: {
-        width: '100%',
-        height: '100%',
-    },
-    text: {fontSize: 30, color: '#FFF', fontWeight: 'bold'},
-    imgBox: {
-        ...StyleSheet.absoluteFillObject,
-        position: 'absolute',
-        zIndex: -1,
-    },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#3d6d5c',
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+  text: {fontSize: 30, color: '#FFF', fontWeight: 'bold'},
+  imgBox: {
+    ...StyleSheet.absoluteFillObject,
+    position: 'absolute',
+    zIndex: -1,
+  },
 })
 
 export default ItemDetail

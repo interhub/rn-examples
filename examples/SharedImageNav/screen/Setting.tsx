@@ -13,11 +13,11 @@ const ItemDetail = () => {
       <Header />
       <View style={styles.imgBox}>
         {/*<SharedElement id="image">*/}
-          <FastImage style={styles.image} resizeMode="contain" source={{uri: IMG_URI}} />
+        <FastImage style={styles.image} resizeMode="contain" source={{uri: IMG_URI}} />
         {/*</SharedElement>*/}
       </View>
       {/*<SharedElement id="text">*/}
-        <Text style={styles.text}>SHARED ELEMENT TEXT</Text>
+      <Text style={styles.text}>SHARED ELEMENT TEXT</Text>
       {/*</SharedElement>*/}
     </View>
   )

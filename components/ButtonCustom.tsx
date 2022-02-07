@@ -1,5 +1,5 @@
 import React from 'react'
-import {TouchableOpacity, View} from 'react-native'
+import {Button, TouchableOpacity, View} from 'react-native'
 
 import TextLine from './TextLine'
 
@@ -11,13 +11,25 @@ interface ButtonOrangePropsType extends React.ComponentPropsWithoutRef<typeof Bu
   onPress?: () => void
   color?: string
   labaelColor?: string
-  children: string | JSX.Element | undefined | any
+  children: any
   accessibilityComponentType?: any
   accessibilityTraits?: any
   m?: number
+  style?: any
+  bold?: boolean
+  labelStyle?: any
 }
 
-const ButtonCustom = ({children = '', bold = true, labaelColor = '#FFF', onPress, icon, color = '#4a325f', m = 0, style = {}, ...props}: ButtonOrangePropsType) => {
+const ButtonCustom = ({
+  children = '',
+  bold = true,
+  labaelColor = '#FFF',
+  onPress,
+  color = '#4a325f',
+  m = 0,
+  style = {},
+  ...props
+}: ButtonOrangePropsType) => {
   return (
     <View style={{width: '100%', marginVertical: m, paddingHorizontal: m}}>
       <TouchableOpacity
@@ -31,7 +43,7 @@ const ButtonCustom = ({children = '', bold = true, labaelColor = '#FFF', onPress
             borderRadius: 10,
             backgroundColor: color,
             justifyContent: 'center',
-            opacity: props.disabled ? 0.8 : 1
+            opacity: props.disabled ? 0.8 : 1,
           },
           style,
         ]}

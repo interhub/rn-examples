@@ -7,7 +7,14 @@ export default function VideoBox() {
   const [status, setStatus] = React.useState(false)
   return (
     <View style={styles.container}>
-      <Video ref={video} style={styles.video} source={{uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}} useNativeControls={false} resizeMode="contain" isLooping />
+      <Video
+        ref={video}
+        style={styles.video}
+        source={{uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4'}}
+        useNativeControls={false}
+        resizeMode="contain"
+        isLooping
+      />
       <View style={styles.buttons}>
         <Button
           title={status ? 'Pause' : 'Play'}

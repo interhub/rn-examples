@@ -60,7 +60,14 @@ export default () => {
       <ButtonCustom m={5} onPress={closeModalPress}>
         Close
       </ButtonCustom>
-      <BottomSheet animatedPosition={animate} enablePanDownToClose={false} enableOverDrag ref={bottomSheetModalRef} index={0} snapPoints={snapPoints} onChange={handleSheetChanges}>
+      <BottomSheet
+        animatedPosition={animate}
+        enablePanDownToClose={false}
+        enableOverDrag
+        ref={bottomSheetModalRef}
+        index={0}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
         <BottomSheetScrollView>
           <View style={styles.contentContainer}>
             <Text>Awesome 🎉</Text>

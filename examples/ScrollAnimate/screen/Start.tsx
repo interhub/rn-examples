@@ -1,6 +1,14 @@
 import React from 'react'
 import {Dimensions, Image, StyleSheet, Text} from 'react-native'
-import Animated, {interpolate, interpolateColor, useAnimatedRef, useAnimatedScrollHandler, useAnimatedStyle, useDerivedValue, useSharedValue} from 'react-native-reanimated'
+import Animated, {
+  interpolate,
+  interpolateColor,
+  useAnimatedRef,
+  useAnimatedScrollHandler,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+} from 'react-native-reanimated'
 
 const IMG_MARGIN = 20
 const IMG_SIZE = 300

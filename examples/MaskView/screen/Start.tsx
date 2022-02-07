@@ -1,7 +1,16 @@
 import React, {useEffect} from 'react'
 import {Image, SafeAreaView} from 'react-native'
 import MaskedView from '@react-native-masked-view/masked-view'
-import Animated, {runOnJS, useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withDecay, withRepeat, withSequence, withTiming} from 'react-native-reanimated'
+import Animated, {
+  runOnJS,
+  useAnimatedGestureHandler,
+  useAnimatedStyle,
+  useSharedValue,
+  withDecay,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated'
 import {PanGestureHandler, PanGestureHandlerGestureEvent} from 'react-native-gesture-handler'
 import {useNavigation} from '@react-navigation/native'
 
