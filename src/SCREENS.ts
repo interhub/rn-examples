@@ -39,6 +39,7 @@ import MapPage from '../examples/MapPage'
 import NativeModule from '../examples/NativeModule'
 import NetInfo from '../examples/NetInfo'
 import AV from '../examples/AV'
+import ImageViewer from '../examples/ImageViewer'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -81,4 +82,5 @@ export const SCREENS = {
   ['NATIVE MODULES ☠️']: NativeModule,
   ['NET INFO 🪐']: NetInfo,
   ['AV 📀']: AV,
+  ['ImageViewer 🏞']: ImageViewer,
 }
