@@ -1,5 +1,5 @@
 import React from 'react'
-import {Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native'
 import FastImage from 'react-native-fast-image'
 
 import ImageViewerProvider, {useImageViewer} from '../components/ImageViewerProvider'
