@@ -1,11 +1,11 @@
 import * as React from 'react'
-import {KeyboardAvoidingView, Platform} from 'react-native'
+import {KeyboardAvoidingView} from 'react-native'
+
+import IS_IOS from '../src/config/IS_IOS'
 
 interface ProviderKeyboardBarProps {
   children: React.ReactNode
 }
-
-const IS_IOS = Platform.OS === 'ios' //TODO CHANGE USAGE TO IS_IOS GLOBAL VAR
 
 const KeyboardWrapper = ({children}: ProviderKeyboardBarProps) => {
   return (
