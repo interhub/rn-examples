@@ -13,15 +13,19 @@ export interface CodePushContextType {
 //@ts-ignore
 const CodePushContext = React.createContext<CodePushContextType>({})
 
-const CodePushWrapper = ({children}: {children: React.ReactNode}) => {
+const CodePushProvider = ({children}: {children: React.ReactNode}) => {
   const {syncCodePush, isUpdating, switchProd, checkIsUpdate} = useCodePush()
 
   useEffect(() => {
     checkIsUpdate().then((isExistUpdate) => {
-      if (isExistUpdate) syncCodePush()
+      console.log({isExistUpdate})
+      if (isExistUpdate) {
+        syncCodePush()
+      }
     })
   }, [])
 
+  //todo if need different screen when update is checking and update downloading so have to add additional param to hook return values
   if (isUpdating) {
     return <WaitUpdateAlert />
   }
@@ -42,4 +46,4 @@ export const useIsProduction = () => {
   return {isProduction}
 }
 
-export default CodePushWrapper
+export default CodePushProvider

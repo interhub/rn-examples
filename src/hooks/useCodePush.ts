@@ -2,8 +2,8 @@ import codePush from 'react-native-code-push'
 import {useState} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import IS_IOS from '../config/IS_IOS'
 import {CodePushContextType} from '../wrappers/CodePushWrapper'
+import IS_IOS from '../config/IS_IOS'
 
 /**
  TIME BEFORE RESET APP START (AFTER UPDATE) for sync code push
@@ -24,11 +24,11 @@ enum CODE_PUSH_KEYS_ANDROID {
 }
 
 /**
- @hook for code push reload and update
+ @hooks for code push reload and update
  */
 const useCodePush = (): CodePushContextType => {
   //Set default false if should show loading screen for initial (or add additional state for other loading)
-  const [isUpdating, setIsUpdating] = useState(false)
+  const [isUpdating, setIsUpdating] = useState(true)
   const stopUpdating = () => {
     setIsUpdating(false)
   }
@@ -37,28 +37,35 @@ const useCodePush = (): CodePushContextType => {
     setIsUpdating(true)
   }
 
+  const getDeploymentKey = async (): Promise<string> => {
+    const isProduction = await isProductionTool.checkIsProd()
+    const deploymentKey: string = isProduction
+      ? IS_IOS
+        ? CODE_PUSH_KEYS_IOS.PRODUCTION
+        : CODE_PUSH_KEYS_ANDROID.PRODUCTION
+      : IS_IOS
+      ? CODE_PUSH_KEYS_IOS.STAGING
+      : CODE_PUSH_KEYS_ANDROID.STAGING
+    return deploymentKey
+  }
+
   const checkIsUpdate = async () => {
-    return !!(await codePush.checkForUpdate())
+    const deploymentKey = await getDeploymentKey()
+    const isExistUpdate = !!(await codePush.checkForUpdate(deploymentKey))
+    if (!isExistUpdate) {
+      stopUpdating()
+    }
+    return isExistUpdate
   }
 
   const syncCodePush = async (): Promise<any> => {
     if (__DEV__) {
       return stopUpdating()
     }
-
     startUpdating()
-
-    const isProduction = await isProductionTool.checkIsProd()
+    const deploymentKey = await getDeploymentKey()
 
     return new Promise((ok) => {
-      const deploymentKey: string = isProduction
-        ? IS_IOS
-          ? CODE_PUSH_KEYS_IOS.PRODUCTION
-          : CODE_PUSH_KEYS_ANDROID.PRODUCTION
-        : IS_IOS
-        ? CODE_PUSH_KEYS_IOS.STAGING
-        : CODE_PUSH_KEYS_ANDROID.STAGING
-
       codePush
         .sync(
           {installMode: codePush.InstallMode.IMMEDIATE, deploymentKey},
@@ -87,7 +94,9 @@ const useCodePush = (): CodePushContextType => {
 
   const switchProd = async (isProdTo: boolean) => {
     const isProdAlready = await isProductionTool.checkIsProd()
-    if (isProdAlready === isProdTo) return
+    if (isProdAlready === isProdTo) {
+      return
+    }
     await isProductionTool.setIsProd(isProdTo)
     await syncCodePush()
   }
@@ -95,14 +104,24 @@ const useCodePush = (): CodePushContextType => {
   return {syncCodePush, isUpdating, switchProd, checkIsUpdate}
 }
 
+//TODO replace to server side checking isProduction switcher instead of AsyncStorage (after web admin page support)
 export const isProductionTool = {
   checkIsProd: async () => {
-    const isProdStorage = await AsyncStorage.getItem('is_prod')
-    //true by default
-    return isProdStorage === null || JSON.parse(isProdStorage) === true
+    try {
+      const isProdStorage = await AsyncStorage.getItem('is_prod')
+      //true by default
+      return isProdStorage === null || JSON.parse(isProdStorage) === true
+    } catch (e) {
+      console.log(e)
+      return true
+    }
   },
   setIsProd: async (isProd: boolean) => {
-    await AsyncStorage.setItem('is_prod', JSON.stringify(isProd))
+    try {
+      await AsyncStorage.setItem('is_prod', JSON.stringify(isProd))
+    } catch (e) {
+      console.log(e)
+    }
   },
 }
 

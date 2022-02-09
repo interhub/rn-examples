@@ -1,6 +1,4 @@
-import {CardStyleInterpolators, StackNavigationOptions, TransitionSpecs} from '@react-navigation/stack'
-import {TransitionPreset} from '@react-navigation/stack/lib/typescript/src/types'
-import {Easing} from 'react-native'
+import {CardStyleInterpolators, StackNavigationOptions} from '@react-navigation/stack'
 import {DrawerNavigationOptions} from '@react-navigation/drawer'
 
 import SIZE from './SIZE'
