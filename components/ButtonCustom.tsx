@@ -29,7 +29,7 @@ const ButtonCustom = ({
   m = 0,
   style = {},
   ...props
-}: ButtonOrangePropsType) => {
+}: ButtonOrangePropsType | any) => {
   return (
     <View style={{width: '100%', marginVertical: m, paddingHorizontal: m}}>
       <TouchableOpacity

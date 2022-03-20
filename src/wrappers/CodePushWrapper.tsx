@@ -5,6 +5,7 @@ import WaitUpdateAlert from '../components/WaitUpdateAlert'
 
 export interface CodePushContextType {
   isUpdating: boolean
+  isChecking: boolean
   syncCodePush: () => Promise<void>
   switchProd: (isProd: boolean) => Promise<void>
   checkIsUpdate: () => Promise<boolean>
@@ -14,7 +15,7 @@ export interface CodePushContextType {
 const CodePushContext = React.createContext<CodePushContextType>({})
 
 const CodePushProvider = ({children}: {children: React.ReactNode}) => {
-  const {syncCodePush, isUpdating, switchProd, checkIsUpdate} = useCodePush()
+  const {syncCodePush, isUpdating, switchProd, checkIsUpdate, isChecking} = useCodePush()
 
   useEffect(() => {
     checkIsUpdate().then((isExistUpdate) => {
@@ -29,7 +30,7 @@ const CodePushProvider = ({children}: {children: React.ReactNode}) => {
   if (isUpdating) {
     return <WaitUpdateAlert />
   }
-  return <CodePushContext.Provider value={{isUpdating, syncCodePush, switchProd, checkIsUpdate}}>{children}</CodePushContext.Provider>
+  return <CodePushContext.Provider value={{isUpdating, syncCodePush, switchProd, checkIsUpdate, isChecking}}>{children}</CodePushContext.Provider>
 }
 
 export const useCodePushDynamicSync = (): CodePushContextType => {

@@ -1,6 +1,7 @@
 import codePush from 'react-native-code-push'
 import {useState} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import NetInfo from '@react-native-community/netinfo'
 
 import {CodePushContextType} from '../wrappers/CodePushWrapper'
 import IS_IOS from '../config/IS_IOS'
@@ -26,11 +27,15 @@ enum CODE_PUSH_KEYS_ANDROID {
 /**
  @hooks for code push reload and update
  */
-const useCodePush = (): CodePushContextType => {
+const useCodePush = (): CodePushContextType & {updatePercent: number} => {
   //Set default false if should show loading screen for initial (or add additional state for other loading)
-  const [isUpdating, setIsUpdating] = useState(true)
+  const [isUpdating, setIsUpdating] = useState(false)
+  const [isChecking, setIsChecking] = useState(true)
+  const [updatePercent, setUpdatePercent] = useState(0)
+
   const stopUpdating = () => {
     setIsUpdating(false)
+    setIsChecking(false)
   }
 
   const startUpdating = () => {
@@ -49,11 +54,21 @@ const useCodePush = (): CodePushContextType => {
     return deploymentKey
   }
 
-  const checkIsUpdate = async () => {
+  const checkIsConnected = async (): Promise<boolean> => NetInfo.fetch().then((s) => !!s.isConnected)
+
+  const checkIsUpdate = async (): Promise<boolean> => {
+    const isConnected = await checkIsConnected()
+    if (!isConnected) {
+      stopUpdating()
+      return false
+    }
+    setIsChecking(true)
     const deploymentKey = await getDeploymentKey()
     const isExistUpdate = !!(await codePush.checkForUpdate(deploymentKey))
     if (!isExistUpdate) {
-      stopUpdating()
+      setTimeout(() => {
+        setIsChecking(false)
+      }, 100)
     }
     return isExistUpdate
   }
@@ -81,6 +96,10 @@ const useCodePush = (): CodePushContextType => {
             }
           },
           async (progress) => {
+            if (progress) {
+              const percent = (progress.receivedBytes / progress.totalBytes) * 100 || 0
+              setUpdatePercent(Math.floor(percent))
+            }
             if (progress.receivedBytes === progress.totalBytes) {
               setTimeout(ok, SLEEP_TIME)
             }
@@ -101,7 +120,7 @@ const useCodePush = (): CodePushContextType => {
     await syncCodePush()
   }
 
-  return {syncCodePush, isUpdating, switchProd, checkIsUpdate}
+  return {syncCodePush, isUpdating, switchProd, checkIsUpdate, isChecking, updatePercent}
 }
 
 //TODO replace to server side checking isProduction switcher instead of AsyncStorage (after web admin page support)
