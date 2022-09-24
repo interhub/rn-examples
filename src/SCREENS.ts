@@ -40,6 +40,7 @@ import NativeModule from '../examples/NativeModule'
 import NetInfo from '../examples/NetInfo'
 import AV from '../examples/AV'
 import ImageViewer from '../examples/ImageViewer'
+import FlatListTwoSideLoad from '../examples/FlatListTwoSideLoad'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -83,4 +84,5 @@ export const SCREENS = {
   ['NET INFO 🪐']: NetInfo,
   ['AV 📀']: AV,
   ['ImageViewer 🏞']: ImageViewer,
+  ['FlatListTwoSideLoad 🐊']: FlatListTwoSideLoad,
 }
