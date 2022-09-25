@@ -127,3 +127,7 @@ const styles = StyleSheet.create({
 })
 
 export default FlatListScreen
+
+//TODO
+// create wrapper list controller provider with scroll methods and loading states
+// create page controller into wrapper and connect with api by props

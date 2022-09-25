@@ -88,7 +88,7 @@ const FlatListTwoSideLoad = React.forwardRef<FlatList, FlatListTwoSideLoadProps>
     onLoadStart()
     onLoadEnd()
     listRef.current?.scrollToOffset({offset: 10, animated: true})
-    await wait(200)
+    await wait(400)
     setIsLoaded(true)
     //run scroll to init item pos if it has diff bug
     setDataState((d) => {
