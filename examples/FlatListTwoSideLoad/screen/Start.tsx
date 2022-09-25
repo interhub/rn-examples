@@ -68,7 +68,7 @@ const FlatListScreen = () => {
   }
 
   const [readIds, setReadIds] = useState<string[]>([])
-  const onReadIds = (ids: string[]) => {
+  const onReadIds = (ids: string[], currentShow: string[]) => {
     setReadIds(ids)
   }
 
@@ -99,11 +99,13 @@ const FlatListScreen = () => {
   )
 }
 
-const Item = ({title, isFirst, isRead}: {title: string; isFirst: boolean; isRead: boolean}) => (
-  <View style={[styles.item, isFirst && {backgroundColor: 'green'}, isRead && {backgroundColor: '#28459e'}]}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-)
+const Item = ({title, isFirst, isRead}: {title: string; isFirst: boolean; isRead: boolean}) => {
+  return (
+    <View style={[styles.item, isFirst && {backgroundColor: 'green'}, isRead && {backgroundColor: '#28459e'}]}>
+      <Text style={styles.title}>{title}</Text>
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {

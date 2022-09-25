@@ -17,7 +17,7 @@ type FlatListTwoSideLoadProps = {
   loadingInitArr: boolean
   onLoadData: () => Promise<{id: string}[]>
   onMountData: (arg: {data: {id: string}[]; mainItemId: string}) => void
-  onReadIds: (ids: string[]) => void
+  onReadIds: (ids: string[], currentShow: string[]) => void
 }
 
 type FlatListTwoSideLoadState = {
@@ -82,7 +82,6 @@ class FlatListTwoSideLoad extends React.Component<FlatListTwoSideLoadProps, Flat
     this.setState({isLoaded: true})
     //set up parent state
     this.props.onMountData({data: this.state.dataState, mainItemId: this.state.mainItemId})
-    this.pushRead([this.state.mainItemId])
     this.scrollToId(this.state.mainItemId)
   }
 
@@ -103,8 +102,8 @@ class FlatListTwoSideLoad extends React.Component<FlatListTwoSideLoadProps, Flat
 
   private readIds: string[] = []
   private notifyRead = getThrottleFn(
-    () => {
-      this.props.onReadIds(this.readIds)
+    (ids: string[], currentShow: string[]) => {
+      this.props.onReadIds(ids, currentShow)
     },
     1000,
     true,
@@ -112,7 +111,7 @@ class FlatListTwoSideLoad extends React.Component<FlatListTwoSideLoadProps, Flat
   private pushRead = (ids: string[]) => {
     const newReadedArr = uniq(this.readIds.concat(ids))
     this.readIds = newReadedArr
-    this.notifyRead()
+    this.notifyRead(newReadedArr, ids)
   }
   private viewabilityConfigCallbackPairs: ViewabilityConfigCallbackPair[] = [
     {
@@ -160,7 +159,7 @@ class FlatListTwoSideLoad extends React.Component<FlatListTwoSideLoadProps, Flat
   }
 }
 
-const getThrottleFn = (fn: () => void, wait: number = 1000, trailing: boolean = false) => {
+const getThrottleFn = (fn: (...args: any) => void, wait: number = 1000, trailing: boolean = false) => {
   return throttle(fn, wait, {leading: true, trailing: trailing})
 }
 const getHeadDataId = (dataState: {id: string}[]) => head(dataState)?.id || ''
