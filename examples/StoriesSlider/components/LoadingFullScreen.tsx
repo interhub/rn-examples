@@ -1,10 +1,10 @@
 import React from 'react'
-import {ActivityIndicator, StyleSheet, Text, View} from 'react-native'
+import {ActivityIndicator, StyleSheet, View} from 'react-native'
 
 const LoadingFullScreen = () => {
   return (
     <View style={styles.loadingBox}>
-      <ActivityIndicator size={'large'} color={'#fff'} />
+      <ActivityIndicator size={'small'} color={'#fff'} />
     </View>
   )
 }
