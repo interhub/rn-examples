@@ -82,6 +82,7 @@ class FlatListTwoSideLoad extends React.Component<FlatListTwoSideLoadProps, Flat
     this.setState({isLoaded: true})
     //set up parent state
     this.props.onMountData({data: this.state.dataState, mainItemId: this.state.mainItemId})
+    this.pushRead([this.state.mainItemId])
     this.scrollToId(this.state.mainItemId)
   }
 
@@ -108,17 +109,20 @@ class FlatListTwoSideLoad extends React.Component<FlatListTwoSideLoadProps, Flat
     1000,
     true,
   )
+  private pushRead = (ids: string[]) => {
+    const newReadedArr = uniq(this.readIds.concat(ids))
+    this.readIds = newReadedArr
+    this.notifyRead()
+  }
   private viewabilityConfigCallbackPairs: ViewabilityConfigCallbackPair[] = [
     {
       viewabilityConfig: {
-        minimumViewTime: 100,
+        minimumViewTime: 50,
         itemVisiblePercentThreshold: 30,
       },
       onViewableItemsChanged: (data) => {
         const visibleIds: string[] = data.viewableItems.map(({item}: {item: {id?: string}}) => item?.id).filter((v): v is string => Boolean(v))
-        const newReadedArr = uniq(this.readIds.concat(visibleIds))
-        this.readIds = newReadedArr
-        this.notifyRead()
+        this.pushRead(visibleIds)
       },
     },
   ]

@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {Button, ListRenderItem, StyleSheet, Text, View} from 'react-native'
 import {head, random} from 'lodash'
+import faker from 'faker'
 
 import FlatListTwoSideLoad from '../lib/FlatListTwoSideLoad'
 import LoadingFullScreen from '../../StoriesSlider/components/LoadingFullScreen'
@@ -8,9 +9,10 @@ import LoadingFullScreen from '../../StoriesSlider/components/LoadingFullScreen'
 type ItemPropsList = {title: string; id: string}
 
 const getRandomId = () => String(random(0, 100000))
+const getRandomText = () => faker.lorem.words(random(5, 100))
 const getRandomItem = () => {
   const id = getRandomId()
-  return {id: id, title: `item with id: ${id}`}
+  return {id: id, title: `item with id: ${id}. \n Text: ${getRandomText()}`}
 }
 const pageSize = 8
 const getPageItemsPack = () => {
@@ -98,7 +100,7 @@ const FlatListScreen = () => {
 }
 
 const Item = ({title, isFirst, isRead}: {title: string; isFirst: boolean; isRead: boolean}) => (
-  <View style={[styles.item, isFirst && {backgroundColor: 'green'}, isRead && {backgroundColor: 'blue'}]}>
+  <View style={[styles.item, isFirst && {backgroundColor: 'green'}, isRead && {backgroundColor: '#28459e'}]}>
     <Text style={styles.title}>{title}</Text>
   </View>
 )
@@ -117,8 +119,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   title: {
-    fontSize: 32,
-    height: 100,
+    fontSize: 16,
     color: '#fff',
   },
 })
