@@ -1,10 +1,10 @@
-import React from 'react'
-import {FlatList, ListRenderItem, StyleProp, ViewStyle} from 'react-native'
-import {head, throttle} from 'lodash'
+import React, {RefObject} from 'react'
+import {FlatList, ListRenderItem, StyleProp, ViewabilityConfigCallbackPair, ViewStyle} from 'react-native'
+import {head, throttle, uniq} from 'lodash'
 
 // import {FlatList} from '@stream-io/flat-list-mvcp'
 
-const loadDistanceDefault = 500
+const loadDistanceDefault = 1500
 
 const wait = async (time: number = 1000) => await new Promise((ok) => setTimeout(ok, time))
 
@@ -17,6 +17,7 @@ type FlatListTwoSideLoadProps = {
   loadingInitArr: boolean
   onLoadData: () => Promise<{id: string}[]>
   onMountData: (arg: {data: {id: string}[]; mainItemId: string}) => void
+  onReadIds: (ids: string[]) => void
 }
 
 type FlatListTwoSideLoadState = {
@@ -67,15 +68,17 @@ class FlatListTwoSideLoad extends React.Component<FlatListTwoSideLoadProps, Flat
       this.listRef?.current?.scrollToIndex({animated: true, index: firstIndex, viewPosition: 0.5})
     }
   }
+  public scrollToOffset = (y: number) => {
+    this.listRef?.current?.scrollToOffset({offset: y, animated: true})
+  }
 
   public scrollToInit() {
     this.scrollToId(this.state.mainItemId)
   }
 
   private afterReloadLoadMoreAndAnimate = async () => {
-    await this.onLoadStart()
-    await this.onLoadEnd()
-    await wait(100)
+    this.onLoadStart()
+    this.onLoadEnd()
     this.setState({isLoaded: true})
     //set up parent state
     this.props.onMountData({data: this.state.dataState, mainItemId: this.state.mainItemId})
@@ -97,14 +100,40 @@ class FlatListTwoSideLoad extends React.Component<FlatListTwoSideLoadProps, Flat
     this.updateGetData()
   }
 
+  private readIds: string[] = []
+  private notifyRead = getThrottleFn(
+    () => {
+      this.props.onReadIds(this.readIds)
+    },
+    1000,
+    true,
+  )
+  private viewabilityConfigCallbackPairs: ViewabilityConfigCallbackPair[] = [
+    {
+      viewabilityConfig: {
+        minimumViewTime: 100,
+        itemVisiblePercentThreshold: 30,
+      },
+      onViewableItemsChanged: (data) => {
+        const visibleIds: string[] = data.viewableItems.map(({item}: {item: {id?: string}}) => item?.id).filter((v): v is string => Boolean(v))
+        const newReadedArr = uniq(this.readIds.concat(visibleIds))
+        this.readIds = newReadedArr
+        this.notifyRead()
+      },
+    },
+  ]
+
   render() {
     return (
       <FlatList
+        viewabilityConfigCallbackPairs={this.viewabilityConfigCallbackPairs}
+        inverted
         initialNumToRender={20}
         ref={this.listRef}
         maintainVisibleContentPosition={{
           minIndexForVisible: 0,
         }}
+        onScrollToIndexFailed={getOnScrollToIndexFailed(this.listRef)}
         style={[{opacity: this.state.isLoaded ? 1 : 0, flex: 1}, this.props.style]}
         onScroll={(data) => {
           const nativeEvent = data.nativeEvent
@@ -127,8 +156,8 @@ class FlatListTwoSideLoad extends React.Component<FlatListTwoSideLoadProps, Flat
   }
 }
 
-const getThrottleFn = (fn: () => void, wait: number = 1000) => {
-  return throttle(fn, wait, {leading: true, trailing: false})
+const getThrottleFn = (fn: () => void, wait: number = 1000, trailing: boolean = false) => {
+  return throttle(fn, wait, {leading: true, trailing: trailing})
 }
 const getHeadDataId = (dataState: {id: string}[]) => head(dataState)?.id || ''
 
@@ -165,6 +194,29 @@ const PromiseStack = {
     PromiseStack.stack = []
     PromiseStack.isProcess = false
   },
+}
+
+export const getOnScrollToIndexFailed = (flatListRef: RefObject<FlatList<any>> | undefined) => {
+  return (error: any) => {
+    flatListRef?.current?.scrollToOffset({
+      offset: error.averageItemLength * error.index,
+      animated: true,
+    })
+    let times = 0
+    setTimeout(() => {
+      if (times > 10) {
+        return
+      }
+      if (flatListRef?.current !== null) {
+        flatListRef?.current?.scrollToIndex({
+          index: error.index,
+          animated: true,
+          viewOffset: 215,
+        })
+      }
+      times++
+    }, 100)
+  }
 }
 
 export default FlatListTwoSideLoad

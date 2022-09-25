@@ -44,8 +44,9 @@ const FlatListScreen = () => {
   const scrollToId = (id?: string) => {
     listRef.current?.scrollToId(id)
   }
+
   const scrollToInit = () => {
-    scrollToId(mainItemId)
+    listRef.current?.scrollToInit()
   }
 
   const reloadToOtherPage = async () => {
@@ -64,6 +65,11 @@ const FlatListScreen = () => {
     return await getDataArr()
   }
 
+  const [readIds, setReadIds] = useState<string[]>([])
+  const onReadIds = (ids: string[]) => {
+    setReadIds(ids)
+  }
+
   return (
     <View style={styles.container}>
       <FlatListTwoSideLoad
@@ -74,7 +80,12 @@ const FlatListScreen = () => {
         onLoadData={getDataArrPack}
         onLoadStart={onLoadStart}
         onLoadEnd={onLoadEnd}
-        renderItem={(({item}) => <Item title={item.title} isFirst={item.id === mainItemId} />) as ListRenderItem<ItemPropsList>}
+        onReadIds={onReadIds}
+        renderItem={
+          (({item}) => (
+            <Item title={item.title} isRead={readIds.includes(item.id)} isFirst={item.id === mainItemId} />
+          )) as ListRenderItem<ItemPropsList>
+        }
       />
       <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
         <Button title={'scroll to init'} onPress={scrollToInit} />
@@ -86,8 +97,8 @@ const FlatListScreen = () => {
   )
 }
 
-const Item = ({title, isFirst}: {title: string; isFirst: boolean}) => (
-  <View style={[styles.item, isFirst && {backgroundColor: 'green'}]}>
+const Item = ({title, isFirst, isRead}: {title: string; isFirst: boolean; isRead: boolean}) => (
+  <View style={[styles.item, isFirst && {backgroundColor: 'green'}, isRead && {backgroundColor: 'blue'}]}>
     <Text style={styles.title}>{title}</Text>
   </View>
 )
@@ -103,6 +114,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+    borderRadius: 20,
   },
   title: {
     fontSize: 32,
