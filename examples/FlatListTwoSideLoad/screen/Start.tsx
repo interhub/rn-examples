@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react'
-import {Button, FlatList, ListRenderItem, StyleSheet, Text, View} from 'react-native'
+import {Button, ListRenderItem, StyleSheet, Text, View} from 'react-native'
 import {head, random} from 'lodash'
 
 import FlatListTwoSideLoad from '../lib/FlatListTwoSideLoad'
@@ -17,8 +17,6 @@ const getPageItemsPack = () => {
   return new Array(pageSize).fill(1).map(getRandomItem)
 }
 
-const getHeadDataId = (dataState: {id: string}[]) => head(dataState)?.id || ''
-
 const wait = async (time: number = 1000) => await new Promise((ok) => setTimeout(ok, time))
 
 const getDataArr = async () => {
@@ -28,68 +26,55 @@ const getDataArr = async () => {
 
 const FlatListScreen = () => {
   const [dataState, setDataState] = useState<ItemPropsList[]>([])
+  const [mainItemId, setMainItemId] = useState<string>('')
   const [loadingInitArr, setLoadingInitArr] = useState(true)
   const [loadingReload, setLoadingReload] = useState(false)
 
-  const listRef = useRef<FlatList>(null)
+  const listRef = useRef<FlatListTwoSideLoad>(null)
 
   const onLoadStart = async () => {
     await wait(300)
-    console.log('load start')
-    setDataState((d) => {
-      return getPageItemsPack().concat(d)
-    })
+    return getPageItemsPack()
   }
   const onLoadEnd = async () => {
     await wait(300)
-    console.log('load end')
-    setDataState((d) => {
-      return d.concat(getPageItemsPack())
-    })
+    return getPageItemsPack()
   }
-
-  const [initItemId, setInitItemId] = useState('')
 
   const scrollToId = (id?: string) => {
-    const index = dataState.findIndex((d) => d.id === id)
-    if (index >= 0 && id) {
-      listRef.current?.scrollToIndex({index, animated: true})
-    }
+    listRef.current?.scrollToId(id)
   }
   const scrollToInit = () => {
-    scrollToId(initItemId)
+    scrollToId(mainItemId)
   }
+
   const reloadToOtherPage = async () => {
     setLoadingReload(true)
-    const newArr = await getDataArr()
-    setDataState(newArr)
-    setInitItemId(getHeadDataId(newArr))
+    await listRef.current?.updateGetData()
     setLoadingReload(false)
   }
 
-  //init loading data
-  useEffect(() => {
-    ;(async () => {
-      setLoadingInitArr(true)
-      const initArr = await getDataArr()
-      console.log('init set arr')
-      setDataState(initArr)
-      setInitItemId(getHeadDataId(initArr))
-      setLoadingInitArr(false)
-    })()
-  }, [])
+  const onMountData = ({data, mainItemId}: {data: ItemPropsList[]; mainItemId: string}) => {
+    setMainItemId(mainItemId)
+    setDataState(data)
+    setLoadingInitArr(false)
+  }
+
+  const getDataArrPack = async () => {
+    return await getDataArr()
+  }
 
   return (
     <View style={styles.container}>
       <FlatListTwoSideLoad
         loadingInitArr={loadingInitArr}
-        initItemId={initItemId}
         ref={listRef}
         style={{}}
+        onMountData={onMountData as any}
+        onLoadData={getDataArrPack}
         onLoadStart={onLoadStart}
         onLoadEnd={onLoadEnd}
-        data={dataState}
-        renderItem={(({item}) => <Item title={item.title} isFirst={item.id === initItemId} />) as ListRenderItem<ItemPropsList>}
+        renderItem={(({item}) => <Item title={item.title} isFirst={item.id === mainItemId} />) as ListRenderItem<ItemPropsList>}
       />
       <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
         <Button title={'scroll to init'} onPress={scrollToInit} />
