@@ -41,6 +41,7 @@ import NetInfo from '../examples/NetInfo'
 import AV from '../examples/AV'
 import ImageViewer from '../examples/ImageViewer'
 import FlatListTwoSideLoad from '../examples/FlatListTwoSideLoad'
+import VideoCall from '../examples/VideoCall'
 
 export const SCREENS = {
   ['MENU🏁']: Menu,
@@ -85,4 +86,5 @@ export const SCREENS = {
   ['AV 📀']: AV,
   ['ImageViewer 🏞']: ImageViewer,
   ['FlatListTwoSideLoad 🐊']: FlatListTwoSideLoad,
+  ['Video Call 🦢']: VideoCall,
 }
