@@ -2,4 +2,12 @@
   <color name="colorPrimary">#023c69</color>
   <color name="colorPrimaryDark">#ffffff</color>
   <color name="iconBackground">#FFFFFF</color>
+
+<!--  VIDEO CALL API-->
+  <item name="red" type="color">
+    #FC0303
+  </item>
+  <integer-array name="androidcolors">
+    <item>@color/red</item>
+  </integer-array>
 </resources>

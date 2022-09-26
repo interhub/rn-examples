@@ -1,8 +1,7 @@
 import React, {RefObject} from 'react'
-import {FlatList, ListRenderItem, StyleProp, ViewabilityConfigCallbackPair, ViewStyle} from 'react-native'
+import {ListRenderItem, StyleProp, ViewabilityConfigCallbackPair, ViewStyle} from 'react-native'
 import {head, throttle, uniq} from 'lodash'
-
-// import {FlatList} from '@stream-io/flat-list-mvcp'
+import {FlatList} from '@stream-io/flat-list-mvcp'
 
 const loadDistanceDefault = 1500
 

@@ -42,6 +42,8 @@
     "@types/jest": "^27.4.0",
     "@types/lodash": "^4.14.171",
     "@types/moment": "^2.13.0",
+    "@videosdk.live/react-native-incallmanager": "^0.0.7",
+    "@videosdk.live/react-native-sdk": "^0.0.35",
     "add": "^2.0.6",
     "axios": "^0.21.1",
     "clamp": "^1.0.1",
