@@ -3,8 +3,7 @@ import {FlatList, SafeAreaView, Text, TextInput, TouchableOpacity, View} from 'r
 //@ts-ignore
 import {MediaStream, MeetingProvider, RTCView, useMeeting, useParticipant} from '@videosdk.live/react-native-sdk'
 
-function JoinScreen(props: {connectMeeting: (v?: string) => Promise<void>}) {
-  const [meetingVal, setMeetingVal] = useState('')
+function JoinScreen(props: {connectMeeting: () => Promise<void>}) {
   return (
     <SafeAreaView
       style={{
@@ -14,35 +13,6 @@ function JoinScreen(props: {connectMeeting: (v?: string) => Promise<void>}) {
         paddingHorizontal: 6 * 10,
       }}>
       <TouchableOpacity
-        onPress={() => {
-          props.connectMeeting()
-        }}
-        style={{backgroundColor: '#1178F8', padding: 12, borderRadius: 6}}>
-        <Text style={{color: 'white', alignSelf: 'center', fontSize: 18}}>Create Meeting</Text>
-      </TouchableOpacity>
-
-      <Text
-        style={{
-          alignSelf: 'center',
-          fontSize: 22,
-          marginVertical: 16,
-          fontStyle: 'italic',
-          color: 'grey',
-        }}>
-        ---------- OR ----------
-      </Text>
-      <TextInput
-        value={meetingVal}
-        onChangeText={setMeetingVal}
-        placeholder={'XXXX-XXXX-XXXX'}
-        style={{
-          padding: 12,
-          borderWidth: 1,
-          borderRadius: 6,
-          fontStyle: 'italic',
-        }}
-      />
-      <TouchableOpacity
         style={{
           backgroundColor: '#1178F8',
           padding: 12,
@@ -50,7 +20,7 @@ function JoinScreen(props: {connectMeeting: (v?: string) => Promise<void>}) {
           borderRadius: 6,
         }}
         onPress={() => {
-          props.connectMeeting(meetingVal)
+          props.connectMeeting()
         }}>
         <Text style={{color: 'white', alignSelf: 'center', fontSize: 18}}>Join Meeting</Text>
       </TouchableOpacity>
