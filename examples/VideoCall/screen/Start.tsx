@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import {FlatList, SafeAreaView, Text, TextInput, TouchableOpacity, View} from 'react-native'
 //@ts-ignore
-import {MeetingProvider, useMeeting, useParticipant, MediaStream, RTCView} from '@videosdk.live/react-native-sdk'
+import {MediaStream, MeetingProvider, RTCView, useMeeting, useParticipant} from '@videosdk.live/react-native-sdk'
 
-function JoinScreen(props: {getMeetingId: (v?: string) => Promise<void>}) {
+function JoinScreen(props: {connectMeeting: (v?: string) => Promise<void>}) {
   const [meetingVal, setMeetingVal] = useState('')
   return (
     <SafeAreaView
@@ -15,7 +15,7 @@ function JoinScreen(props: {getMeetingId: (v?: string) => Promise<void>}) {
       }}>
       <TouchableOpacity
         onPress={() => {
-          props.getMeetingId()
+          props.connectMeeting()
         }}
         style={{backgroundColor: '#1178F8', padding: 12, borderRadius: 6}}>
         <Text style={{color: 'white', alignSelf: 'center', fontSize: 18}}>Create Meeting</Text>
@@ -50,7 +50,7 @@ function JoinScreen(props: {getMeetingId: (v?: string) => Promise<void>}) {
           borderRadius: 6,
         }}
         onPress={() => {
-          props.getMeetingId(meetingVal)
+          props.connectMeeting(meetingVal)
         }}>
         <Text style={{color: 'white', alignSelf: 'center', fontSize: 18}}>Join Meeting</Text>
       </TouchableOpacity>
@@ -187,17 +187,13 @@ function MeetingView() {
 
 export default function () {
   const [meetingId, setMeetingId] = useState<string | null>(null)
+  const [token, setToken] = useState<string>('')
 
-  const getMeetingId = async (id?: string) => {
-    console.log({id})
-    if (id) {
-      setMeetingId(id)
-      console.log({id})
-    } else {
-      const meetingId = await createMeeting({token})
-      console.log({meetingId})
-      setMeetingId(meetingId)
-    }
+  const connectMeeting = async () => {
+    const {meetingId, token} = await createMeeting()
+    console.log({meetingId, token})
+    setToken(token)
+    setMeetingId(meetingId)
   }
 
   return meetingId ? (
@@ -207,32 +203,21 @@ export default function () {
           meetingId,
           micEnabled: false,
           webcamEnabled: true,
-          name: 'Test User',
+          name: 'Test User 2', //TODO user name add from store
         }}
         token={token}>
         <MeetingView />
       </MeetingProvider>
     </SafeAreaView>
   ) : (
-    <JoinScreen getMeetingId={getMeetingId} />
+    <JoinScreen connectMeeting={connectMeeting} />
   )
 }
 
-export const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiIwYmIyZDcxNC05YWI4LTRlZDItYjUzYS02MWIzZTY3OTA1MWMiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY2NDIyNDI2OCwiZXhwIjoxNjY0ODI5MDY4fQ.WHg5JElntDQ5L7VJsKTgr7ItXxPqYVGZs5plZ-zbvvQ'
-// API call to create meeting
-export const createMeeting = async ({token}: {token: string}) => {
-  const res = await fetch(`https://api.videosdk.live/v1/meetings`, {
-    method: 'POST',
-    headers: {
-      authorization: `${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({region: 'sg001'}),
-  })
-
-  console.log(res.status, 'status')
-
-  const {meetingId} = await res.json()
-  return meetingId
+export const createMeeting = async (): Promise<{meetingId: string; token: string}> => {
+  const data = fetch('https://prod.api.aspectapp.io/aspect-api-v2/meeting/test-meeting-id')
+    .then((res) => res.json())
+    .then((res) => res || {})
+  console.log({data})
+  return data
 }
