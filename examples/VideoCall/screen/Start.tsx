@@ -16,9 +16,10 @@ const Button = ({onPress, buttonText, backgroundColor}: any) => {
         backgroundColor: backgroundColor,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 12,
         borderRadius: 4,
         margin: 3,
+        flex: 1,
+        height: 50,
       }}>
       <Text style={{color: 'white', fontSize: 16}}>{buttonText}</Text>
     </TouchableOpacity>
@@ -45,12 +46,12 @@ function ControlsContainer() {
   return (
     <View
       style={{
-        padding: 24,
+        padding: 10,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      {joining && <Text>Joining ...</Text>}
+      {joining && <Text style={{color: '#fff'}}>Joining ...</Text>}
       {!isJoined && !joining && (
         <Button
           onPress={() => {
