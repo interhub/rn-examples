@@ -7,7 +7,6 @@ import {useNavigation} from '@react-navigation/native'
 
 import SIZE from '../../../src/config/SIZE'
 import LoadingFullScreen from '../../StoriesSlider/components/LoadingFullScreen'
-import ExternalVideo from '../ExternalVideo'
 
 const Button = ({onPress, buttonText, backgroundColor}: any) => {
   return (
