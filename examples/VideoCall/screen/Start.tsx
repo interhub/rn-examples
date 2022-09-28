@@ -1,32 +1,12 @@
-import React, {useState} from 'react'
-import {FlatList, SafeAreaView, Text, TextInput, TouchableOpacity, View} from 'react-native'
+import React, {useEffect, useState} from 'react'
+import {FlatList, SafeAreaView, Text, TouchableOpacity, View} from 'react-native'
 //@ts-ignore
-import {MediaStream, MeetingProvider, RTCView, useMeeting, useParticipant} from '@videosdk.live/react-native-sdk'
+import {MediaStream, MeetingProvider, RTCView, useConnection, useMeeting, useParticipant} from '@videosdk.live/react-native-sdk'
+import axios from 'axios'
+import {useNavigation} from '@react-navigation/native'
 
-function JoinScreen(props: {connectMeeting: () => Promise<void>}) {
-  return (
-    <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: '#F6F6FF',
-        justifyContent: 'center',
-        paddingHorizontal: 6 * 10,
-      }}>
-      <TouchableOpacity
-        style={{
-          backgroundColor: '#1178F8',
-          padding: 12,
-          marginTop: 14,
-          borderRadius: 6,
-        }}
-        onPress={() => {
-          props.connectMeeting()
-        }}>
-        <Text style={{color: 'white', alignSelf: 'center', fontSize: 18}}>Join Meeting</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
-  )
-}
+import SIZE from '../../../src/config/SIZE'
+import LoadingFullScreen from '../../StoriesSlider/components/LoadingFullScreen'
 
 const Button = ({onPress, buttonText, backgroundColor}: any) => {
   return (
@@ -38,48 +18,85 @@ const Button = ({onPress, buttonText, backgroundColor}: any) => {
         alignItems: 'center',
         padding: 12,
         borderRadius: 4,
+        margin: 3,
       }}>
       <Text style={{color: 'white', fontSize: 12}}>{buttonText}</Text>
     </TouchableOpacity>
   )
 }
 
-function ControlsContainer({join, leave, toggleWebcam, toggleMic}: any) {
+const useFlipInitCamera = () => {
+  const {changeWebcam, localWebcamOn} = useMeeting()
+  const [isFlippedInit, setIsFlippedInit] = useState(false)
+  useEffect(() => {
+    if (!localWebcamOn) return
+    if (isFlippedInit) return
+    changeWebcam()
+    setIsFlippedInit(true)
+  }, [localWebcamOn])
+}
+
+function ControlsContainer() {
+  const {goBack} = useNavigation()
+  const {isJoined, joining, joinPress, leave, isJoinedFinish} = useJoined()
+  const {changeWebcam, toggleWebcam, toggleMic} = useMeeting()
+  useFlipInitCamera()
+
   return (
     <View
       style={{
         padding: 24,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}>
-      <Button
-        onPress={() => {
-          join()
-        }}
-        buttonText={'Join'}
-        backgroundColor={'#1178F8'}
-      />
-      <Button
-        onPress={() => {
-          toggleWebcam()
-        }}
-        buttonText={'Toggle Webcam'}
-        backgroundColor={'#1178F8'}
-      />
-      <Button
-        onPress={() => {
-          toggleMic()
-        }}
-        buttonText={'Toggle Mic'}
-        backgroundColor={'#1178F8'}
-      />
-      <Button
-        onPress={() => {
-          leave()
-        }}
-        buttonText={'Leave'}
-        backgroundColor={'#FF0000'}
-      />
+      {joining && <Text>Joining ...</Text>}
+      {!isJoined && !joining && (
+        <Button
+          onPress={() => {
+            joinPress()
+          }}
+          buttonText={'Join'}
+          backgroundColor={'#1178F8'}
+        />
+      )}
+      {isJoinedFinish && (
+        <Button
+          onPress={() => {
+            toggleWebcam()
+          }}
+          buttonText={'Toggle Webcam'}
+          backgroundColor={'#1178F8'}
+        />
+      )}
+      {isJoinedFinish && (
+        <Button
+          onPress={() => {
+            changeWebcam()
+          }}
+          buttonText={'Flip Camera'}
+          backgroundColor={'#1178F8'}
+        />
+      )}
+      {isJoinedFinish && (
+        <Button
+          onPress={() => {
+            toggleMic()
+          }}
+          buttonText={'Toggle Mic'}
+          backgroundColor={'#1178F8'}
+        />
+      )}
+      {isJoinedFinish && (
+        <Button
+          onPress={() => {
+            leave()
+            goBack()
+          }}
+          buttonText={'Leave'}
+          backgroundColor={'#FF0000'}
+        />
+      )}
     </View>
   )
 }
@@ -94,10 +111,9 @@ function ParticipantView({participantId}: {participantId: string}) {
         streamURL={streamURL}
         objectFit={'cover'}
         style={{
-          height: 300,
-          width: 300,
+          height: SIZE.height / 3,
+          width: SIZE.width,
           marginVertical: 8,
-          marginHorizontal: 8,
         }}
       />
     )
@@ -110,7 +126,7 @@ function ParticipantView({participantId}: {participantId: string}) {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Text style={{fontSize: 16}}>NO MEDIA</Text>
+      <Text style={{fontSize: 16, color: '#ccc', fontWeight: 'bold'}}>Connected User</Text>
     </View>
   )
 }
@@ -141,16 +157,54 @@ function ParticipantList({participants}: {participants: string[]}) {
   )
 }
 
+const useLeaveMeeting = () => {
+  const {leave, end, stopLiveStream, stopVideo, stopHls} = useMeeting()
+  const stop = () => {
+    leave()
+    end()
+    if (stopLiveStream) stopLiveStream()
+    if (stopHls) stopHls()
+    stopVideo()
+  }
+  useEffect(() => {
+    return () => {
+      stop()
+    }
+  }, [])
+  return {stop}
+}
+
+const useJoined = () => {
+  const [isJoined, setJoined] = useState(false)
+  const [joining, setJoining] = useState(false)
+  const {join, leave} = useMeeting({
+    onMeetingJoined: () => {
+      setJoined(true)
+      setJoining(false)
+    },
+    onMeetingLeft: () => {
+      setJoined(false)
+      setJoining(false)
+    },
+  })
+  const joinPress = () => {
+    setJoining(true)
+    join()
+  }
+  const isJoinedFinish = isJoined && !joining
+  return {isJoined, joining, joinPress, leave, isJoinedFinish}
+}
+
 function MeetingView() {
-  const {join, leave, toggleWebcam, toggleMic, meetingId, participants} = useMeeting({})
-  console.log({participants})
+  const {participants, meetingId} = useMeeting()
+  useLeaveMeeting()
   const participantsArrId = [...participants.keys()] // Add this line
 
   return (
     <View style={{flex: 1}}>
       {meetingId ? <Text style={{fontSize: 18, padding: 12}}>Meeting Id :{meetingId}</Text> : null}
       <ParticipantList participants={participantsArrId} />
-      <ControlsContainer join={join} leave={leave} toggleWebcam={toggleWebcam} toggleMic={toggleMic} />
+      <ControlsContainer />
     </View>
   )
 }
@@ -166,7 +220,15 @@ export default function () {
     setMeetingId(meetingId)
   }
 
-  return meetingId ? (
+  useEffect(() => {
+    connectMeeting()
+  }, [])
+
+  if (!meetingId) {
+    return <LoadingFullScreen color={'black'} />
+  }
+
+  return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#F6F6FF'}}>
       <MeetingProvider
         config={{
@@ -179,15 +241,29 @@ export default function () {
         <MeetingView />
       </MeetingProvider>
     </SafeAreaView>
-  ) : (
-    <JoinScreen connectMeeting={connectMeeting} />
   )
 }
 
+// const getToken = async () => {
+//   const getFromStorage = async () => {
+//     return await AsyncStorage.getItem('meeting-token')
+//   }
+//   const getFromServer = async () => {
+//     const res = await axios.get('https://e520-93-171-64-249.in.ngrok.io/meeting/token')
+//     const token = res.data?.token
+//     if (token) {
+//       await AsyncStorage.setItem('meeting-token', token)
+//     }
+//     return token
+//   }
+//   const tokenStorage = await getFromStorage()
+//   if (!tokenStorage) return await getFromServer()
+//   return tokenStorage
+// }
+
 export const createMeeting = async (): Promise<{meetingId: string; token: string}> => {
-  const data = fetch('https://prod.api.aspectapp.io/aspect-api-v2/meeting/test-meeting-id')
-    .then((res) => res.json())
-    .then((res) => res || {})
+  const res = await axios.get('https://e520-93-171-64-249.in.ngrok.io/meeting/test-meeting-id')
+  const data = res.data
   console.log({data})
   return data
 }
