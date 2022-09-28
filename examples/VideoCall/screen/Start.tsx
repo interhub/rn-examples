@@ -7,6 +7,7 @@ import {useNavigation} from '@react-navigation/native'
 
 import SIZE from '../../../src/config/SIZE'
 import LoadingFullScreen from '../../StoriesSlider/components/LoadingFullScreen'
+import ExternalVideo from '../ExternalVideo'
 
 const Button = ({onPress, buttonText, backgroundColor}: any) => {
   return (
@@ -103,12 +104,16 @@ function ControlsContainer() {
 }
 
 function ParticipantView({participantId}: {participantId: string}) {
-  const {webcamStream, webcamOn} = useParticipant(participantId)
+  const {webcamStream, webcamOn, isLocal} = useParticipant(participantId)
   const isActive = !!webcamStream?.track && webcamOn
+
   if (isActive) {
-    const streamURL = new MediaStream([webcamStream.track]).toURL()
+    const stream = new MediaStream([webcamStream.track])
+    const streamURL = stream.toURL()
+
     return (
       <RTCView
+        mirror={false}
         streamURL={streamURL}
         objectFit={'cover'}
         style={{
