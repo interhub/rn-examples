@@ -20,7 +20,7 @@ const Button = ({onPress, buttonText, backgroundColor}: any) => {
         borderRadius: 4,
         margin: 3,
       }}>
-      <Text style={{color: 'white', fontSize: 12}}>{buttonText}</Text>
+      <Text style={{color: 'white', fontSize: 16}}>{buttonText}</Text>
     </TouchableOpacity>
   )
 }
@@ -114,6 +114,7 @@ function ParticipantView({participantId}: {participantId: string}) {
           height: SIZE.height / 3,
           width: SIZE.width,
           marginVertical: 8,
+          borderRadius: 10,
         }}
       />
     )
@@ -125,6 +126,7 @@ function ParticipantView({participantId}: {participantId: string}) {
         height: 300,
         justifyContent: 'center',
         alignItems: 'center',
+        borderRadius: 10,
       }}>
       <Text style={{fontSize: 16, color: '#ccc', fontWeight: 'bold'}}>Connected User</Text>
     </View>
@@ -148,11 +150,10 @@ function ParticipantList({participants}: {participants: string[]}) {
     <View
       style={{
         flex: 1,
-        backgroundColor: '#F6F6FF',
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Text style={{fontSize: 20}}>Press Join button to enter meeting.</Text>
+      <Text style={{fontSize: 20, color: '#fff'}}>Press Join button to enter the meeting</Text>
     </View>
   )
 }
@@ -202,7 +203,7 @@ function MeetingView() {
 
   return (
     <View style={{flex: 1}}>
-      {meetingId ? <Text style={{fontSize: 18, padding: 12}}>Meeting Id :{meetingId}</Text> : null}
+      {meetingId ? <Text style={{fontSize: 18, padding: 12, color: '#fff'}}>Meeting Id :{meetingId}</Text> : null}
       <ParticipantList participants={participantsArrId} />
       <ControlsContainer />
     </View>
@@ -229,7 +230,7 @@ export default function () {
   }
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#F6F6FF'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#464646'}}>
       <MeetingProvider
         config={{
           meetingId,
