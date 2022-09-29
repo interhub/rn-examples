@@ -39,8 +39,11 @@ const useFlipInitCamera = () => {
 
 function ControlsContainer() {
   const {goBack} = useNavigation()
-  const {isJoined, joining, joinPress, leave, isJoinedFinish} = useJoined()
-  const {changeWebcam, toggleWebcam, toggleMic} = useMeeting()
+  const {isJoined, joining} = useJoined()
+  const {changeWebcam, toggleWebcam, toggleMic, join, leave} = useMeeting()
+  useEffect(() => {
+    join()
+  }, [])
   useFlipInitCamera()
 
   return (
@@ -52,16 +55,16 @@ function ControlsContainer() {
         alignItems: 'center',
       }}>
       {joining && <Text style={{color: '#fff'}}>Joining ...</Text>}
-      {!isJoined && !joining && (
-        <Button
-          onPress={() => {
-            joinPress()
-          }}
-          buttonText={'Join'}
-          backgroundColor={'#1178F8'}
-        />
-      )}
-      {isJoinedFinish && (
+      {/*{!isJoined && (*/}
+      {/*  <Button*/}
+      {/*    onPress={() => {*/}
+      {/*      join()*/}
+      {/*    }}*/}
+      {/*    buttonText={'Join'}*/}
+      {/*    backgroundColor={'#1178F8'}*/}
+      {/*  />*/}
+      {/*)}*/}
+      {isJoined && (
         <Button
           onPress={() => {
             toggleWebcam()
@@ -70,7 +73,7 @@ function ControlsContainer() {
           backgroundColor={'#1178F8'}
         />
       )}
-      {isJoinedFinish && (
+      {isJoined && (
         <Button
           onPress={() => {
             changeWebcam()
@@ -79,7 +82,7 @@ function ControlsContainer() {
           backgroundColor={'#1178F8'}
         />
       )}
-      {isJoinedFinish && (
+      {isJoined && (
         <Button
           onPress={() => {
             toggleMic()
@@ -88,7 +91,7 @@ function ControlsContainer() {
           backgroundColor={'#1178F8'}
         />
       )}
-      {isJoinedFinish && (
+      {isJoined && (
         <Button
           onPress={() => {
             leave()
@@ -103,7 +106,7 @@ function ControlsContainer() {
 }
 
 function ParticipantView({participantId}: {participantId: string}) {
-  const {webcamStream, webcamOn, isLocal} = useParticipant(participantId)
+  const {webcamStream, webcamOn, isLocal, displayName} = useParticipant(participantId)
   const isActive = !!webcamStream?.track && webcamOn
 
   if (isActive) {
@@ -133,7 +136,7 @@ function ParticipantView({participantId}: {participantId: string}) {
         alignItems: 'center',
         borderRadius: 10,
       }}>
-      <Text style={{fontSize: 16, color: '#ccc', fontWeight: 'bold'}}>Connected User</Text>
+      <Text style={{fontSize: 16, color: '#ccc', fontWeight: 'bold'}}>{displayName}</Text>
     </View>
   )
 }
@@ -182,8 +185,8 @@ const useLeaveMeeting = () => {
 
 const useJoined = () => {
   const [isJoined, setJoined] = useState(false)
-  const [joining, setJoining] = useState(false)
-  const {join, leave} = useMeeting({
+  const [joining, setJoining] = useState(true)
+  useMeeting({
     onMeetingJoined: () => {
       setJoined(true)
       setJoining(false)
@@ -193,12 +196,7 @@ const useJoined = () => {
       setJoining(false)
     },
   })
-  const joinPress = () => {
-    setJoining(true)
-    join()
-  }
-  const isJoinedFinish = isJoined && !joining
-  return {isJoined, joining, joinPress, leave, isJoinedFinish}
+  return {isJoined, joining}
 }
 
 function MeetingView() {
@@ -239,7 +237,7 @@ export default function () {
       <MeetingProvider
         config={{
           meetingId,
-          micEnabled: false,
+          micEnabled: true,
           webcamEnabled: true,
           name: 'Test User 2', //TODO user name add from store
         }}
@@ -268,7 +266,7 @@ export default function () {
 // }
 
 export const createMeeting = async (): Promise<{meetingId: string; token: string}> => {
-  const res = await axios.get('https://e520-93-171-64-249.in.ngrok.io/meeting/test-meeting-id')
+  const res = await axios.get('https://prod.api.aspectapp.io/aspect-api-v2/meeting/test-meeting-id')
   const data = res.data
   console.log({data})
   return data
